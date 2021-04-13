@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
+  gem 'fabrication'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop-rails', require: false
