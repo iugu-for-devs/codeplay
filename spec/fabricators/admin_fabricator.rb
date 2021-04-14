@@ -1,0 +1,2 @@
+Fabricator(:admin) do
+end
