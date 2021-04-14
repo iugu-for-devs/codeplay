@@ -41,6 +41,8 @@ end
 require 'capybara/rspec'
 
 RSpec.configure do |config|
+  include Warden::Test::Helpers
+
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   end
@@ -74,5 +76,5 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  config.filter_gems_from_backtrace(/gems/)
 end

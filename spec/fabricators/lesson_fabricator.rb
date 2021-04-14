@@ -1,4 +1,5 @@
 Fabricator(:lesson) do
-  name        'MyString'
-  description 'MyText'
+  name { sequence(:name) { |i| "Aula-##{i}" } }
+  description 'Isso é uma aula'
+  course
 end

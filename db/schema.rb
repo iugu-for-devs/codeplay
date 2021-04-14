@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_185143) do
+ActiveRecord::Schema.define(version: 2021_04_14_204110) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 2021_04_14_185143) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "course_id", null: false
+    t.string "video_code"
+    t.index ["course_id"], name: "index_lessons_on_course_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -57,4 +60,5 @@ ActiveRecord::Schema.define(version: 2021_04_14_185143) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lessons", "courses"
 end

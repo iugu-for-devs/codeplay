@@ -1,4 +1,4 @@
 Fabricator(:course) do
-  name        'MyString'
-  description 'MyText'
+  name        'Curso A'
+  description 'Este é um curso'
 end
