@@ -1,0 +1,16 @@
+<h3>Cadastrar um novo curso</h3>
+<div>
+  <%= form_with(model: @course, local: true) do |f| %>
+    <div>
+      <%= f.label :name, 'Nome' %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :description, 'Descrição' %>
+      <%= f.text_area :description %>
+    </div>
+    <div>
+      <%= f.submit 'Cadastrar' %>
+    </div>
+    <% end %>
+</div>

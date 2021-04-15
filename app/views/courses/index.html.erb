@@ -1,0 +1,6 @@
+<%= link_to 'Cadastrar curso', new_course_path %>
+<br>
+<% @courses.each do |course| %>
+  <%= course.name %>
+  <%= course.description %>
+<% end %>
