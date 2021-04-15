@@ -1,7 +1,9 @@
 <% @subscriptions.each do |subscription| %>
-<div> 
-<%= subscription.name %>
-<%= subscription.description %>
-<%= subscription.price %>
+<div>
+<%= link_to subscription.name, subscription_path(subscription) %><br>
 </div>
 <% end %>
+
+<%= link_to 'Criar novo plano de assinatura', new_subscription_path %>
+
+<%= flash[:alert] %>

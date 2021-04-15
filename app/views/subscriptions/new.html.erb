@@ -1,0 +1,17 @@
+
+<%= form_with model: @subscription do |form| %>
+<div> 
+    <%= form.label :name, 'Nome' %>
+    <%= form.text_field :name %>
+
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_field :description %>
+
+    <%= form.label :price, 'Valor' %>
+    <%= form.number_field :price, step: :any %>
+
+    <%= form.submit 'Cadastrar' %>
+
+</div>
+<% end %>
+
