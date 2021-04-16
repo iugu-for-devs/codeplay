@@ -1,10 +1,14 @@
-<%= @lesson.name %>
-<%= @lesson.description %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= courses_path %>">Cursos</a></li>
+    <li class="breadcrumb-item"><a href="<%= courses_path(@lesson.course.id) %>"><%=@lesson.course.name%></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@lesson.name %></li>
+  </ol>
+</nav>
 
-<%= link_to 'Voltar', @lesson.course %>
-
-
-<iframe src="https://player.vimeo.com/video/337565310?color=ffffff" width="640" height="360" 
-frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/337565310">Lyft - The Sound of Y</a> 
-from <a href="https://vimeo.com/spencermacdonald">Spencer MacDonald</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<div class="container">
+	<%= vimeo_iframe(@lesson.video_code) %>
+</div>
+<h2 style="margin-left: 120px;">
+	<%= @lesson.name %> - <%= @lesson.description %>
+</h2>
