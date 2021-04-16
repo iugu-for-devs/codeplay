@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Admin auth' do
-  it 'Admin can logn in' do
+  it 'Admin can log in' do
     admin = Fabricate(:admin)
 
     visit new_admin_session_path
