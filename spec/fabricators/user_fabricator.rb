@@ -1,3 +1,4 @@
 Fabricator(:user) do
-  # TODO
+  email 'dude@gmail.com'
+  password '1234567'
 end

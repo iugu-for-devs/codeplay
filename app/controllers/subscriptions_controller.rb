@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
     def create
       @subscription = Subscription.new(subscription_params)
       if @subscription.save
-        redirect_to subscriptions_path, alert: 'Plano cadastrado com sucesso'
+        redirect_to @subscription, alert: 'Plano cadastrado com sucesso'
       else
         render :new
       end
