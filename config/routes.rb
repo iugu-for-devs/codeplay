@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations',
     passwords: 'admins/passwords'
   }
+  as :admin do
+    get '/', to: redirect('admins')
+  end
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
