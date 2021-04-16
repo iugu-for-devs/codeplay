@@ -11,7 +11,7 @@ describe 'Admin auth' do
 
     click_on 'Log in'
 
-    expect(current_path).to eq(admins_root)
-    expect(page.body).to have_text('Login efetuado com sucesso!')
+    expect(current_path).to eq(root_path)
+    expect(page).to have_text('Login efetuado com sucesso!')
   end
 end
