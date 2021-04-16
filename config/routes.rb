@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :admins, only: %i[sessions registrations passwords], controllers: {
-    sessions: 'admins/sessions',
-    registrations: 'admins/registrations',
-    passwords: 'admins/passwords'
-  }
+  devise_for :admins, module: :admins
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
