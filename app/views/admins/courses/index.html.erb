@@ -1,0 +1,7 @@
+<% if @courses.empty?	%>
+	<h3>Nenhum curso cadastrado</h3>
+<% end %>
+
+<% @courses.each do |course| %>
+			<p><%= link_to course.name, admins_course_path(course) %></p>
+<% end %>

@@ -1,4 +1,4 @@
 Fabricator(:course) do
-  name        'Curso A'
-  description 'Este é um curso'
+  name { sequence(:name) { |i| "Curso-##{i}" } }
+  description 'Isso é um curso'
 end

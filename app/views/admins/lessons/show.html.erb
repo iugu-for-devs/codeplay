@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= courses_path %>">Cursos</a></li>
-    <li class="breadcrumb-item"><a href="<%= courses_path(@lesson.course.id) %>"><%=@lesson.course.name%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admins_courses_path %>">Gerenciar Cursos</a></li>
+    <li class="breadcrumb-item"><a href="<%= admins_courses_path(@lesson.course.id) %>"><%=@lesson.course.name%></a></li>
     <li class="breadcrumb-item active" aria-current="page"><%=@lesson.name %></li>
   </ol>
 </nav>

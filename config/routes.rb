@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :courses, only: [:index, :show]
-  resources :lessons, only: [:show]
+  namespace :admins do
+    root 'dashboard#index'
+    resources :courses, only: [:index, :show]
+    resources :lessons, only: [:show]
+  end
 end

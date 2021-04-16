@@ -1,0 +1,21 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admins_root_path %>">Painel de Controle</a></li>
+    <li class="breadcrumb-item"><a href="<%= admins_courses_path %>">Gerenciar Cursos</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@course.name %></li>
+  </ol>
+</nav>
+
+<% if @course.lessons.empty?%>
+	<h3>Nenhuma Aula Cadastrada</h3>
+<% end %>
+
+<table class="table">
+	<% @course.lessons.each do |lesson| %>
+		<tbody>
+			<tr>
+				<td><%= link_to lesson.name, admins_lesson_path(lesson) %></td>
+			</tr>
+		</tbody>
+	<% end %>
+</table>
