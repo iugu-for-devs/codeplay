@@ -2,7 +2,7 @@
 
 class Admins::RegistrationsController < Devise::RegistrationsController
   include Accessible
-  skip_before_action :check_user, except: %w[new create].freeze
+  # skip_before_action :check_user, except: %w[new create].freeze
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -40,7 +40,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

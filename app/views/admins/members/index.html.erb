@@ -1,0 +1,8 @@
+<%= link_to 'Novo Membro', new_admins_member_path %>
+
+<% @members.each do |member| %>
+  <dl>
+    <dt>Email</dt>
+    <dd><%= member.email %></dd>
+  </dl>
+<% end %>
