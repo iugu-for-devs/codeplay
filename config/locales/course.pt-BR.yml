@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      course:
+        one: Curso
+        other: Cursos
+    attributes:
+      course:
+        name: Nome
+        description: Descrição

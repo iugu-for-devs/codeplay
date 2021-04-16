@@ -1,6 +1,19 @@
-<%= link_to 'Cadastrar curso', new_course_path %>
+<h1>Lista de Cursos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, course %></td>
+        <td><%= course.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <br>
-<% @courses.each do |course| %>
-  <%= course.name %>
-  <%= course.description %>
-<% end %>
+<%= link_to 'Cadastrar curso', new_course_path %>

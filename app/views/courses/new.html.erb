@@ -1,6 +1,14 @@
 <h3>Cadastrar um novo curso</h3>
+<% if @course.errors.any? %>
+  <h4>Não foi possível salvar encontramos alguns errors:</h4>
+  <ul>
+    <% @course.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div>
-  <%= form_with(model: @course, local: true) do |f| %>
+  <%= form_with model: @course, local: true do |f| %>
     <div>
       <%= f.label :name, 'Nome' %>
       <%= f.text_field :name %>
@@ -14,3 +22,5 @@
     </div>
     <% end %>
 </div>
+<br>
+<%= link_to 'Voltar', courses_path %>
