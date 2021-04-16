@@ -11,11 +11,10 @@ RSpec.describe Subscription, type: :model do
   end
 
   it 'name should be uniq' do
-    other_subscription= Fabricate(:subscription)
+    other_subscription = Fabricate(:subscription)
     subscription = Subscription.new(name: other_subscription.name)
 
     refute subscription.valid?
     expect(subscription.errors[:name]).to include('já está em uso')
   end
-
 end

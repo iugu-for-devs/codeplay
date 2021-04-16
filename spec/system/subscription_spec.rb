@@ -2,33 +2,43 @@ require 'rails_helper'
 
 describe 'Subscription plan' do
   it 'view all subscriptions plans' do
-    Subscription.create!(name: 'Jornada Web com Rails', 
+    Subscription.create!(name: 'Jornada Web com Rails',
                          description: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails',
                          price: '50')
-    Subscription.create!(name: 'Jornada Mobile com Dart e Flutter', 
+    Subscription.create!(name: 'Jornada Mobile com Dart e Flutter',
                          description: 'Esta assinatura irá englobar todos os cursos de Dart e o framework Flutter',
                          price: '80')
 
     visit subscriptions_path
     # TODO: colocar um within aqui, ta dando bug por alguma razao
-    expect(page).to have_text ('Jornada Web com Rails')
-    expect(page).to have_text ('Esta assinatura irá englobar todos os cursos de Ruby e Rails')
-    expect(page).to have_text ('Jornada Mobile com Dart e Flutter')
-    expect(page).to have_text ('Esta assinatura irá englobar todos os cursos de Dart e o framework Flutter')
+    expect(page).to have_text('Jornada Web com Rails')
+    expect(page).to have_text('Esta assinatura irá englobar todos os cursos de Ruby e Rails')
+    expect(page).to have_text('Jornada Mobile com Dart e Flutter')
+    expect(page).to have_text('Esta assinatura irá englobar todos os cursos de Dart e o framework Flutter')
   end
 
   it 'can view a subscription plan' do
     subscription = Fabricate(:subscription)
 
     visit subscriptions_path
-    click_on "Rails"
+    click_on 'Rails'
 
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
     expect(page).to have_text(subscription.price)
   end
 
-  it 'admin can create a course plan' do
+  it 'view a subscription plan and return to index' do
+    Fabricate(:subscription)
+
+    visit subscriptions_path
+    click_on 'Rails'
+    click_on 'Voltar'
+
+    expect(current_path).to eq(subscriptions_path)
+  end
+
+  it 'admin can create a subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
@@ -43,5 +53,30 @@ describe 'Subscription plan' do
     expect(page).to have_text('Jornada Web com Rails')
     expect(page).to have_text('Esta assinatura irá englobar todos os cursos de Ruby e Rails')
     expect(page).to have_text('50')
+  end
+
+  it 'admin cannot create a subscription plan with blank attributes' do
+    admin = Fabricate(:admin)
+    login_as admin, scope: :admin
+
+    visit subscriptions_path
+    click_on 'Criar novo plano de assinatura'
+    fill_in 'Nome', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Valor', with: ''
+    click_on 'Cadastrar'
+
+    expect(page).to have_text('Nome não pode ficar em branco')
+  end
+
+  it 'admin access new subscription plan form and return to index' do
+    admin = Fabricate(:admin)
+    login_as admin, scope: :admin
+
+    visit subscriptions_path
+    click_on 'Criar novo plano de assinatura'
+    click_on 'Voltar'
+
+    expect(current_path).to eq(subscriptions_path)
   end
 end

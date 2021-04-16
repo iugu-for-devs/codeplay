@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      subscription: Assinatura
+    attributes:
+      subscription:
+        name: Nome
+        description: Descrição
+        price: Preço
