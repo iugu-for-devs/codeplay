@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_204110) do
+ActiveRecord::Schema.define(version: 2021_04_17_020140) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_204110) do
     t.integer "course_id", null: false
     t.string "video_code"
     t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["video_code"], name: "index_lessons_on_video_code", unique: true
   end
 
   create_table "subscriptions", force: :cascade do |t|

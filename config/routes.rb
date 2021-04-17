@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root 'dashboard#index'
-    resources :courses, only: [:index, :show]
-    resources :lessons, only: [:show]
+    resources :courses, only: [:index, :show], shallow: true do
+      resources :lessons, only: [:show, :new, :create]
+    end
   end
 end
