@@ -3,7 +3,6 @@ module Accessible
   included do
     before_action :check_user
   end
-  
 
   protected
 

@@ -27,7 +27,8 @@ describe 'Admin authorization' do
 
     expect(page).to have_text('Saiu com sucesso.')
     expect(page).not_to have_link('Sair')
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(new_admin_session_path)
   end
-  #TODO: quando deslogar, redirecionar para admins_root_path, não o root normal (que vai acabar caindo na tela de log_in)
+
+  # TODO: quando deslogar, redirecionar para admins_root_path, não o root normal que vai acabar caindo na tela de log_in
 end

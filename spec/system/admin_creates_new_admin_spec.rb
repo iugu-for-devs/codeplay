@@ -11,10 +11,10 @@ describe 'Admin creates' do
     click_on 'Novo Membro'
 
     fill_in 'Email', with: 'new_admin@codeplay.com.br'
-    fill_in 'Password', with: rand(1..999999)
+    fill_in 'Password', with: rand(1..999_999)
     click_on 'Salvar'
 
-    expect(current_path).to eq(admins_members_path) 
+    expect(current_path).to eq(admins_members_path)
     expect(page).to have_text('new_admin@codeplay.com.br')
   end
 end

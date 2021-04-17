@@ -1,14 +1,12 @@
 class Admins::MembersController < Admins::ApplicationController
-  before_action :authenticate_admin!, only: %i[index new]
-  #TODO: verificar se é super admin
+  # TODO: verificar se é super admin
+
   def index
     @members = Admin.all
-    render layout: 'admin'
   end
 
   def new
     @member = Admin.new
-    render layout: 'admin'
   end
 
   def create
@@ -19,10 +17,6 @@ class Admins::MembersController < Admins::ApplicationController
       flash.now[:alert] = 'Nāo foi cadastrar'
       render :new
     end
-  end
-
-  def show
-    @member = Admin.find(params[:id])
   end
 
   private
