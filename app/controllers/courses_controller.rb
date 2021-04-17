@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show]
+  before_action :authenticate_admin!, only: %i[new create]
 
   def index
     @courses = Course.all
@@ -12,7 +13,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
+    @course = current_admin.courses.new(course_params)
     if @course.save
       redirect_to @course, notice: 'Curso criado com sucesso.'
     else
@@ -29,6 +30,6 @@ class CoursesController < ApplicationController
   def course_params
     params
       .require(:course)
-      .permit(:name, :description)
+      .permit(:name, :description, :instructor, :cover, :requirements)
   end
 end

@@ -9,3 +9,6 @@ pt-BR:
       course:
         name: Nome
         description: Descrição
+        instructor: Professor(es)
+        cover: Endereço da capa
+        requirements: Requisito(s)

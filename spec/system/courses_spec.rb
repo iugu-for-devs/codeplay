@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 describe 'Course Management' do
+  include Warden::Test::Helpers
+
   context 'Create' do
+    let(:admin) { Fabricate(:admin) }
+
     it 'Can create a course' do
+      login_as(admin, scope: :admin)
       visit new_course_path
 
       fill_in 'Nome', with: 'Curso de RubyOnRails'
@@ -16,6 +21,7 @@ describe 'Course Management' do
     end
 
     it 'Attributes cannot be blank' do
+      login_as(admin, scope: :admin)
       visit new_course_path
 
       fill_in 'Nome', with: ''
