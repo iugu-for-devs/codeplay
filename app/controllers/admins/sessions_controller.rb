@@ -4,6 +4,7 @@ class Admins::SessionsController < Devise::SessionsController
   include Accessible
   skip_before_action :check_user, only: %w[destroy].freeze
   # before_action :configure_sign_in_params, only: [:create]
+  layout 'admin'
 
   def after_sign_out_path_for(_resource_or_scope)
     store_location_for(:admins, new_admin_session_path)

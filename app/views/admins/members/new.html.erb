@@ -1,15 +1,15 @@
-
-<%= form_with scope: :member, url: admins_members_path(@member), method: :post do |f| %>
-  <div>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-  </div>
-  <div>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-  </div>
-  <div>
-
-  <%= f.submit %>
-  </div>
-<% end %>
+<div class="col-sm-4">
+  <%= form_with scope: :member, url: admins_members_path(@member), method: :post do |f| %>
+    <div class="mb-3">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

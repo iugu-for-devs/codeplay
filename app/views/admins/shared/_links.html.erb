@@ -1,25 +1,32 @@
+<div class="btn-group me-2" role="group">
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_admin_session_path(resource_name) %><br />
+  <%= link_to "Log in", new_admin_session_path(resource_name), class: 'btn btn-outline-secondary' %><br />
 <% end %>
 
+<%
+=begin%>
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_admin_registration_path(resource_name) %><br />
+  <%= link_to "Sign up", new_admin_registration_path(resource_name), class: 'btn btn-outline-secondary' %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_admin_password_path(resource_name) %><br />
+  <%= link_to "Forgot your password?", new_admin_password_path(resource_name), class: 'btn btn-outline-secondary' %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_admin_confirmation_path(resource_name) %><br />
+  <%= link_to "Didn't receive confirmation instructions?", new_admin_confirmation_path(resource_name), class: 'btn btn-outline-secondary' %><br />
 <% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_admin_unlock_path(resource_name) %><br />
+  <%= link_to "Didn't receive unlock instructions?", new_admin_unlock_path(resource_name), class: 'btn btn-outline-secondary' %><br />
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'btn btn-outline-secondary' %><br />
   <% end %>
 <% end %>
+</div>
+
+<%
+=end%>
