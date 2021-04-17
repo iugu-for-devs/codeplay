@@ -1,14 +1,24 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admins_courses_path %>">Gerenciar Cursos</a></li>
-    <li class="breadcrumb-item"><a href="<%= admins_courses_path(@lesson.course.id) %>"><%=@lesson.course.name%></a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%=@lesson.name %></li>
-  </ol>
-</nav>
+<h5>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="<%= admins_courses_path %>"class="link-dark">Gerenciamento de Cursos</a></li>
+      <li class="breadcrumb-item"><a href="<%= admins_course_path(@lesson.course.id) %>"
+                                    class="link-dark"><%=@lesson.course.name%></a></li>
+      <li class="breadcrumb-item active text-white" aria-current="page"><%=@lesson.name %></li>
+    </ol>
+  </nav>
+</h5>
 
 <div class="container">
 	<%= vimeo_iframe(@lesson.video_code) %>
 </div>
-<h2 style="margin-left: 120px;">
-	<%= @lesson.name %> - <%= @lesson.description %>
-</h2>
+
+<h5>
+	<div>
+    Título: <%= @lesson.name %>
+  </div>
+  <div>
+    Descrição: <%= @lesson.description %>
+  </div>
+</h5>
