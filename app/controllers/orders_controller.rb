@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
   def new
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course])
     @order = Order.new
   end
 
   def create
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course])
     @order = Order.create
 
     if params[:pay_type].blank?

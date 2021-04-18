@@ -1,4 +1,4 @@
-<%= form_with url: orders_path(course_id: @course) do |f| %>
+<%= form_with url: orders_path(course: @course) do |f| %>
   <%= f.label :pay_type, "Forma de Pagamento" %>
   <%= f.select :pay_type, [["Cartão de Crédito", "card"], ["PIX", "pix"], ["Boleto", "bill"]], { include_blank: true } %>
   <%= f.submit "Efetuar Compra" %>

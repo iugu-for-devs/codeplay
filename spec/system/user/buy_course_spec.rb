@@ -11,7 +11,7 @@ describe 'Authenticated user buy course' do
     visit course_path(course)
     click_on 'Comprar'
 
-    expect(page).to have_current_path(new_order_path(course_id: course.id))
+    expect(page).to have_current_path(new_order_path(course: course))
   end
 
   context 'when pay_type is selected' do
@@ -89,7 +89,7 @@ describe 'Authenticated user buy course' do
       end
 
       expect(page).to have_content('Pay type não pode ficar em branco')
-      expect(page).to have_current_path(orders_path(course_id: course.id))
+      expect(page).to have_current_path(orders_path(course: course.id))
     end
   end
 end
