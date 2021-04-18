@@ -7,7 +7,7 @@
 <% end %>
 
 <h2>Cadastro de Aula</h2>
-<%= form_with model: [:admins,:course, @lesson] do |form| %>
+<%= form_with model: [:admins, @lesson] do |form| %>
    <div class="mx-auto">
       <%= form.label :name, 'Nome:'%>
       <%= form.text_field :name, class: "form-control"%>
@@ -23,6 +23,5 @@
       <span class="form-text text-white"> 
       Ex: vimeo.com/</span><span class="text-decoration-underline text-white">1234534 </span>
     </div>
-    <%= form.hidden_field :course_id, value: params['course_id']%>
-    <div><%= form.submit 'Criar Aula',class:"btn btn-primary" %></div>
+    <div><%= form.submit 'Atualizar Aula', class:"btn btn-primary" %></div>
 <% end %>

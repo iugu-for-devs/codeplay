@@ -10,6 +10,9 @@
   </nav>
 </h5>
 
+<%= link_to 'Editar Aula', edit_admins_lesson_path(@lesson)%>
+<%=link_to 'Apagar Aula', admins_lesson_path(@lesson), method: :delete%>
+
 <div class="container">
 	<%= vimeo_iframe(@lesson.video_code) %>
 </div>

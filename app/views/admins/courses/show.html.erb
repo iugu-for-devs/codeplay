@@ -9,7 +9,7 @@
 <h2><%= @course.name %></h2>
 
 <% if @course.lessons.empty?%>
-	<h3>Nenhuma Aula Cadastrada</h3>
+	<h3>Nenhuma aula cadastrada</h3>
 <% end %>
 
 <%= link_to "Cadastrar aula", new_admins_course_lesson_path(@course),class:"btn btn-warning"  %>
