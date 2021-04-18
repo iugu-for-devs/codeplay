@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_224507) do
+ActiveRecord::Schema.define(version: 2021_04_17_221844) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,12 +38,22 @@ ActiveRecord::Schema.define(version: 2021_04_16_224507) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "subscription_courses", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "subscription_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_subscription_courses_on_course_id"
+    t.index ["subscription_id"], name: "index_subscription_courses_on_subscription_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "price", null: false
+    t.string "token"
     t.index ["name"], name: "index_subscriptions_on_name", unique: true
   end
 
@@ -59,4 +69,6 @@ ActiveRecord::Schema.define(version: 2021_04_16_224507) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "subscription_courses", "courses"
+  add_foreign_key "subscription_courses", "subscriptions"
 end

@@ -79,4 +79,30 @@ describe 'Subscription plan' do
 
     expect(current_path).to eq(subscriptions_path)
   end
+
+  it 'admin can add a course to a subscription' do
+    admin = Fabricate(:admin)
+    login_as admin, scope: :admin
+    subscription = Fabricate(:subscription)
+    course = Fabricate(:course)
+
+    visit subscription_path(subscription)
+    fill_in 'Nome do curso', with: course.name
+    click_on 'Adicionar curso'
+
+    expect(page).to have_text(course.name)
+    expect(page).to have_text(course.description)
+  end
+
+  it 'admin cannot add non-existing course to a subscription' do
+    admin = Fabricate(:admin)
+    login_as admin, scope: :admin
+    subscription = Fabricate(:subscription)
+
+    visit subscription_path(subscription)
+    fill_in 'Nome do curso', with: 'Ruby'
+    click_on 'Adicionar curso'
+
+    expect(page).to have_text('Curso não encontrado')
+  end
 end

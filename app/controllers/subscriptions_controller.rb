@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create add_course]
+  before_action :set_subscription, only: %i[show add_course]
 
   def index
     @subscriptions = Subscription.all
@@ -19,7 +20,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
-    @subscription = Subscription.find(params[:id])
+  end
+
+  def add_course
+    @course = Course.find_by(name: params[:name])
+    
+    if @course.present?
+      @subscription.courses << @course
+      redirect_to @subscription, alert: 'Curso cadastrado com sucesso'
+    else
+      redirect_to @subscription, alert: 'Curso não encontrado'
+    end
   end
 
   private
@@ -28,5 +39,9 @@ class SubscriptionsController < ApplicationController
     params
       .require(:subscription)
       .permit(:name, :description, :price)
+  end
+
+  def set_subscription
+    @subscription = Subscription.find(params[:id])
   end
 end

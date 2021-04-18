@@ -1,5 +1,32 @@
 <%= link_to 'Voltar', subscriptions_path %>
 
-<%= @subscription.name %>
-<%= @subscription.description %>
-<%= @subscription.price %>
+<dl>
+  <dt><%= Subscription.human_attribute_name(:name) %></dt>
+  <dd><%= @subscription.name %></dd>
+  
+  <dt><%= Subscription.human_attribute_name(:description) %></dt>
+  <dd><%= @subscription.description %></dd>
+
+  <dt><%= Subscription.human_attribute_name(:price)%></dt>
+  <dd><%= @subscription.price %></dd>
+</dl>
+
+<%= form_with url: add_course_subscription_path do |f| %>
+  <%= f.label :name, 'Nome do curso' %> <br>
+  <%= f.text_field :name %> <br>
+  <%= f.submit 'Adicionar curso' %> 
+<% end %>
+<hr>
+
+<% if @subscription.courses.any? %>
+  <% @subscription.courses.each do |course| %>
+    <dl>
+      <dt>Curso </dt>
+      <dd> <%= course.name  %></dd>
+      
+      <dt>Descrição </dt>
+      <dd> <%= course.description%> </dd>
+      <hr>
+    </dl>
+  <% end %>
+<% end  %>

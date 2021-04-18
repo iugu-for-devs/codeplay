@@ -3,3 +3,4 @@ class AddUniqToName < ActiveRecord::Migration[6.1]
     add_index :subscriptions, :name, unique: true 
   end
 end
+
