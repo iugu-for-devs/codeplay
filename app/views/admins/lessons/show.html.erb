@@ -13,15 +13,15 @@
 <%= link_to 'Editar Aula', edit_admins_lesson_path(@lesson)%>
 <%=link_to 'Apagar Aula', admins_lesson_path(@lesson), method: :delete%>
 
-<div class="container">
+<div id='iframe' class="container">
 	<%= vimeo_iframe(@lesson.video_code) %>
 </div>
 
 <h5>
-	<div>
+	<div id='name'>
     Título: <%= @lesson.name %>
   </div>
-  <div>
+  <div id='description'>
     Descrição: <%= @lesson.description %>
   </div>
 </h5>

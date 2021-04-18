@@ -19,8 +19,6 @@ class Admins::LessonsController < Admins::ApplicationController
   def edit; end
 
   def update
-    return unless @lesson.can_update?(lesson_params)
-
     if @lesson.update(lesson_params)
       flash[:notice] = 'Aula atualizada com sucesso'
       redirect_to_lesson_show
