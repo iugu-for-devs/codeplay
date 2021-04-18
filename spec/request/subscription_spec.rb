@@ -24,7 +24,7 @@ describe 'Subscription plan', type: :request do
   it 'non admin cannot add a course to subscription' do
     user = Fabricate(:user)
     login_as user, scope: :user
-    course = Fabricate(:course)
+    Fabricate(:course)
     subscription = Fabricate(:subscription)
 
     post add_course_subscription_path(subscription), params: {

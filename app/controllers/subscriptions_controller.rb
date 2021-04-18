@@ -19,12 +19,11 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def add_course
     @course = Course.find_by(name: params[:name])
-    
+
     if @course.present?
       @subscription.courses << @course
       redirect_to @subscription, alert: 'Curso cadastrado com sucesso'
