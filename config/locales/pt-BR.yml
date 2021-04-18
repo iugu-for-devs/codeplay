@@ -1,0 +1,6 @@
+---
+  pt-BR:
+    buttons:
+      register: Cadastrar %{model}
+      delete: Apagar %{model}
+      edit: Editar %{model}

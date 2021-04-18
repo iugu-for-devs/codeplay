@@ -1,0 +1,7 @@
+---
+pt-BR:
+  course:
+    show:
+      empty: Nenhuma aula cadastrada
+  headers:
+    course_managment: Gerenciamento de Cursos

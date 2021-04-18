@@ -1,7 +1,9 @@
 <h5><nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark">Dashboard</a></li>
-			<li class="breadcrumb-item"><a href="<%= admins_courses_path %>"class="link-dark">Gerenciamento de Cursos</a></li>
+			<li class="breadcrumb-item"><a href="<%= admins_root_path %>"
+																		 class="link-dark"><%=t('headers.dashboard')%></a></li>
+			<li class="breadcrumb-item"><a href="<%= admins_courses_path %>"
+																		 class="link-dark"><%=t('headers.course_managment')%></a></li>
 			<li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
 		</ol>
 </nav></h5>
@@ -9,16 +11,17 @@
 <h2><%= @course.name %></h2>
 
 <% if @course.lessons.empty?%>
-	<h3>Nenhuma aula cadastrada</h3>
+	<h3><%= t('course.show.empty')%></h3>
 <% end %>
 
-<%= link_to "Cadastrar aula", new_admins_course_lesson_path(@course),class:"btn btn-warning"  %>
+<%= link_to t('buttons.register', model: Lesson.model_name.human), 
+new_admins_course_lesson_path(@course),class:"btn btn-warning"  %>
 <div>
 	<table class="table table-bordered">
 		<thead class="table-dark">
 				<tr>
-					<th scope="col">Título</th>
-					<th scope="col">Descrição</th>
+					<th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
+					<th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
 				</tr>
 			</thead>
 		<% @course.lessons.each do |lesson| %>

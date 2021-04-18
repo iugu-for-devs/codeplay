@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      lesson:
+        one: Aula
+        other: Aulas
+    attributes:
+      lesson:
+        name: Nome
+        description: Descrição
+        video_code: Código do Video

@@ -84,7 +84,7 @@ describe 'lessons management' do
 
     login_as(admin, scope: :admin)
     visit admins_course_path(course)
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
     fill_in 'Nome', with: 'Arrays em Ruby'
     fill_in 'Descrição', with: 'Novos métodos de Array'
     fill_in 'Código do Video', with: '1234'
@@ -102,7 +102,7 @@ describe 'lessons management' do
 
     login_as(admin, scope: :admin)
     visit admins_course_path(course)
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
     fill_in 'Nome', with: ''
     fill_in 'Código do Video', with: ''
     click_on 'Criar Aula'
@@ -117,7 +117,7 @@ describe 'lessons management' do
 
     login_as(admin, scope: :admin)
     visit admins_course_path(course)
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
     fill_in 'Nome', with: 'Aula1'
     fill_in 'Código do Video', with: '1234'
     click_on 'Criar Aula'

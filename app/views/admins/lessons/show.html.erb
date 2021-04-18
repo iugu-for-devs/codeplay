@@ -1,27 +1,32 @@
 <h5>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="<%= admins_courses_path %>"class="link-dark">Gerenciamento de Cursos</a></li>
-      <li class="breadcrumb-item"><a href="<%= admins_course_path(@lesson.course.id) %>"
-                                    class="link-dark"><%=@lesson.course.name%></a></li>
+      <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark">
+                                                <%=t('headers.dashboard')%></a></li>
+      <li class="breadcrumb-item"><a href="<%= admins_courses_path %>"class="link-dark">
+                                                <%=t('headers.course_managment')%></a></li>
+      <li class="breadcrumb-item"><a href="<%= admins_course_path(@lesson.course.id) %>"class="link-dark">
+                                                <%=@lesson.course.name%></a></li>
       <li class="breadcrumb-item active text-white" aria-current="page"><%=@lesson.name %></li>
     </ol>
   </nav>
 </h5>
-
-<%= link_to 'Editar Aula', edit_admins_lesson_path(@lesson)%>
-<%=link_to 'Apagar Aula', admins_lesson_path(@lesson), method: :delete%>
-
+<div>
+  <%= link_to t('buttons.edit', model: Lesson.model_name.human), edit_admins_lesson_path(@lesson),
+                                                                          class:"btn btn-primary"%>
+  <%=link_to t('buttons.delete', model: Lesson.model_name.human), admins_lesson_path(@lesson), method: :delete,
+                                                                        class:"btn btn-danger"%>
+</div>
+<br>
 <div id='iframe' class="container">
 	<%= vimeo_iframe(@lesson.video_code) %>
 </div>
 
 <h5>
 	<div id='name'>
-    Título: <%= @lesson.name %>
+    <%= Lesson.human_attribute_name(:name) %>: <%= @lesson.name %>
   </div>
   <div id='description'>
-    Descrição: <%= @lesson.description %>
+    <%=Lesson.human_attribute_name(:description) %>: <%= @lesson.description %>
   </div>
 </h5>
