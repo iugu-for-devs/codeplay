@@ -6,13 +6,11 @@ class OrdersController < ApplicationController
 
   def create
     @course = Course.find(params[:course])
-    @order = Order.create
+    @order = Order.new(pay_type: params[:pay_type])
 
-    if params[:pay_type].blank?
-      flash.now[:notice] = 'Pay type não pode ficar em branco'
-      return render :new
-    end
+    return redirect_to @course, notice: 'Compra realizada com sucesso!' if @order.save
 
-    redirect_to @course, notice: 'Compra realizada com sucesso!'
+    flash.now[:notice] = @order.errors.full_messages
+    return render :new
   end
 end
