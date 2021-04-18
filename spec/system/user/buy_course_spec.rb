@@ -10,7 +10,7 @@ describe 'Authenticated user buy course' do
 
     visit course_path(course)
     click_on 'Comprar'
-
+    
     expect(page).to have_current_path(new_order_path(course: course))
   end
 
@@ -24,8 +24,10 @@ describe 'Authenticated user buy course' do
 
       visit course_path(course)
       click_on 'Comprar'
-
+      
       within 'form' do
+        expect(page).to have_content('Forma de Pagamento')
+
         select 'Cartão de Crédito', from: 'Forma de Pagamento'
         click_on 'Efetuar Compra'
       end
@@ -88,7 +90,7 @@ describe 'Authenticated user buy course' do
         click_on 'Efetuar Compra'
       end
 
-      expect(page).to have_content('Pay type não pode ficar em branco')
+      expect(page).to have_content('Forma de Pagamento não pode ficar em branco')
       expect(page).to have_current_path(orders_path(course: course.id))
     end
   end

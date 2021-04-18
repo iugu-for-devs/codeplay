@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     @course = Course.find(params[:course])
     @order = Order.new(pay_type: params[:pay_type])
 
-    return redirect_to @course, notice: 'Compra realizada com sucesso!' if @order.save
+    return redirect_to @course, notice: t(".success") if @order.save
 
     flash.now[:notice] = @order.errors.full_messages
     return render :new
