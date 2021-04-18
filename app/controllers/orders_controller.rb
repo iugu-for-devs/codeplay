@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @course = Course.find(params[:course])
     @order = Order.new
