@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe 'Course Management' do
-  include Warden::Test::Helpers
-
   context 'Create' do
     let(:admin) { Fabricate(:admin) }
 

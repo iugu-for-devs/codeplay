@@ -2,7 +2,6 @@ require 'rails_helper'
 
 class CourseFlowSpec < ActionDispatch::IntegrationTest
   context 'Create' do
-    include Warden::Test::Helpers
     let(:admin) { Fabricate(:admin) }
     let(:course) { Fabricate.build(:course) }
 
