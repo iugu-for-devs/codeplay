@@ -41,6 +41,7 @@ end
 require 'capybara/rspec'
 
 RSpec.configure do |config|
+  include Warden::Test::Helpers
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   end

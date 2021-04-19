@@ -4,9 +4,9 @@ describe 'Authenticated user buy course' do
   it 'in order view' do
     client = User.create!(email: 'test@gmail.com', password: '123456')
     login_as client, scope: :user
-    course = Course.create!(name: 'Ruby on Rails',
-                            description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                          aliqua ipsum nisi tempor cupidatat in ex.')
+    course = Fabricate(:course, name: 'Ruby on Rails',
+                                description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
     visit course_path(course)
     click_on 'Comprar'
@@ -17,9 +17,9 @@ describe 'Authenticated user buy course' do
     it 'returns successfully with credit card' do
       client = User.create!(email: 'test@gmail.com', password: '123456')
       login_as client, scope: :user
-      course = Course.create!(name: 'Ruby on Rails',
-                              description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                            aliqua ipsum nisi tempor cupidatat in ex.')
+      course = Fabricate(:course, name: 'Ruby on Rails',
+                                  description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
       visit course_path(course)
       click_on 'Comprar'
@@ -37,9 +37,9 @@ describe 'Authenticated user buy course' do
     it 'returns successfully with pix' do
       client = User.create!(email: 'test@gmail.com', password: '123456')
       login_as client, scope: :user
-      course = Course.create!(name: 'Ruby on Rails',
-                              description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                            aliqua ipsum nisi tempor cupidatat in ex.')
+      course = Fabricate(:course, name: 'Ruby on Rails',
+                                  description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
       visit course_path(course)
       click_on 'Comprar'
@@ -56,9 +56,9 @@ describe 'Authenticated user buy course' do
     it 'returns successfully with boleto' do
       client = User.create!(email: 'test@gmail.com', password: '123456')
       login_as client, scope: :user
-      course = Course.create!(name: 'Ruby on Rails',
-                              description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                            aliqua ipsum nisi tempor cupidatat in ex.')
+      course = Fabricate(:course, name: 'Ruby on Rails',
+                                  description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
       visit course_path(course)
       click_on 'Comprar'
@@ -77,9 +77,9 @@ describe 'Authenticated user buy course' do
     it 'returns message error' do
       client = User.create!(email: 'test@gmail.com', password: '123456')
       login_as client, scope: :user
-      course = Course.create!(name: 'Ruby on Rails',
-                              description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                            aliqua ipsum nisi tempor cupidatat in ex.')
+      course = Fabricate(:course, name: 'Ruby on Rails',
+                                  description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
       visit course_path(course)
       click_on 'Comprar'
@@ -96,9 +96,9 @@ end
 
 describe 'Unauthenticated user' do
   it 'click on buy button' do
-    course = Course.create!(name: 'Ruby on Rails',
-                            description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                          aliqua ipsum nisi tempor cupidatat in ex.')
+    course = Fabricate(:course, name: 'Ruby on Rails',
+                                description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
     visit course_path(course)
     click_on 'Comprar'
@@ -109,9 +109,9 @@ describe 'Unauthenticated user' do
 
   it 'loggin, visit course page and buy course' do
     User.create!(email: 'test@gmail.com', password: '123456')
-    course = Course.create!(name: 'Ruby on Rails',
-                            description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                          aliqua ipsum nisi tempor cupidatat in ex.')
+    course = Fabricate(:course, name: 'Ruby on Rails',
+                                description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
     visit course_path(course)
     click_on 'Comprar'
@@ -131,9 +131,9 @@ describe 'Unauthenticated user' do
   end
 
   it 'visit course page, sign up and buy course' do
-    course = Course.create!(name: 'Ruby on Rails',
-                            description: 'Pariatur sint laborum consectetur exercitation do tempor \
-                                          aliqua ipsum nisi tempor cupidatat in ex.')
+    course = Fabricate(:course, name: 'Ruby on Rails',
+                                description: 'Pariatur sint laborum consectetur exercitation do tempor \
+                       aliqua ipsum nisi tempor cupidatat in ex.')
 
     visit course_path(course)
     click_on 'Comprar'
