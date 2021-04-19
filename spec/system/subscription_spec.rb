@@ -2,21 +2,19 @@ require 'rails_helper'
 
 describe 'Subscription plan' do
   it 'view all subscriptions plans' do
-    Subscription.create!(name: 'Jornada Web com Rails',
-                         description: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails',
-                         price: '50')
-    Subscription.create!(name: 'Jornada Mobile com Dart e Flutter',
-                         description: 'Esta assinatura irá englobar todos os cursos de Dart e o framework Flutter',
-                         price: '80')
+    subscription = Fabricate(:subscription)
+    other_subscription = Fabricate(:subscription,
+                                   name: 'Jornada Mobile com Dart e Flutter',
+                                   description: 'Esta assinatura irá englobar todos os cursos'\
+                                                'de Dart e o framework Flutter')
 
     visit subscriptions_path
     # TODO: colocar um within aqui, ta dando bug por alguma razao
-    expect(page).to have_text('Jornada Web com Rails')
-    expect(page).to have_text('Esta assinatura irá englobar todos os cursos de Ruby e Rails')
-    expect(page).to have_text('Jornada Mobile com Dart e Flutter')
-    expect(page).to have_text('Esta assinatura irá englobar todos os cursos de Dart e o framework Flutter')
+    expect(page).to have_text(subscription.name)
+    expect(page).to have_text(subscription.description)
+    expect(page).to have_text(other_subscription.name)
+    expect(page).to have_text(other_subscription.description)
   end
-
   it 'can view a subscription plan' do
     subscription = Fabricate(:subscription)
 

@@ -1,8 +1,7 @@
 <%= link_to 'Voltar', subscriptions_path %>
 
 <dl>
-  <dt><%= Subscription.human_attribute_name(:name) %></dt>
-  <dd><%= @subscription.name %></dd>
+  <h3><%= @subscription.name %></h3>
   
   <dt><%= Subscription.human_attribute_name(:description) %></dt>
   <dd><%= @subscription.description %></dd>
@@ -10,6 +9,9 @@
   <dt><%= Subscription.human_attribute_name(:price)%></dt>
   <dd><%= @subscription.price %></dd>
 </dl>
+<hr>
+
+<h4>Adicionar um curso</h4>
 
 <%= form_with url: add_course_subscription_path do |f| %>
   <%= f.label :name, 'Nome do curso' %> <br>
@@ -18,6 +20,7 @@
 <% end %>
 <hr>
 
+<h4>Cursos</h4>
 <% if @subscription.courses.any? %>
   <% @subscription.courses.each do |course| %>
     <dl>
@@ -29,4 +32,6 @@
       <hr>
     </dl>
   <% end %>
+  <% else %>
+  <p>Nenhum curso cadastrado para este plano</p>
 <% end  %>

@@ -1,9 +1,8 @@
 <%= link_to 'Criar novo plano de assinatura', new_subscription_path %>
-<%= flash[:alert] %>
 <hr>
 <% @subscriptions.each do |subscription| %>
   <div id="<%= subscription.id %>">
-    <%= link_to subscription.name, subscription_path(subscription) %><br>
+    <%= link_to subscription.name, subscription %><br>
     <%= subscription.description %>
     <hr>
   </div>

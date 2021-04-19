@@ -40,3 +40,5 @@ yarn-debug.log*
 .yarn-integrity
 
 coverage
+# Ignore vscode settings
+/.vscode/settings.json

@@ -14,7 +14,7 @@ RSpec.describe Subscription, type: :model do
     other_subscription = Fabricate(:subscription)
     subscription = Subscription.new(name: other_subscription.name)
 
-    refute subscription.valid?
+    expect(subscription).not_to be_valid
     expect(subscription.errors[:name]).to include('já está em uso')
   end
 end

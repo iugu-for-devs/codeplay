@@ -15,7 +15,7 @@ describe 'Subscription plan', type: :request do
     login_as user, scope: :user
 
     post subscriptions_path, params: {
-      subscription: { name: 'Teste', description: 'Teste teste', price: 'teste' }
+      subscription: Fabricate(:subscription)
     }
 
     expect(response).to redirect_to(new_admin_session_path)
@@ -24,11 +24,11 @@ describe 'Subscription plan', type: :request do
   it 'non admin cannot add a course to subscription' do
     user = Fabricate(:user)
     login_as user, scope: :user
-    Fabricate(:course)
+    course = Fabricate(:course)
     subscription = Fabricate(:subscription)
 
     post add_course_subscription_path(subscription), params: {
-      name: 'Ruby'
+      name: course.name
     }
 
     expect(response).to redirect_to(new_admin_session_path)
