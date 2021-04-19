@@ -21,14 +21,21 @@ class SubscriptionsController < ApplicationController
 
   def show; end
 
+  def search_course
+    @subscription = Subscription.find(params[:id])
+    @courses = Course.search(params[:name])
+    render :show
+  end
+
   def add_course
     @course = Course.find_by(name: params[:name])
+    return redirect_to @subscription, alert: 'Curso não encontrado' unless @course
 
-    if @course
+    if @subscription.courses.include?(@course)
+      redirect_to @subscription, alert: 'Curso já cadastrado nesta assinatura'
+    else
       @subscription.courses << @course
       redirect_to @subscription, alert: 'Curso cadastrado com sucesso'
-    else
-      redirect_to @subscription, alert: 'Curso não encontrado'
     end
   end
 

@@ -1,0 +1,18 @@
+<% if @courses.empty? %>
+  <p>Nenhum curso encontrado com esse nome</p>
+<% else %>
+  <p><strong>Foram encontrados <%= @courses.size %> cursos: </strong></p>
+  <% @courses.each do |course| %>
+    <hr>  
+    <div id="CURSO<%= course.id %>">
+      <p><%= course.name %></p>  
+      <p><%= course.description %></p>
+
+      <%= form_with url: add_course_subscription_path do |form| %>
+        <%= form.hidden_field :name, value: course.name %>
+        <%= form.submit 'Adicionar curso' %>
+      <% end %>
+
+    </div>
+  <% end %>
+<% end %>
