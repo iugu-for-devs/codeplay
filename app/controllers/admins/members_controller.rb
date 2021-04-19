@@ -11,17 +11,27 @@ class Admins::MembersController < Admins::ApplicationController
 
   def create
     @member = Admin.new(admin_params)
+
     if @member.save
+      flash[:notice] = 'Membro cadastrado com sucesso!'
+      # TODO: mandar email com dados de login
       redirect_to admins_members_path
     else
-      flash.now[:alert] = 'Nāo foi cadastrar'
+      flash[:alert] = @member.errors.full_messages
       render :new
     end
   end
 
+
   private
 
+  def create_password
+    Devise.friendly_token.first(8)
+  end
+
   def admin_params
-    params.require(:member).permit(:email, :password)
+    with_password = params.require(:member).permit(:email, :name)
+    with_password[:password] = create_password
+    with_password
   end
 end
