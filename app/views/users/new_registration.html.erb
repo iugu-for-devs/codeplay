@@ -1,0 +1,13 @@
+<%= form_with method: :post,  model: @user do |f| %>
+  <div>
+    <%= f.label :email, 'Email' %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password, 'Senha' %>
+    <%= f.text_field :password %>
+  </div>
+  <%= f.submit 'Cadastrar' %>
+
+<% end %>

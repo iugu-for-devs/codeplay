@@ -11,6 +11,16 @@
   </head>
 
   <body>
+  <nav>
+  <% if user_signed_in? %>
+    <%= current_user.email %>
+    <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+  <% else %>
+  <br>
+    <%= link_to 'Cadastrar', new_user_registration_path %>
+    <%= link_to 'Entrar', new_user_session_path %>
+  <% end %>
+  </nav>
     <%= render partial: 'shared/flashes' %>
     <%= yield %>
   </body>

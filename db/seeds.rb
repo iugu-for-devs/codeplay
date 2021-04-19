@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+user1 = User.create(
+  email: "user1@iugu.com.br",
+  password: "Iugu@1234",
+  password_confirmation: "Iugu@1234"
+) do |resource|
+  resource.skip_confirmation!
+end
+
+user2 = User.create(
+  email: "user2@iugu.com.br",
+  password: "Iugu@1234",
+  password_confirmation: "Iugu@1234"
+)
