@@ -1,6 +1,38 @@
 require 'rails_helper'
 
 describe 'Course Management' do
+  context 'New' do
+    let(:user) { Fabricate(:user) }
+    let(:admin) { Fabricate(:admin) }
+
+    it 'Admins can view the create form' do
+      login_as(admin, scope: :admin)
+
+      visit new_course_path
+
+      expect(page).to have_text('Nome')
+      expect(page).to have_text('Descrição')
+      expect(page).to have_text('Professor(es)')
+      expect(page).to have_text('Endereço da capa')
+      expect(page).to have_text('Requisito(s)')
+    end
+
+    it 'Guests cannot create' do
+      visit new_course_path
+
+      expect(current_path).to eq(new_admin_session_path)
+      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
+    end
+
+    it 'Users cannot create' do
+      login_as(user, scope: :user)
+      visit new_course_path
+
+      expect(current_path).to eq(new_admin_session_path)
+      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
+    end
+  end
+
   context 'Create' do
     let(:admin) { Fabricate(:admin) }
 

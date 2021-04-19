@@ -8,11 +8,11 @@
   <% end %>
   <dt>Capa: </dt>
   <dd>
-    <% if Rails.application.assets.find_asset(@course.cover) %>
-      <%= image_tag @course.cover, size:'360x360' %>
-    <% else %>
-      <%= image_tag 'covers/404.jpg', size:'360x360' %>
-    <% end %>
+     <% if @course.cover.attached? %>
+        <%= image_tag @course.cover, size:'360x360' %>
+      <% else %>
+        <%= image_tag 'covers/404.jpg', size:'360x360' %> 
+      <% end %>
   </dd>
   <% if @course.requirements %>
     <dt>Requisito(s): </dt>

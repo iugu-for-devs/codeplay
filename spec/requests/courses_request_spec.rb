@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class CourseFlowSpec < ActionDispatch::IntegrationTest
+describe 'Course management', type: :request do
   context 'Create' do
     let(:admin) { Fabricate(:admin) }
     let(:course) { Fabricate.build(:course) }
@@ -14,6 +14,12 @@ class CourseFlowSpec < ActionDispatch::IntegrationTest
 
       assert_select 'h3', course.name
       assert_select 'dd', course.description
+    end
+
+    it 'Create without login as admin' do
+      post '/courses', params: { course: course.attributes }
+
+      assert_redirected_to new_admin_session_path
     end
   end
 end

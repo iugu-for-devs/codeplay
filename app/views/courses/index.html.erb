@@ -16,4 +16,6 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'Cadastrar curso', new_course_path %>
+<% if admin_signed_in? %>
+  <%= link_to 'Cadastrar curso', new_course_path %>
+<% end%>
