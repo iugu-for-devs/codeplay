@@ -12,13 +12,17 @@
 
   <body>
   <nav>
+  <br>
   <% if user_signed_in? %>
     <%= current_user.email %>
     <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
   <% else %>
-  <br>
-    <%= link_to 'Cadastrar', new_user_registration_path %>
-    <%= link_to 'Entrar', new_user_session_path %>
+    <% if current_page?(new_user_registration_path) == false %>
+      <%= link_to 'Cadastrar', new_user_registration_path %>
+    <% end %>
+    <% if current_page?(new_user_session_path) == false %>
+      <%= link_to 'Entrar', new_user_session_path %>
+    <% end %>  
   <% end %>
   </nav>
     <%= render partial: 'shared/flashes' %>

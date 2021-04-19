@@ -10,10 +10,11 @@ describe 'create user and access user panel' do
     click_on 'Cadastrar'
     assert_current_path new_user_registration_path
 
+    assert_no_text 'Cadastrar'
     assert_text 'Email'
     assert_text 'Senha'
     assert_text 'Confirmar senha'
-    expect(page).to have_selector(:link_or_button, 'Cadastrar')
+    expect(page).to have_selector(:button, 'Cadastrar')
   end
 
   it 'register a new user' do
@@ -126,6 +127,7 @@ describe 'create user and access user panel' do
     click_on 'Entrar'
 
     assert_current_path new_user_session_path
+    expect(page).to have_no_link('Entrar')
 
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: user.password
@@ -218,43 +220,40 @@ describe 'create user and access user panel' do
     assert_text 'Antes de continuar, confirme a sua conta'
   end
 
-  it 'user can recover password' do
+  it 'user can request reset password' do
     user = Fabricate(:user)
     user.confirm
 
     visit user_session_path
-
     click_on 'Esqueceu sua senha?'
-
     assert_current_path new_user_password_path
-
+    assert_text 'Esqueceu sua senha?'
     fill_in 'Email', with: user.email
-
     click_on 'Enviar instruções de recuperação de senha'
 
     assert_current_path user_session_path
-
     assert_text 'Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.'
+  end
 
-    # visit "http://localhost:3000/users/password/edit?reset_password_token=#{user.reset_password_token}"
-    visit edit_user_password_path(reset_password_token: "#{user.reset_password_token})
-    assert_current_path edit_user_password_path
+  it 'user can create a new password' do
+    user = Fabricate(:user)
+    user.confirm
+    token = user.send_reset_password_instructions
+    visit edit_user_password_path(reset_password_token: token)
 
     fill_in 'Nova senha', with: '1234567890'
     fill_in 'Confirmar nova senha', with: '1234567890'
-
     click_on 'Mudar minha senha'
 
     assert_text 'Sua senha foi alterada com sucesso. Você está logado.'
-
     assert_current_path root_path
   end
 
-  xit 'user cannot login without captcha' do
+  xit 'user cannot login without recaptcha' do
     # TODO
   end
 
   # TODO: Definir para qual path o usuário será direcionado após o login
-  # TODO: Remove Button Login and Sair from specific views
+  # TODO: Add 'home' link to all pages except root_path
   # TODO: Refatorar logon com login as (definir método e chamar)
 end
