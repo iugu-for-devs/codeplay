@@ -9,7 +9,7 @@ describe 'Course management', type: :request do
       login_as(admin, scope: :admin)
       post '/courses', params: { course: course.attributes }
 
-      assert_redirected_to course_path(Course.last)
+      expect(response).to redirect_to(course_path(Course.last))
       follow_redirect!
 
       assert_select 'h3', course.name
@@ -28,7 +28,7 @@ describe 'Course management', type: :request do
     it 'Create without login as admin' do
       post '/courses', params: { course: course.attributes }
 
-      assert_redirected_to new_admin_session_path
+      expect(response).to redirect_to(new_admin_session_path)
       expect(Course.count).to eq(0)
     end
   end
