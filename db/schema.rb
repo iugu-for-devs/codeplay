@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_181816) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "pay_type"
+    t.string "pay_type"
   end
 
   create_table "subscriptions", force: :cascade do |t|
