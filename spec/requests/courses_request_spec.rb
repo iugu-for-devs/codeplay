@@ -16,10 +16,20 @@ describe 'Course management', type: :request do
       assert_select 'dd', course.description
     end
 
+    it 'When data is not valid' do
+      login_as(admin, scope: :admin)
+      post '/courses', params: { course: { name: '', description: '' } }
+
+      expect(response.body).to match('Nome não pode ficar em branco')
+      expect(response.body).to match('Descrição não pode ficar em branco')
+      expect(Course.count).to eq(0)
+    end
+
     it 'Create without login as admin' do
       post '/courses', params: { course: course.attributes }
 
       assert_redirected_to new_admin_session_path
+      expect(Course.count).to eq(0)
     end
   end
 end
