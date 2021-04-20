@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    model:
+      order:
+        one: Pedido
+        other: Pedidos
+    attributes:
+      order:
+        pay_type: Forma de Pagamento
+        
+  orders:
+    new:
+      submit: Efetuar Compra
+      pay_type: Forma de Pagamento
+    create:
+      success: Compra realizada com sucesso!

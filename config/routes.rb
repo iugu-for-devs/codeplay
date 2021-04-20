@@ -10,4 +10,7 @@ Rails.application.routes.draw do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
     end
   end
+
+  resources :courses, only:[:new, :create, :index, :show]
+  resources :orders, only:[:new, :create]
 end

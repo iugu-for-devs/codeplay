@@ -1,0 +1,24 @@
+<h3><%= @course.name %></h3>
+<dl>
+  <dt>Descrição: </dt>
+  <dd><%= @course.description %></dd>
+  <% if @course.instructor %>
+    <dt>Professor(es): </dt>
+    <dd><%= @course.instructor %></dd>
+  <% end %>
+  <dt>Capa: </dt>
+  <dd>
+     <% if @course.cover.attached? %>
+        <%= image_tag @course.cover, size:'360x360' %>
+      <% else %>
+        <%= image_tag 'covers/404.jpg', size:'360x360' %> 
+      <% end %>
+  </dd>
+  <% if @course.requirements %>
+    <dt>Requisito(s): </dt>
+    <dd><%= @course.requirements %></dd>
+  <% end %>
+</dl>
+<br>
+<%= link_to 'Voltar', courses_path %>
+<%= link_to t('buttons.buy'), new_order_path(course: @course) %>
