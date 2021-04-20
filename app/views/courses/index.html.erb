@@ -1,3 +1,11 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>"
+                                class="link-dark">Home</a></li>
+    <li class="breadcrumb-item active text-white" aria-current="page">Cursos</li>
+  </ol>
+</h5>
+
 <h1>Lista de Cursos</h1>
 <table>
   <thead>
@@ -16,6 +24,3 @@
   </tbody>
 </table>
 <br>
-<% if admin_signed_in? %>
-  <%= link_to 'Cadastrar curso', new_course_path %>
-<% end%>
