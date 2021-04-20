@@ -129,7 +129,7 @@ describe 'lessons management' do
   end
 
   it 'can edit lesson' do
-    admin = Fabricate(:admin)
+  admin = Fabricate(:admin)
     course = Fabricate(:course)
     lesson = Fabricate(:lesson, name: 'Aula1', description: 'Descrição de aula', video_code: '1234', course: course)
 

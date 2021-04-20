@@ -1,18 +1,10 @@
-<% if lesson.errors.any?%>
-  <ul>
-    <% lesson.errors.each do |error| %>
-      <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <h2><%= header_title %></h2>
-<%= form_with model: [:admins, :course, lesson] do |form| %>
-   <div class="mx-auto">
+<%= form_with model: [:admins, :course, @lesson] do |form| %>
+    <div class="mx-auto">
       <%= form.label :name%>
       <%= form.text_field :name, class: "form-control"%>
     </div>
-   <div class="mx-auto">
+    <div class="mx-auto">
       <%= form.label :description,class:"form-label" %>
       <%= form.text_area :description,class:"form-control", rows:"3" %>
     </div>

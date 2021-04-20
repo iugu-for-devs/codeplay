@@ -13,6 +13,7 @@ class Admins::LessonsController < Admins::ApplicationController
     if @lesson.save
       redirect_to [:admins, @lesson.course, @lesson]
     else
+      flash[:notice] = @lesson.errors.full_messages
       render :new
     end
   end
@@ -24,6 +25,7 @@ class Admins::LessonsController < Admins::ApplicationController
       flash[:notice] = t('.success')
       redirect_to [:admins, @lesson.course, @lesson]
     else
+      flash[:notice] = @lesson.errors.full_messages
       render :edit
     end
   end
