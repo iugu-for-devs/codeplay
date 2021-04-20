@@ -87,10 +87,8 @@ describe 'Subscription plan' do
     visit subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
-
-    within 'div#CURSO1' do
-      click_on 'Adicionar curso'
-    end
+    select course.name
+    click_on 'Adicionar curso'
 
     expect(page).to have_text(course.name)
     expect(page).to have_text(course.description)
@@ -100,14 +98,14 @@ describe 'Subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
     subscription = Fabricate(:subscription)
-    subscription.courses << Fabricate(:course)
+    course = Fabricate(:course)
+    subscription.courses << course
 
     visit subscription_path(subscription)
-    fill_in 'Nome do curso', with: 'Ruby'
+    fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
-    within 'div#CURSO1' do
-      click_on 'Adicionar curso'
-    end
+    select course.name
+    click_on 'Adicionar curso'
 
     expect(page).to have_text('Curso já cadastrado nesta assinatura')
   end

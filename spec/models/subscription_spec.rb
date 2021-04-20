@@ -4,7 +4,7 @@ RSpec.describe Subscription, type: :model do
   it 'attributes cannot be in blank' do
     subscription = Subscription.new
 
-    refute subscription.valid?
+    expect(subscription).not_to be_valid
     expect(subscription.errors[:name]).to include('não pode ficar em branco')
     expect(subscription.errors[:description]).to include('não pode ficar em branco')
     expect(subscription.errors[:price]).to include('não pode ficar em branco')

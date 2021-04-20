@@ -27,8 +27,8 @@ describe 'Subscription plan', type: :request do
     course = Fabricate(:course)
     subscription = Fabricate(:subscription)
 
-    post add_course_subscription_path(subscription), params: {
-      name: course.name
+    post add_subscription_course_path(subscription, course), params: {
+      course_id: course.id
     }
 
     expect(response).to redirect_to(new_admin_session_path)

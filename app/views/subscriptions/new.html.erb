@@ -1,14 +1,5 @@
 <%= link_to 'Voltar', subscriptions_path %>
 
-<% if @subscription.errors.any?%>
-  <h4>Não foi possivel salvar. Encontramos alguns erros:</h4>
-  <ul>
-  <% @subscription.errors.full_messages.each do |error|  %>
-    <li><%= error %></li>
-  <% end %>
-  </ul>
-<% end %>
-
 <%= form_with model: @subscription do |form| %>
 <div> 
     <%= form.label :name, 'Nome' %>
