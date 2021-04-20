@@ -8,7 +8,7 @@ class Admin::MembersController < Admin::ApplicationController
   end
 
   def create
-    @member = Admin.new(admin_params)
+    @member = Admin.new(**admin_params, password: Devise.friendly_token.first(8))
 
     if @member.save
       flash[:notice] = t('.success')
@@ -20,13 +20,7 @@ class Admin::MembersController < Admin::ApplicationController
 
   private
 
-  def create_password
-    Devise.friendly_token.first(8)
-  end
-
   def admin_params
-    with_password = params.require(:member).permit(:email, :name)
-    with_password[:password] = create_password
-    with_password
+    @member = params.require(:member).permit(:email, :name)
   end
 end
