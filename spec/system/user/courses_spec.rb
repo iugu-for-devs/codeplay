@@ -108,7 +108,9 @@ describe 'Course Management' do
     end
   end
 
-  it 'visit lesson' do
+  it 'visit lesson with login' do
+    user = Fabricate(:user)
+    login_as(user, scope: :user)
     course = Fabricate(:course)
     lessons = Fabricate.times(3, :lesson, course: course)
     visit course_path(course)
@@ -117,5 +119,14 @@ describe 'Course Management' do
     expect(page).to have_text(lessons.first.name)
     expect(page).to have_text(lessons.first.description)
     expect(page).to have_css("iframe[src*='https://player.vimeo.com/video/#{lessons.first.video_code}']")
+  end
+
+  it 'cannot visit lesson without login' do
+    course = Fabricate(:course)
+    lessons = Fabricate.times(3, :lesson, course: course)
+
+    visit course_lesson_path(course, lessons.first)
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

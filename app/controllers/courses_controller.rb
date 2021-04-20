@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show]
-  
+
   def index
     @courses = Course.all
   end
