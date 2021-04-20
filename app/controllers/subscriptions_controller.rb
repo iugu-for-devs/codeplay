@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :authenticate_admin!, only: %i[new create add_course]
-  before_action :set_subscription, only: %i[show add_course]
+  before_action :set_subscription, only: %i[show search_course add_course]
 
   def index
     @subscriptions = Subscription.all

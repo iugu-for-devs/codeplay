@@ -1,4 +1,4 @@
 Fabricator(:user) do
-  email 'dude@gmail.com'
-  password '1234567'
+  email { sequence(:email) { |i| "user#{i + 1}@gmail.com" } }
+  password '123456'
 end

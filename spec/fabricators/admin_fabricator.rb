@@ -1,4 +1,4 @@
 Fabricator(:admin) do
-  email 'john.doe@codeplay.com.br'
-  password '1234567'
+  email { sequence(:email) { |i| "admin#{i + 1}@codeplay.com.br" } }
+  password '123456'
 end

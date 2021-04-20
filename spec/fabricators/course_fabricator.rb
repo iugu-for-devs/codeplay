@@ -1,4 +1,5 @@
 Fabricator(:course) do
-  name        'Ruby'
-  description 'Curso de Ruby'
+  name        { sequence(:name) { |i| "Curso de Ruby #{i + 1}.0" } }
+  description 'Curso Avançado de Ruby'
+  admin
 end

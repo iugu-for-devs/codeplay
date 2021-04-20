@@ -41,12 +41,12 @@ end
 require 'capybara/rspec'
 
 RSpec.configure do |config|
-  config.include Warden::Test::Helpers
-
+  include Warden::Test::Helpers
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   end
 
+  include Warden::Test::Helpers
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

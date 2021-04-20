@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      course:
+        one: Curso
+        other: Cursos
+    attributes:
+      course:
+        name: Nome
+        description: Descrição
+        instructor: Professor(es)
+        cover: Endereço da capa
+        requirements: Requisito(s)
