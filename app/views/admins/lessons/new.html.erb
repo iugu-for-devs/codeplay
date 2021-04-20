@@ -1,28 +1,3 @@
-<% if @lesson.errors.any?%>
-  <ul>
-    <% @lesson.errors.each do |error| %>
-      <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<h2><%= t('buttons.register', model: Lesson.model_name.human) %></h2>
-<%= form_with model: [:admins,:course, @lesson] do |form| %>
-   <div class="mx-auto">
-      <%= form.label :name%>
-      <%= form.text_field :name, class: "form-control"%>
-    </div>
-   <div class="mx-auto">
-      <%= form.label :description,class:"form-label" %>
-      <%= form.text_area :description,class:"form-control", rows:"3" %>
-    </div>
-    <br>
-    <div class="mx-auto">
-      <%= form.label :video_code,class:"form-label" %>
-      <%= form.number_field :video_code %>
-      <span class="form-text text-white"> 
-      Ex: vimeo.com/</span><span class="text-decoration-underline text-white">123456 </span>
-    </div>
-    <%= form.hidden_field :course_id, value: params['course_id']%>
-    <div><%= form.submit class:"btn btn-primary" %></div>
-<% end %>
+<%= render partial: 'form_lessons', locals:{lesson: @lesson,
+                                            header_title: t('.header_title')
+                                            } %>

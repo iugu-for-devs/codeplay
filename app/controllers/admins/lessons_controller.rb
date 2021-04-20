@@ -8,9 +8,10 @@ class Admins::LessonsController < Admins::ApplicationController
   end
 
   def create
-    @lesson = Lesson.new(lesson_params)
+    course = Course.find(params[:course_id])
+    @lesson = course.lessons.new(lesson_params)
     if @lesson.save
-      redirect_to_lesson_show
+      redirect_to [:admins, @lesson.course, @lesson]
     else
       render :new
     end
@@ -20,35 +21,26 @@ class Admins::LessonsController < Admins::ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      flash[:notice] = 'Aula atualizada com sucesso'
-      redirect_to_lesson_show
+      flash[:notice] = t('.success')
+      redirect_to [:admins, @lesson.course, @lesson]
     else
       render :edit
     end
   end
 
   def destroy
-    course_id = @lesson.course_id
     @lesson.destroy
-    flash[:notice] = "Aula #{@lesson.name} apagada com sucesso"
-    redirect_to_course_index(course_id)
+    flash[:notice] = t('.success', lesson_name: @lesson.name)
+    redirect_to admins_course_path(@lesson.course.id)
   end
-end
 
-private
+  private
 
-def lesson_params
-  params.require(:lesson).permit(:name, :description, :video_code, :course_id)
-end
+  def lesson_params
+    params.require(:lesson).permit(:name, :description, :video_code)
+  end
 
-def fetch_lesson
-  @lesson = Lesson.find(params[:id])
-end
-
-def redirect_to_lesson_show
-  redirect_to admins_lesson_path(@lesson)
-end
-
-def redirect_to_course_index(course_id)
-  redirect_to admins_course_path(Course.find(course_id))
+  def fetch_lesson
+    @lesson = Lesson.find(params[:id])
+  end
 end

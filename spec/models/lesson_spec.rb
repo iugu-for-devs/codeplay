@@ -21,6 +21,6 @@ RSpec.describe Lesson, type: :model do
     lesson = Lesson.new(video_code: '1234')
 
     expect(lesson).to_not be_valid
-    expect(lesson.errors[:video_code]).to include('deve ser único')
+    expect(lesson.errors[:video_code]).to include('já está em uso')
   end
 end

@@ -1,7 +1,18 @@
 ---
 pt-BR:
-  course:
-    show:
-      empty: Nenhuma aula cadastrada
+  activerecord:
+    models:
+      course:
+        one: Curso
+        other: Cursos
+    attributes:
+      course:
+        name: Nome
   headers:
-    course_managment: Gerenciamento de Cursos
+      course_managment: Gerenciamento de Cursos
+  admins:
+    courses:
+      show:
+        empty: Nenhuma aula cadastrada
+      index:
+        empty: Nenhum curso cadastrado

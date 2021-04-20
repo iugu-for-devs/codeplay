@@ -1,33 +1,29 @@
-<h5>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark">Dashboard</a></li>
-     <li class="breadcrumb-item active text-white" aria-current="page">Gerenciamento de Cursos</li>
-  </ol>
-</nav>
+<h5 aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+		<li class="breadcrumb-item active text-white" aria-current="page"><%=t('headers.course_managment')%></li>
+	</ol>
 </h5>
 
-<h2>Gerenciamento de Cursos</h2>
+<h2><%=t('headers.course_managment')%></h2>
 
 <% if @courses.empty?	%>
-	<h3>Nenhum curso cadastrado</h3>
+	<h3><%=t('.empty')%></h3>
 <% end %>
-
-<%= link_to "Cadastrar curso", "#",class:"btn btn-warning"  %>
 
 <div>
 	<table class="table table-bordered">
 		<thead class="table-dark">
-				<tr>
-					<th scope="col">Título</th>
-				</tr>
-			</thead>
+			<tr>
+				<th scope="col"><%= Course.human_attribute_name(:name) %></th>
+			</tr>
+		</thead>
 		<% @courses.each do |course| %>
-			<tbody>
-				<tr class="text-white">
-					<td><%= link_to course.name, admins_course_path(course), class:"btn btn-light" %></td>
-				</tr>
-			</tbody>
+		<tbody>
+			<tr class="text-white">
+				<td><%= link_to course.name, admins_course_path(course), class:"btn btn-light" %></td>
+			</tr>
+		</tbody>
 		<% end %>
 	</table>
 </div>
