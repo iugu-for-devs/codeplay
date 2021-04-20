@@ -1,0 +1,29 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item active text-white" aria-current="page"><%=t('headers.course_managment')%></li>
+  </ol>
+</h5>
+
+<h2><%=t('headers.course_managment')%></h2>
+
+<% if @courses.empty?	%>
+  <h3><%=t('.empty')%></h3>
+<% end %>
+
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr class="text-white">
+          <td><%= link_to course.name, admins_course_path(course), class:"btn btn-light" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active text-white" aria-current="page"><%=t('headers.dashboard')%></li>
+  </ol>
+</h5>
+
+<h1><%=t('headers.dashboard')%> - <%= Admin.model_name.human%></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <%= link_to t('headers.course_managment'), admins_courses_path, class:"btn btn-light" %>
+    </div>
+  </div>
+</div>

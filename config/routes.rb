@@ -9,6 +9,15 @@ Rails.application.routes.draw do
     end
   end
   
+  root 'home#index'
+
+  namespace :admins do
+    root 'dashboard#index'
+    resources :courses, only: [:index, :show] do
+      resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
+    end
+  end
+
   resources :courses, only:[:new, :create, :index, :show]
   resources :orders, only:[:new, :create]
 end
