@@ -69,6 +69,10 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "course_id", null: false
+    t.string "video_code"
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["video_code"], name: "index_lessons_on_video_code", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
@@ -99,4 +103,5 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "admins"
+  add_foreign_key "lessons", "courses"
 end
