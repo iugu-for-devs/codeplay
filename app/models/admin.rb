@@ -6,4 +6,5 @@ class Admin < ApplicationRecord
 
   validates :email, format: { with: /\A[a-zA-Z0-9_.+-]+@codeplay.com.br\z/,
                               message: 'Domínio não válido!' }
+  has_many :courses, dependent: :nullify
 end

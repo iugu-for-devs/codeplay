@@ -1,0 +1,5 @@
+---
+pt-BR:
+  courses: 
+    create:
+      success: "%{course} cadastrado com sucesso"

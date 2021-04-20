@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
   it 'can log with valid email and password' do
-    admin = Fabricate(:admin)
+    admin = Fabricate(:admin, email: 'admin1@codeplay.com.br')
 
     login_admin(admin)
 
     expect(admin.valid_password?(admin.password)).to be_truthy
-    expect(admin.email).to eq('jane.doe@codeplay.com.br')
+    expect(admin.email).to eq('admin1@codeplay.com.br')
   end
 
   it 'can not log with valid email but unvalid password' do

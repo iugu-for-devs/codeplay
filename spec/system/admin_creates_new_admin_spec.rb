@@ -38,7 +38,7 @@ describe 'Admin creates' do
   end
 
   it 'and the email must be unique' do
-    admin = Fabricate(:admin)
+    admin = Fabricate(:admin, email: 'admin1@codeplay.com.br')
 
     login_admin(admin)
 
@@ -46,8 +46,8 @@ describe 'Admin creates' do
     click_on 'Membros'
     click_on 'Novo Membro'
 
-    fill_in 'E-mail', with: 'jane.doe@codeplay.com.br'
-    fill_in 'Nome', with: 'Jane Doe'
+    fill_in 'E-mail', with: 'admin1@codeplay.com.br'
+    fill_in 'Nome', with: 'Admin 1'
     click_on 'Cadastrar Membro'
 
     expect(current_path).to eq(admin_members_path)
