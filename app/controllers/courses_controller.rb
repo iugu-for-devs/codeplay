@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show]
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create add]
 
   def index
     @courses = Course.all
@@ -18,6 +18,19 @@ class CoursesController < ApplicationController
       redirect_to @course, notice: 'Curso criado com sucesso.'
     else
       render :new
+    end
+  end
+
+  def add
+    @subscription = Subscription.find(params[:id])
+    @course = Course.find(params[:course_id])
+    return redirect_to @subscription, alert: 'Curso não encontrado' unless @course
+
+    if @subscription.courses.include?(@course)
+      redirect_to @subscription, alert: 'Curso já cadastrado nesta assinatura'
+    else
+      @subscription.courses << @course
+      redirect_to @subscription, alert: 'Curso cadastrado com sucesso'
     end
   end
 

@@ -1,5 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  it 'attributes cannot be in blank' do
+    subscription = Subscription.new
+
+    expect(subscription).not_to be_valid
+    expect(subscription.errors[:name]).to include('não pode ficar em branco')
+    expect(subscription.errors[:description]).to include('não pode ficar em branco')
+    expect(subscription.errors[:price]).to include('não pode ficar em branco')
+  end
+
+  it 'name should be uniq' do
+    other_subscription = Fabricate(:subscription)
+    subscription = Subscription.new(name: other_subscription.name)
+
+    expect(subscription).not_to be_valid
+    expect(subscription.errors[:name]).to include('já está em uso')
+  end
 end
