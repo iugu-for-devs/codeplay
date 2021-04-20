@@ -12,3 +12,11 @@ pt-BR:
         instructor: Professor(es)
         cover: Endereço da capa
         requirements: Requisito(s)
+  headers:
+      course_managment: Gerenciamento de Cursos
+  admin:
+    courses:
+      show:
+        empty: Nenhuma aula cadastrada
+      index:
+        empty: Nenhum curso cadastrado
