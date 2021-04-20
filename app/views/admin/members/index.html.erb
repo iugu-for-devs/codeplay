@@ -1,5 +1,5 @@
 <div class="btn-group">
-  <%= link_to 'Novo Membro', new_admins_member_path, class: 'btn btn-primary' %>
+  <%= link_to 'Novo Membro', new_admin_member_path, class: 'btn btn-primary' %>
 </div>
 
 <p class="h5 mb-3 fw-normal text-center">Lista de membros</p>
@@ -8,14 +8,14 @@
   <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
+        <th>Nome</th>
+        <th>E-mail</th>
       </tr>
     </thead>
     <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td>#</td>
+        <td><%= member.name %></td>
         <td><%= member.email %></td>
       </tr>
     <% end %>

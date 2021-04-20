@@ -1,6 +1,4 @@
-class Admins::MembersController < Admins::ApplicationController
-  # TODO: verificar se é super admin
-
+class Admin::MembersController < Admin::ApplicationController
   def index
     @members = Admin.all
   end
@@ -13,15 +11,12 @@ class Admins::MembersController < Admins::ApplicationController
     @member = Admin.new(admin_params)
 
     if @member.save
-      flash[:notice] = 'Membro cadastrado com sucesso!'
-      # TODO: mandar email com dados de login
-      redirect_to admins_members_path
+      flash[:notice] = t('.success')
+      redirect_to admin_members_path
     else
-      flash[:alert] = @member.errors.full_messages
       render :new
     end
   end
-
 
   private
 
