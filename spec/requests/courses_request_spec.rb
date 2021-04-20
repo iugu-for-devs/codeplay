@@ -7,7 +7,7 @@ describe 'Course management', type: :request do
 
     it 'When data is valid' do
       login_as(admin, scope: :admin)
-      post '/courses', params: { course: course.attributes }
+      post '/admins/courses', params: { course: course.attributes }
 
       expect(response).to redirect_to(course_path(Course.last))
       follow_redirect!
@@ -18,7 +18,7 @@ describe 'Course management', type: :request do
 
     it 'When data is not valid' do
       login_as(admin, scope: :admin)
-      post '/courses', params: { course: { name: '', description: '' } }
+      post '/admins/courses', params: { course: { name: '', description: '' } }
 
       expect(response.body).to match('Nome não pode ficar em branco')
       expect(response.body).to match('Descrição não pode ficar em branco')
@@ -26,7 +26,7 @@ describe 'Course management', type: :request do
     end
 
     it 'Create without login as admin' do
-      post '/courses', params: { course: course.attributes }
+      post '/admins/courses', params: { course: course.attributes }
 
       expect(response).to redirect_to(new_admin_session_path)
       expect(Course.count).to eq(0)

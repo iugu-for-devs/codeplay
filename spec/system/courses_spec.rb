@@ -2,13 +2,12 @@ require 'rails_helper'
 
 describe 'Course Management' do
   context 'New' do
-    let(:user) { Fabricate(:user) }
     let(:admin) { Fabricate(:admin) }
 
     it 'Admins can view the create form' do
       login_as(admin, scope: :admin)
 
-      visit new_course_path
+      visit new_admins_course_path
 
       expect(page).to have_text('Nome')
       expect(page).to have_text('Descrição')
@@ -16,35 +15,21 @@ describe 'Course Management' do
       expect(page).to have_text('Endereço da capa')
       expect(page).to have_text('Requisito(s)')
     end
-
-    it 'Guests cannot create' do
-      visit new_course_path
-
-      expect(current_path).to eq(new_admin_session_path)
-      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
-    end
-
-    it 'Users cannot create' do
-      login_as(user, scope: :user)
-      visit new_course_path
-
-      expect(current_path).to eq(new_admin_session_path)
-      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
-    end
   end
 
   context 'Create' do
     let(:admin) { Fabricate(:admin) }
+    let(:user) { Fabricate(:user) }
 
     it 'Can create a course' do
       login_as(admin, scope: :admin)
-      visit new_course_path
+      visit new_admins_course_path
 
       fill_in 'Nome', with: 'Curso de RubyOnRails'
       fill_in 'Descrição', with: 'Curso de RubyOnRails para Iniciantes'
-      click_on 'Cadastrar'
+      click_on 'Cadastrar Curso'
 
-      expect(current_path).to eq(course_path(Course.last))
+      expect(current_path).to eq(admins_course_path(Course.last))
       expect(page).to have_text('Curso criado com sucesso.')
       expect(page).to have_text('Curso de RubyOnRails')
       expect(page).to have_text('Curso de RubyOnRails para Iniciantes')
@@ -52,14 +37,29 @@ describe 'Course Management' do
 
     it 'Attributes cannot be blank' do
       login_as(admin, scope: :admin)
-      visit new_course_path
+      visit new_admins_course_path
 
       fill_in 'Nome', with: ''
       fill_in 'Descrição', with: ''
-      click_on 'Cadastrar'
+      click_on 'Cadastrar Curso'
 
       expect(page).to have_text('Nome não pode ficar em branco')
       expect(page).to have_text('Descrição não pode ficar em branco')
+    end
+
+    it 'Guests cannot create' do
+      visit new_admins_course_path
+
+      expect(current_path).to eq(new_admin_session_path)
+      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
+    end
+
+    it 'Users cannot create' do
+      login_as(user, scope: :user)
+      visit new_admins_course_path
+
+      expect(current_path).to eq(new_admin_session_path)
+      expect(page).to have_text('Para continuar, efetue login ou registre-se.')
     end
   end
 

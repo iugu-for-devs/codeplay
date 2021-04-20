@@ -20,3 +20,5 @@ pt-BR:
         empty: Nenhuma aula cadastrada
       index:
         empty: Nenhum curso cadastrado
+      create:
+        success: "%{course} cadastrado com sucesso"
