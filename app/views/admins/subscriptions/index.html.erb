@@ -1,0 +1,16 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item active text-white" aria-current="page">Planos</li>
+  </ol>
+</h5>
+
+<%= link_to 'Criar novo plano de assinatura', new_admins_subscription_path %>
+<hr>
+<% @subscriptions.each do |subscription| %>
+  <div id="<%= subscription.id %>">
+    <%= link_to subscription.name, admins_subscription_path(subscription) %><br>
+    <%= subscription.description %>
+    <hr>
+  </div>
+<% end %>

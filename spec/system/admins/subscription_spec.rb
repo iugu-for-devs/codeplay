@@ -2,24 +2,29 @@ require 'rails_helper'
 
 describe 'Subscription plan' do
   it 'view all subscriptions plans' do
+    admin = Fabricate(:admin)
     subscription = Fabricate(:subscription)
     other_subscription = Fabricate(:subscription,
                                    name: 'Jornada Mobile com Dart e Flutter',
                                    description: 'Esta assinatura irá englobar todos os cursos'\
                                                 'de Dart e o framework Flutter')
 
-    visit subscriptions_path
-    # TODO: colocar um within aqui, ta dando bug por alguma razao
+    login_as admin, scope: :admin
+    visit admins_subscriptions_path
+
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
     expect(page).to have_text(other_subscription.name)
     expect(page).to have_text(other_subscription.description)
   end
+
   it 'can view a subscription plan' do
+    admin = Fabricate(:admin)
     subscription = Fabricate(:subscription)
 
-    visit subscriptions_path
-    click_on 'Rails'
+    login_as admin, scope: :admin
+    visit admins_subscriptions_path
+    click_on subscription.name
 
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
@@ -27,20 +32,22 @@ describe 'Subscription plan' do
   end
 
   it 'view a subscription plan and return to index' do
-    Fabricate(:subscription)
+    admin = Fabricate(:admin)
+    subscription = Fabricate(:subscription)
 
-    visit subscriptions_path
-    click_on 'Rails'
-    click_on 'Voltar'
+    login_as admin, scope: :admin
+    visit admins_subscriptions_path
+    click_on subscription.name
+    click_on 'Planos'
 
-    expect(current_path).to eq(subscriptions_path)
+    expect(current_path).to eq(admins_subscriptions_path)
   end
 
   it 'admin can create a subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit subscriptions_path
+    visit admins_subscriptions_path
     click_on 'Criar novo plano de assinatura'
     fill_in 'Nome', with: 'Jornada Web com Rails'
     fill_in 'Descrição', with: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails'
@@ -57,7 +64,7 @@ describe 'Subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit subscriptions_path
+    visit admins_subscriptions_path
     click_on 'Criar novo plano de assinatura'
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
@@ -71,20 +78,20 @@ describe 'Subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit subscriptions_path
+    visit admins_subscriptions_path
     click_on 'Criar novo plano de assinatura'
-    click_on 'Voltar'
+    click_on 'Planos'
 
-    expect(current_path).to eq(subscriptions_path)
+    expect(current_path).to eq(admins_subscriptions_path)
   end
 
   it 'admin can add a course to a subscription' do
     admin = Fabricate(:admin)
-    login_as admin, scope: :admin
     subscription = Fabricate(:subscription)
     course = Fabricate(:course)
 
-    visit subscription_path(subscription)
+    login_as admin, scope: :admin
+    visit admins_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
     select course.name
@@ -94,14 +101,14 @@ describe 'Subscription plan' do
     expect(page).to have_text(course.description)
   end
 
-  it 'admin cannot add same course to  subscription' do
+  it 'admin cannot add same course to subscription' do
     admin = Fabricate(:admin)
-    login_as admin, scope: :admin
     subscription = Fabricate(:subscription)
     course = Fabricate(:course)
     subscription.courses << course
 
-    visit subscription_path(subscription)
+    login_as admin, scope: :admin
+    visit admins_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
     select course.name

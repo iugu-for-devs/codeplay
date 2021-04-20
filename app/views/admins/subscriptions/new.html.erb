@@ -1,0 +1,25 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"
+                                class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admins_subscriptions_path %>"
+                                class="link-dark">Planos</a></li>
+    <li class="breadcrumb-item active text-white" aria-current="page">Cadastar Plano</li>
+  </ol>
+</h5>
+
+<%= form_with model: [:admins, @subscription] do |form| %>
+<div>
+    <%= form.label :name, 'Nome' %>
+    <%= form.text_field :name %>
+
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_field :description %>
+
+    <%= form.label :price, 'Valor' %>
+    <%= form.number_field :price, step: :any %>
+
+    <%= form.submit 'Cadastrar' %>
+</div>
+<% end %>
+
