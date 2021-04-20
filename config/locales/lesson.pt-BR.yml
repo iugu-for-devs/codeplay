@@ -10,7 +10,7 @@ pt-BR:
         name: Nome
         description: Descrição
         video_code: Código do Video
-  admins:
+  admin:
     lessons:
       update:
         success: Aula atualizada com sucesso

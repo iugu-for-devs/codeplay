@@ -14,7 +14,7 @@ pt-BR:
         requirements: Requisito(s)
   headers:
       course_managment: Gerenciamento de Cursos
-  admins:
+  admin:
     courses:
       show:
         empty: Nenhuma aula cadastrada
