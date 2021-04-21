@@ -1,16 +1,26 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
-    <li class="breadcrumb-item active text-white" aria-current="page">Planos</li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%= t('headers.subscription_managment') %></li>
   </ol>
 </h5>
 
-<%= link_to 'Criar novo plano de assinatura', new_admin_subscription_path %>
-<hr>
-<% @subscriptions.each do |subscription| %>
-  <div id="<%= subscription.id %>">
-    <%= link_to subscription.name, admin_subscription_path(subscription) %><br>
-    <%= subscription.description %>
-    <hr>
-  </div>
-<% end %>
+<%= link_to t('buttons.register', model:Subscription.model_name.human), 
+            new_admin_subscription_path, class:"btn btn-primary" %>
+
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Subscription.human_attribute_name(:name) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subscriptions.each do |subscription| %>
+        <tr id="<%= subscription.id %>" class="text-white">
+          <td><%= link_to subscription.name, admin_subscription_path(subscription), class:"btn btn-light" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

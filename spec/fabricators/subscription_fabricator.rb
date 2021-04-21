@@ -1,5 +1,5 @@
 Fabricator(:subscription) do
-  name        'Jornada Web com Rails'
+  name { sequence(:name) { |i| "Subscription-##{i + 1}" } }
   description 'Esta assinatura ira abranger todos os cursos de Ruby e Rails'
-  price '50'
+  price 25
 end

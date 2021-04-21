@@ -13,7 +13,7 @@ class Admin::SubscriptionsController < Admin::ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
-      redirect_to [:admin, @subscription], alert: 'Plano cadastrado com sucesso'
+      redirect_to [:admin, @subscription], notice: t('.success')
     else
       flash[:now] = @subscription.errors.full_messages
       render :new

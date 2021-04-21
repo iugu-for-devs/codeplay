@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :members
   end
 
-  resources :subscriptions, only: %i[new create]
+  resources :subscriptions, only: %i[index show]
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
   end

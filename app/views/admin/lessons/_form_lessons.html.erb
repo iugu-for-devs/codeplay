@@ -1,3 +1,14 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark">
+                                <%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"class="link-dark">
+                                <%=t('headers.course_managment')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_course_path(@lesson.course.id) %>"class="link-dark">
+                                <%=@lesson.course.name%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@lesson.name %></li>
+  </ol>
+</h5>
 <h2><%= header_title %></h2>
 <%= form_with model: [:admin, :course, @lesson] do |form| %>
     <div class="mx-auto">

@@ -2,9 +2,17 @@
 pt-BR:
   activerecord:
     models:
-      subscription: Assinatura
+      subscription:
+        one: Plano
+        other: Planos
     attributes:
       subscription:
         name: Nome
         description: Descrição
         price: Preço
+  admin:
+    subscriptions:
+      create:
+        success: Plano cadastrado com sucesso
+  headers:
+    subscription_managment: Gerenciamento de Planos
