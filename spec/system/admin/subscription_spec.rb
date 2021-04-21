@@ -10,7 +10,7 @@ describe 'Subscription plan' do
                                                 'de Dart e o framework Flutter')
 
     login_as admin, scope: :admin
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
 
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
@@ -23,7 +23,7 @@ describe 'Subscription plan' do
     subscription = Fabricate(:subscription)
 
     login_as admin, scope: :admin
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
     click_on subscription.name
 
     expect(page).to have_text(subscription.name)
@@ -36,18 +36,18 @@ describe 'Subscription plan' do
     subscription = Fabricate(:subscription)
 
     login_as admin, scope: :admin
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
     click_on subscription.name
     click_on 'Planos'
 
-    expect(current_path).to eq(admins_subscriptions_path)
+    expect(current_path).to eq(admin_subscriptions_path)
   end
 
   it 'admin can create a subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
     click_on 'Criar novo plano de assinatura'
     fill_in 'Nome', with: 'Jornada Web com Rails'
     fill_in 'Descrição', with: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails'
@@ -64,7 +64,7 @@ describe 'Subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
     click_on 'Criar novo plano de assinatura'
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
@@ -78,11 +78,11 @@ describe 'Subscription plan' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
 
-    visit admins_subscriptions_path
+    visit admin_subscriptions_path
     click_on 'Criar novo plano de assinatura'
     click_on 'Planos'
 
-    expect(current_path).to eq(admins_subscriptions_path)
+    expect(current_path).to eq(admin_subscriptions_path)
   end
 
   it 'admin can add a course to a subscription' do
@@ -91,7 +91,7 @@ describe 'Subscription plan' do
     course = Fabricate(:course)
 
     login_as admin, scope: :admin
-    visit admins_subscription_path(subscription)
+    visit admin_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
     select course.name
@@ -108,7 +108,7 @@ describe 'Subscription plan' do
     subscription.courses << course
 
     login_as admin, scope: :admin
-    visit admins_subscription_path(subscription)
+    visit admin_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar curso'
     select course.name

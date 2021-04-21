@@ -1,4 +1,4 @@
-class Admins::SubscriptionsController < Admins::ApplicationController
+class Admin::SubscriptionsController < Admin::ApplicationController
   before_action :set_subscription, only: %i[show]
   def index
     @subscriptions = Subscription.all
@@ -13,7 +13,7 @@ class Admins::SubscriptionsController < Admins::ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
-      redirect_to [:admins, @subscription], alert: 'Plano cadastrado com sucesso'
+      redirect_to [:admin, @subscription], alert: 'Plano cadastrado com sucesso'
     else
       flash[:now] = @subscription.errors.full_messages
       render :new

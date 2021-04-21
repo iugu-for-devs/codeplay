@@ -7,7 +7,7 @@ describe 'lessons management' do
     lessons = Fabricate.times(5, :lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_root_path
+    visit admin_root_path
     click_on 'Gerenciamento de Cursos'
     click_on course.name
 
@@ -22,7 +22,7 @@ describe 'lessons management' do
     course = Fabricate(:course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
 
     expect(page).to have_text('Nenhuma aula cadastrada')
   end
@@ -31,7 +31,7 @@ describe 'lessons management' do
     course = Fabricate(:course)
     Fabricate.times(3, :lesson, course: course)
 
-    visit admins_course_path(course)
+    visit admin_course_path(course)
 
     course.lessons.each do |lesson|
       expect(page).to_not have_text(lesson.name)
@@ -45,15 +45,15 @@ describe 'lessons management' do
     lessons = Fabricate.times(5, :lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
     click_on lessons.first.name
 
     expect(page).to have_text(lessons.first.name)
     expect(page).to have_text(lessons.first.description)
     expect(page).to_not have_text(lessons.second.name)
     expect(page).to have_css("iframe[src*='https://player.vimeo.com/video/#{lessons.first.video_code}']")
-    expect(page).to have_css("a[href=\"#{admins_courses_path}\"]")
-    expect(page).to have_css("a[href=\"#{admins_course_path(lessons.first.course.id)}\"]")
+    expect(page).to have_css("a[href=\"#{admin_courses_path}\"]")
+    expect(page).to have_css("a[href=\"#{admin_course_path(lessons.first.course.id)}\"]")
   end
 
   it 'view lesson details and return to course' do
@@ -62,18 +62,18 @@ describe 'lessons management' do
     lessons = Fabricate.times(5, :lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
     click_on lessons.first.name
     click_on course.name
 
-    expect(current_path).to eq(admins_course_path(course))
+    expect(current_path).to eq(admin_course_path(course))
   end
 
   it 'cannot visit lesson details without login' do
     course = Fabricate(:course)
     lesson = Fabricate(:lesson)
 
-    visit admins_course_lesson_path(course, lesson)
+    visit admin_course_lesson_path(course, lesson)
 
     expect(page).to_not have_text(lesson.name)
     expect(current_path).to eq(new_admin_session_path)
@@ -84,14 +84,14 @@ describe 'lessons management' do
     course = Fabricate(:course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
     click_on 'Cadastrar Aula'
     fill_in 'Nome', with: 'Arrays em Ruby'
     fill_in 'Descrição', with: 'Novos métodos de Array'
     fill_in 'Código do Video', with: '1234'
     click_on 'Criar Aula'
 
-    expect(current_path).to eq(admins_course_lesson_path(course_id: Lesson.last.course.id, id: Lesson.last.id))
+    expect(current_path).to eq(admin_course_lesson_path(course_id: Lesson.last.course.id, id: Lesson.last.id))
     expect(page).to have_text('Arrays em Ruby')
     expect(page).to have_text('Novos métodos de Array')
     expect(page).to have_css("iframe[src*='https://player.vimeo.com/video/1234']")
@@ -102,7 +102,7 @@ describe 'lessons management' do
     course = Fabricate(:course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
     click_on 'Cadastrar Aula'
     fill_in 'Nome', with: ''
     fill_in 'Código do Video', with: ''
@@ -118,7 +118,7 @@ describe 'lessons management' do
     Fabricate(:lesson, course: course, name: 'Aula1', video_code: '1234')
 
     login_as(admin, scope: :admin)
-    visit admins_course_path(course)
+    visit admin_course_path(course)
     click_on 'Cadastrar Aula'
     fill_in 'Nome', with: 'Aula1'
     fill_in 'Código do Video', with: '1234'
@@ -134,14 +134,14 @@ describe 'lessons management' do
     lesson = Fabricate(:lesson, name: 'Aula1', description: 'Descrição de aula', video_code: '1234', course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_lesson_path(course, lesson)
+    visit admin_course_lesson_path(course, lesson)
     click_on 'Editar Aula'
     fill_in 'Nome', with: 'Ruby on Rails'
     fill_in 'Descrição', with: 'Aula de Rotas'
     fill_in 'Código do Video', with: '34563456'
     click_on 'Atualizar Aula'
 
-    expect(current_path).to eq(admins_course_lesson_path(course, lesson))
+    expect(current_path).to eq(admin_course_lesson_path(course, lesson))
     expect(page).to have_text('Ruby on Rails')
     expect(page).to have_text('Aula de Rotas')
     expect(page).to have_css("iframe[src*='https://player.vimeo.com/video/34563456']")
@@ -153,7 +153,7 @@ describe 'lessons management' do
     lesson = Fabricate(:lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_lesson_path(course, lesson)
+    visit admin_course_lesson_path(course, lesson)
     click_on 'Editar Aula'
     fill_in 'Nome', with: ''
     fill_in 'Código do Video', with: ''
@@ -169,7 +169,7 @@ describe 'lessons management' do
     lesson = Fabricate(:lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_lesson_path(course, lesson)
+    visit admin_course_lesson_path(course, lesson)
     click_on 'Editar Aula'
     fill_in 'Código do Video', with: '1234'
     click_on 'Atualizar Aula'
@@ -183,10 +183,10 @@ describe 'lessons management' do
     lesson = Fabricate(:lesson, course: course)
 
     login_as(admin, scope: :admin)
-    visit admins_course_lesson_path(course, lesson)
+    visit admin_course_lesson_path(course, lesson)
     click_on 'Apagar Aula'
 
-    expect(current_path).to eq(admins_course_path(course))
+    expect(current_path).to eq(admin_course_path(course))
     expect(page).to have_text("Aula #{lesson.name} apagada com sucesso")
     expect(page).to have_text('Nenhuma aula cadastrada')
   end

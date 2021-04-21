@@ -5,10 +5,10 @@ describe 'lessons', type: :request do
     login_as(Fabricate(:admin), scope: :admin)
     course = Fabricate(:course)
 
-    post "/admins/courses/#{course.id}/lessons", params: { lesson: Fabricate.attributes_for(:lesson, course: course) }
+    post "/admin/courses/#{course.id}/lessons", params: { lesson: Fabricate.attributes_for(:lesson, course: course) }
 
     lesson = Lesson.last
-    assert_redirected_to admins_course_lesson_path(course, lesson)
+    assert_redirected_to admin_course_lesson_path(course, lesson)
     follow_redirect!
     expect(response).to have_http_status(:ok)
     expect(lesson).to be_valid
@@ -18,7 +18,7 @@ describe 'lessons', type: :request do
   it 'cannot create without login' do
     course = Fabricate(:course)
 
-    post "/admins/courses/#{course.id}/lessons", params: { lesson: Fabricate.attributes_for(:lesson, course: course) }
+    post "/admin/courses/#{course.id}/lessons", params: { lesson: Fabricate.attributes_for(:lesson, course: course) }
 
     expect(response).to redirect_to(new_admin_session_path)
   end
@@ -28,10 +28,10 @@ describe 'lessons', type: :request do
     course = Fabricate(:course)
     lesson = Fabricate(:lesson, course: course)
 
-    patch "/admins/courses/#{course.id}/lessons/#{lesson.id}",
+    patch "/admin/courses/#{course.id}/lessons/#{lesson.id}",
           params: { lesson: { name: 'Rails', description: 'Rotas', video_code: '111' } }
 
-    assert_redirected_to admins_course_lesson_path(id: lesson.id)
+    assert_redirected_to admin_course_lesson_path(id: lesson.id)
     follow_redirect!
     expect(response.body).to include('Rails', 'Rotas', '111')
     expect(response.body).to include('Aula atualizada com sucesso')
@@ -42,7 +42,7 @@ describe 'lessons', type: :request do
     course = Fabricate(:course)
     lesson = Fabricate(:lesson, course: course)
 
-    patch "/admins/courses/#{course.id}/lessons/#{lesson.id}",
+    patch "/admin/courses/#{course.id}/lessons/#{lesson.id}",
           params: { lesson: { name: 'Rails', description: 'Rotas', video_code: '111' } }
 
     expect(response).to redirect_to(new_admin_session_path)
@@ -53,9 +53,9 @@ describe 'lessons', type: :request do
     lesson = Fabricate(:lesson, course: course)
 
     login_as(Fabricate(:admin), scope: :admin)
-    delete "/admins/courses/#{course.id}/lessons/#{lesson.id}"
+    delete "/admin/courses/#{course.id}/lessons/#{lesson.id}"
 
-    expect(response).to redirect_to(admins_course_path(course))
+    expect(response).to redirect_to(admin_course_path(course))
     follow_redirect!
     expect(response).to have_http_status(:ok)
   end
@@ -64,7 +64,7 @@ describe 'lessons', type: :request do
     course = Fabricate(:course)
     lesson = Fabricate(:lesson, course: course)
 
-    delete "/admins/courses/#{course.id}/lessons/#{lesson.id}"
+    delete "/admin/courses/#{course.id}/lessons/#{lesson.id}"
 
     expect(response).to redirect_to(new_admin_session_path)
   end

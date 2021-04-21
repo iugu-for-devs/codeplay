@@ -1,4 +1,4 @@
-class Admins::LessonsController < Admins::ApplicationController
+class Admin::LessonsController < Admin::ApplicationController
   before_action :fetch_lesson, only: %i[show edit update destroy]
 
   def show; end
@@ -11,7 +11,7 @@ class Admins::LessonsController < Admins::ApplicationController
     course = Course.find(params[:course_id])
     @lesson = course.lessons.new(lesson_params)
     if @lesson.save
-      redirect_to [:admins, @lesson.course, @lesson]
+      redirect_to [:admin, @lesson.course, @lesson]
     else
       flash[:notice] = @lesson.errors.full_messages
       render :new
@@ -23,7 +23,7 @@ class Admins::LessonsController < Admins::ApplicationController
   def update
     if @lesson.update(lesson_params)
       flash[:notice] = t('.success')
-      redirect_to [:admins, @lesson.course, @lesson]
+      redirect_to [:admin, @lesson.course, @lesson]
     else
       flash[:notice] = @lesson.errors.full_messages
       render :edit
@@ -33,7 +33,7 @@ class Admins::LessonsController < Admins::ApplicationController
   def destroy
     @lesson.destroy
     flash[:notice] = t('.success', lesson_name: @lesson.name)
-    redirect_to admins_course_path(@lesson.course.id)
+    redirect_to admin_course_path(@lesson.course.id)
   end
 
   private

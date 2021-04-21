@@ -27,7 +27,7 @@ describe 'Subscription plan', type: :request do
     course = Fabricate(:course)
     subscription = Fabricate(:subscription)
 
-    post add_admins_subscription_course_path(subscription, course), params: {
+    post add_admin_subscription_course_path(subscription, course), params: {
       course_id: course.id
     }
 

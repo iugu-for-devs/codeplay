@@ -1,0 +1,27 @@
+<% if @member.errors.any? %>
+  <div class="alert alert-danger mt-5">
+  <% @member.errors.each do |error| %>
+      <ul>
+        <li>
+            <%= error.message %>
+        </li>
+      </ul>
+  <% end %>
+</div>
+<% end %>
+
+<div class="col-sm-4">
+  <%= form_with scope: :member, url: admin_members_path(@member), method: :post do |f| %>
+    <div class="mb-3">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+    </div>
+        <div class="mb-3">
+        <%= f.label :name, 'Nome' %>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit 'Cadastrar Membro', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

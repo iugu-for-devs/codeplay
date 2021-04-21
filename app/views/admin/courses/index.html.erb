@@ -1,6 +1,6 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
     <li class="breadcrumb-item active text-white" aria-current="page"><%=t('headers.course_managment')%></li>
   </ol>
 </h5>
@@ -21,7 +21,7 @@
     <tbody>
       <% @courses.each do |course| %>
         <tr class="text-white">
-          <td><%= link_to course.name, admins_course_path(course), class:"btn btn-light" %></td>
+          <td><%= link_to course.name, admin_course_path(course), class:"btn btn-light" %></td>
         </tr>
       <% end %>
     </tbody>

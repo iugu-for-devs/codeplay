@@ -1,8 +1,8 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
                                 class="link-dark"><%=t('headers.dashboard')%></a></li>
-    <li class="breadcrumb-item"><a href="<%= admins_subscriptions_path %>"
+    <li class="breadcrumb-item"><a href="<%= admin_subscriptions_path %>"
                                 class="link-dark">Planos</a></li>
     <li class="breadcrumb-item active text-white" aria-current="page"><%=@subscription.name %></li>
   </ol>
@@ -21,14 +21,14 @@
 
 <h4>Adicionar um curso</h4>
 
-<%= form_with url: search_course_admins_subscription_path, method: :get do |f| %>
+<%= form_with url: search_course_admin_subscription_path, method: :get do |f| %>
   <%= f.label :name, 'Nome do curso' %> <br>
   <%= f.text_field :name %> <br>
   <%= f.submit 'Buscar curso' %>
 <% end %>
 
 
-<% if !@courses.nil? %>
+<% if @courses.present? %>
   <%= render partial: "course" %>
 <% end %>
 

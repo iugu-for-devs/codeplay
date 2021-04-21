@@ -3,4 +3,26 @@ pt-BR:
   activerecord:
     models:
       admin:
-        one: Admin
+        one: Membro
+        other: Membros
+    attributes:
+      admin:
+        email: E-mail
+        name: Nome
+        password: Senha
+        remember_me: Lembre-se de mim
+  admin:
+    members:
+      create:
+        success: Membro cadastrado com sucesso!
+
+  admins:
+    shared:
+      links:
+        back: Voltar
+        didn_t_receive_confirmation_instructions: Não recebeu instruções de confirmação?
+        didn_t_receive_unlock_instructions: Não recebeu instruções de desbloqueio?
+        forgot_your_password: Esqueceu sua senha?
+        sign_in: Login
+        sign_in_with_provider: Entrar com %{provider}
+        sign_up: Cadastrar

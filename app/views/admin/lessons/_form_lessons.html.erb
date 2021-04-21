@@ -1,5 +1,5 @@
 <h2><%= header_title %></h2>
-<%= form_with model: [:admins, :course, @lesson] do |form| %>
+<%= form_with model: [:admin, :course, @lesson] do |form| %>
     <div class="mx-auto">
       <%= form.label :name%>
       <%= form.text_field :name, class: "form-control"%>
@@ -12,7 +12,7 @@
     <div class="mx-auto">
       <%= form.label :video_code,class:"form-label" %>
       <%= form.number_field :video_code %>
-      <span class="form-text text-white"> 
+      <span class="form-text text-white">
       Ex: vimeo.com/</span><span class="text-decoration-underline text-white">123456 </span>
     </div>
     <div><%= form.submit class:"btn btn-primary" %></div>

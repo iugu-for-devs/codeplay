@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'home#index'
 
-  namespace :admins do
+  namespace :admin do
     root 'dashboard#index'
     resources :subscriptions, only: [:index, :show, :new, :create] do
       get 'search_course', on: :member
@@ -15,17 +16,13 @@ Rails.application.routes.draw do
     resources :courses, only: [:index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
     end
+    resources :members
   end
 
-  
-  resources :subscriptions, only: %i[new create] do
-    
-    
-  end
-
+  resources :subscriptions, only: %i[new create]
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
   end
-  
+
   resources :orders, only:[:new, :create]
 end

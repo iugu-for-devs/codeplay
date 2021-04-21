@@ -41,7 +41,9 @@ end
 require 'capybara/rspec'
 
 RSpec.configure do |config|
-  include Warden::Test::Helpers
+  config.include Warden::Test::Helpers
+  include LoginAdmin
+
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   end
@@ -78,3 +80,17 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   config.filter_gems_from_backtrace(/gems/)
 end
+
+# if ENV["SLOW"].present?
+#   require "selenium-webdriver"
+#   module ::Selenium::WebDriver::Remote
+#     class Bridge
+#       alias old_execute execute
+
+#       def execute(*args)
+#         sleep(0.3)
+#         old_execute(*args)
+#       end
+#     end
+#   end
+# end
