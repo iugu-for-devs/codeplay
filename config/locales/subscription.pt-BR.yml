@@ -14,5 +14,10 @@ pt-BR:
     subscriptions:
       create:
         success: Plano cadastrado com sucesso
+      show:
+        add_course: Adicionar um curso
+        course_name: Nome do curso
+        subscription_courses: Cursos da assinatura
+        no_courses_added: Nenhum curso cadastrado para este plano
   headers:
     subscription_managment: Gerenciamento de Planos

@@ -3,23 +3,25 @@
     <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
                                 class="link-dark"><%=t('headers.dashboard')%></a></li>
     <li class="breadcrumb-item"><a href="<%= admin_subscriptions_path %>"
-                                class="link-dark">Planos</a></li>
-    <li class="breadcrumb-item active text-secondary" aria-current="page">Cadastar Plano</li>
+                                class="link-dark"><%=Subscription.model_name.human count: 2 %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page">
+    <%=t('buttons.register', model: Subscription.model_name.human) %></li>
   </ol>
 </h5>
 
 <%= form_with model: [:admin, @subscription] do |form| %>
-<div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field :name %>
+  <div class="mx-auto">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control"%>
+  </div>
+  <div class="mx-auto">
+    <%= form.label :description, class:"form-label" %>
+    <%= form.text_area :description, class:"form-control", rows:"3" %>
+  </div>
 
-    <%= form.label :description, 'Descrição' %>
-    <%= form.text_field :description %>
-
-    <%= form.label :price, 'Valor' %>
-    <%= form.number_field :price, step: :any %>
-
-    <%= form.submit 'Cadastrar' %>
-</div>
+  <div class="mx-auto">
+    <%= form.label :price, class:"form-label" %>
+    <%= form.number_field :price, class:"form-control" %>
+  </div>
+  <div><%= form.submit class:"btn btn-primary" %></div>
 <% end %>
-

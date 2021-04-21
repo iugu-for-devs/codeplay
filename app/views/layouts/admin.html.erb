@@ -36,12 +36,16 @@
               <h1 class="h2">CodePlay</h1>
             </div>
             <%= render partial: 'shared/flashes' %>
-            <%= yield %>
+              <div>
+                <%= yield %>
+              </div>
           </main>
         </div>
       </div>
     <% else %>
-      <%= yield %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
     <% end %>
   </body>
 </html>

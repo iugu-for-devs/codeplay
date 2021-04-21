@@ -13,9 +13,7 @@ describe 'Subscription plan' do
     visit admin_subscriptions_path
 
     expect(page).to have_text(subscription.name)
-    expect(page).to have_text(subscription.description)
     expect(page).to have_text(other_subscription.name)
-    expect(page).to have_text(other_subscription.description)
   end
 
   it 'can view a subscription plan' do
@@ -48,11 +46,11 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
 
     visit admin_subscriptions_path
-    click_on 'Criar novo plano de assinatura'
+    click_on 'Cadastrar Plano'
     fill_in 'Nome', with: 'Jornada Web com Rails'
     fill_in 'Descrição', with: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails'
-    fill_in 'Valor', with: '50'
-    click_on 'Cadastrar'
+    fill_in 'Preço', with: '50'
+    click_on 'Criar Plano'
 
     expect(page).to have_text('Plano cadastrado com sucesso')
     expect(page).to have_text('Jornada Web com Rails')
@@ -65,11 +63,11 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
 
     visit admin_subscriptions_path
-    click_on 'Criar novo plano de assinatura'
+    click_on 'Cadastrar Plano'
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
-    fill_in 'Valor', with: ''
-    click_on 'Cadastrar'
+    fill_in 'Preço', with: ''
+    click_on 'Criar Plano'
 
     expect(page).to have_text('Nome não pode ficar em branco')
   end
@@ -79,7 +77,7 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
 
     visit admin_subscriptions_path
-    click_on 'Criar novo plano de assinatura'
+    click_on 'Cadastrar Plano'
     click_on 'Planos'
 
     expect(current_path).to eq(admin_subscriptions_path)
@@ -93,7 +91,7 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
     visit admin_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
-    click_on 'Buscar curso'
+    click_on 'Buscar Curso'
     select course.name
     click_on 'Adicionar curso'
 
@@ -110,7 +108,7 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
     visit admin_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
-    click_on 'Buscar curso'
+    click_on 'Buscar Curso'
     select course.name
     click_on 'Adicionar curso'
 
