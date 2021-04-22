@@ -1,9 +1,9 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_visitor
+  before_action :redirect_unwanted
 
-  def show
-    @user = User.find(params[:id])
-  end
+  def show; end
 
   def courses
     @course = Course.new(
@@ -23,5 +23,17 @@ class UserController < ApplicationController
 
   def orders
     @order = Order.new(pay_type: 'PIX')
+  end
+
+  private
+
+  def set_visitor
+    @user = User.find(params[:id])
+  end
+
+  def redirect_unwanted
+    return if @user.permited?(current_user)
+
+    redirect_to root_path
   end
 end
