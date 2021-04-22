@@ -1,0 +1,57 @@
+require 'rails_helper'
+
+describe 'User' do
+  it 'can view specific navbar when logged in' do
+    client = Fabricate(:user)
+    login_as client, scope: :user
+
+    visit root_path
+
+    expect(page).to have_link('Meu Perfil', href: user_profile_path(client))
+    expect(page).to have_link('Cursos', href: courses_path)
+    expect(page).to have_link('Assinaturas', href: subscriptions_path)
+    expect(page).to have_link('Sair', href: destroy_user_session_path)
+
+    expect(page).not_to have_link('Home', href: root_path)
+    expect(page).not_to have_link('Entrar', href: new_user_session_path)
+    expect(page).not_to have_link('Nova Conta', href: new_user_registration_path)
+  end
+
+  it 'not logged can view specific navbar' do
+    client = Fabricate(:user)
+
+    visit root_path
+
+    expect(page).not_to have_link('Meu Perfil', href: user_profile_path(client))
+    expect(page).not_to have_link('Sair', href: destroy_user_session_path)
+
+    expect(page).to have_link('Home', href: root_path)
+    expect(page).to have_link('Cursos', href: courses_path)
+    expect(page).to have_link('Assinaturas', href: subscriptions_path)
+    expect(page).to have_link('Entrar', href: new_user_session_path)
+    expect(page).to have_link('Nova Conta', href: new_user_registration_path)
+  end
+
+  it 'can view user profile' do
+    client = Fabricate(:user)
+    login_as client, scope: :user
+
+    visit root_path
+
+    click_on 'Meu Perfil'
+
+    expect(page).to have_text(client.email)
+  end
+
+  it 'can view user profile and only users email' do
+    clients = Fabricate.times(2, :user)
+    login_as clients[0], scope: :user
+
+    visit root_path
+
+    click_on 'Meu Perfil'
+
+    expect(page).to have_text(clients[0].email)
+    expect(page).not_to have_text(clients[1].email)
+  end
+end
