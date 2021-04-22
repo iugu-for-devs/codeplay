@@ -1,0 +1,18 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <%= link_to 'Meus Cursos', user_courses_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Meus Planos', user_subscriptions_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Meio de Pagamento','#', class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Minhas Compras', user_orders_path, class: 'nav-link' %>
+      </li>
+    </ul>
+  </div>
+</nav>

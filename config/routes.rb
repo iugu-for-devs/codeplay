@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   as :user do
     get 'user/:id', :to => 'user#show', :as => :user_profile
+    get 'user/:id/subscriptions', :to => 'user#subscriptions', :as => :user_subscriptions
+    get 'user/:id/courses', :to => 'user#courses', :as => :user_courses
+    get 'user/:id/orders', :to => 'user#orders', :as => :user_orders
   end
-  
-  
+
   devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
