@@ -21,7 +21,7 @@ describe 'Subscription plan', type: :request do
     expect(response).to redirect_to(new_admin_session_path)
   end
 
-  xit 'non admin cannot add a course to subscription' do
+  it 'non admin cannot add a course to subscription' do
     user = Fabricate(:user)
     login_as user, scope: :user
     course = Fabricate(:course)

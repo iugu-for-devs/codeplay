@@ -78,7 +78,7 @@ describe 'Subscription plan' do
     expect(current_path).to eq(subscriptions_path)
   end
 
-  xit 'admin can add a course to a subscription' do
+  it 'admin can add a course to a subscription' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
     subscription = Fabricate(:subscription)
@@ -94,7 +94,7 @@ describe 'Subscription plan' do
     expect(page).to have_text(course.description)
   end
 
-  xit 'admin cannot add same course to  subscription' do
+  it 'admin cannot add same course to  subscription' do
     admin = Fabricate(:admin)
     login_as admin, scope: :admin
     subscription = Fabricate(:subscription)
