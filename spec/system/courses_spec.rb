@@ -7,7 +7,7 @@ describe 'Course Management' do
     it 'Admins can view the create form' do
       login_as(admin, scope: :admin)
 
-      visit new_admins_course_path
+      visit new_admin_course_path
 
       expect(page).to have_text('Nome')
       expect(page).to have_text('Descrição')
@@ -23,13 +23,13 @@ describe 'Course Management' do
 
     it 'Can create a course' do
       login_as(admin, scope: :admin)
-      visit new_admins_course_path
+      visit new_admin_course_path
 
       fill_in 'Nome', with: 'Curso de RubyOnRails'
       fill_in 'Descrição', with: 'Curso de RubyOnRails para Iniciantes'
       click_on 'Cadastrar Curso'
 
-      expect(current_path).to eq(admins_course_path(Course.last))
+      expect(current_path).to eq(admin_course_path(Course.last))
       expect(page).to have_text('Curso criado com sucesso.')
       expect(page).to have_text('Curso de RubyOnRails')
       expect(page).to have_text('Curso de RubyOnRails para Iniciantes')
@@ -37,7 +37,7 @@ describe 'Course Management' do
 
     it 'Attributes cannot be blank' do
       login_as(admin, scope: :admin)
-      visit new_admins_course_path
+      visit new_admin_course_path
 
       fill_in 'Nome', with: ''
       fill_in 'Descrição', with: ''
@@ -48,7 +48,7 @@ describe 'Course Management' do
     end
 
     it 'Guests cannot create' do
-      visit new_admins_course_path
+      visit new_admin_course_path
 
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_text('Para continuar, efetue login ou registre-se.')
@@ -56,7 +56,7 @@ describe 'Course Management' do
 
     it 'Users cannot create' do
       login_as(user, scope: :user)
-      visit new_admins_course_path
+      visit new_admin_course_path
 
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_text('Para continuar, efetue login ou registre-se.')

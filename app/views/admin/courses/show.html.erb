@@ -1,8 +1,8 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admins_root_path %>"
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
                                 class="link-dark"><%=t('headers.dashboard')%></a></li>
-    <li class="breadcrumb-item"><a href="<%= admins_courses_path %>"
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"
                                 class="link-dark"><%=t('headers.course_managment')%></a></li>
     <li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
   </ol>
@@ -16,7 +16,7 @@
 <% end %>
 
 <%= link_to t('buttons.register', model:Lesson.model_name.human),
-            new_admins_course_lesson_path(@course), class:"btn btn-warning"%>
+            new_admin_course_lesson_path(@course), class:"btn btn-warning"%>
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">
@@ -28,7 +28,7 @@
     <tbody>
       <% @course.lessons.each do |lesson| %>
         <tr class="text-white">
-          <td><%= link_to lesson.name, admins_course_lesson_path(id: lesson, course_id: @course), class:"btn btn-light"  %></td>
+          <td><%= link_to lesson.name, admin_course_lesson_path(id: lesson, course_id: @course), class:"btn btn-light"  %></td>
           <td><%= lesson.description%></td>
         </tr>
       <% end %>

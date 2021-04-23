@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 <div>
-  <%= form_with model: [:admins, @course], local: true do |f| %>
+  <%= form_with model: [:admin, @course], local: true do |f| %>
     <div>
       <%= f.label :name %><span style="color:red">*</span>
       <%= f.text_field :name %>
