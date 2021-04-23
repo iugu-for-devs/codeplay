@@ -109,9 +109,6 @@ describe 'Subscription plan' do
     visit admin_subscription_path(subscription)
     fill_in 'Nome do curso', with: course.name
     click_on 'Buscar Curso'
-    select course.name
-    click_on 'Adicionar curso'
-
-    expect(page).to have_text('Curso já cadastrado nesta assinatura')
+    expect(page).to_not have_select('course_id', options: [course.name])
   end
 end

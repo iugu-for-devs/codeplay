@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :subscriptions, only: [:index, :show, :new, :create] do
+      post 'add_course', on: :member
       get 'search_course', on: :member
       resources :courses, only: [] do
-        post 'add', on: :member
       end
     end
     resources :courses, only: [:index, :show] do

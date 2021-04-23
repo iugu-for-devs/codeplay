@@ -23,7 +23,15 @@ class Admin::SubscriptionsController < Admin::ApplicationController
   def search_course
     @subscription = Subscription.find(params[:id])
     @courses = Course.search(params[:name])
+                     .where.not(id: @subscription.courses.ids)
     render :show
+  end
+
+  def add_course
+    @subscription = Subscription.find(params[:id])
+    @course = Course.find(params[:course_id])
+    @subscription.courses << @course
+    redirect_to [:admin, @subscription], notice: 'Curso cadastrado com sucesso'
   end
 
   private
