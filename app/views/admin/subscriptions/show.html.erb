@@ -20,9 +20,9 @@
 <hr>
 
 <h4><%= t('.add_course') %></h4>
-<div class="col-sm-4">
+<div class="col-sm-8">
   <%= form_with url: search_course_admin_subscription_path, method: :get do |f| %>
-    <div class="mb-3">
+    <div class="mb-8">
       <%= f.text_field :name, class: 'form-control', placeholder: "#{t('.course_name')}" %>
       <br>
       <%= f.submit t('buttons.search', model: Course.model_name.human), class: 'btn btn-primary' %>
@@ -30,9 +30,9 @@
   <% end %>
 
 <% if @courses.blank? %>
-  <p>Nenhum curso encontrado com esse nome</p>
+  <p><%= t('.no_course_found') %></p>
 <% else %>
-  <p><strong>Foram encontrados <%= @courses.size %> cursos: </strong></p>
+  <p><strong><%= t('.courses_found', course_size: @courses.size)%></strong></p>
     <%= form_with url: add_course_admin_subscription_path(@subscription) do |form| %>
       <%= form.collection_select "course_id", @courses, :id, :name ,{}, {class: 'form-select'}  %> <br>
       <%= form.submit 'Adicionar curso', class: 'btn btn-primary' %>

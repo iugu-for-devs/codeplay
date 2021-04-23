@@ -7,20 +7,20 @@
 </h5>
 
 <h1>Lista de Cursos</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Course.human_attribute_name(:description) %></th>
+      </tr>
+      </thead>
   <tbody>
     <% @courses.each do |course| %>
-      <tr>
-        <td><%= link_to course.name, course %></td>
+      <tr class="text-white">
+        <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
         <td><%= course.description %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>

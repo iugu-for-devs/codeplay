@@ -1,5 +1,6 @@
 class Admin::SubscriptionsController < Admin::ApplicationController
-  before_action :set_subscription, only: %i[show]
+  before_action :fetch_subscription, only: %i[show search_course add_course]
+
   def index
     @subscriptions = Subscription.all
   end
@@ -21,22 +22,20 @@ class Admin::SubscriptionsController < Admin::ApplicationController
   end
 
   def search_course
-    @subscription = Subscription.find(params[:id])
     @courses = Course.search(params[:name])
                      .where.not(id: @subscription.courses.ids)
     render :show
   end
 
   def add_course
-    @subscription = Subscription.find(params[:id])
     @course = Course.find(params[:course_id])
     @subscription.courses << @course
-    redirect_to [:admin, @subscription], notice: 'Curso cadastrado com sucesso'
+    redirect_to [:admin, @subscription], notice: t('.success')
   end
 
   private
 
-  def set_subscription
+  def fetch_subscription
     @subscription = Subscription.find(params[:id])
   end
 
