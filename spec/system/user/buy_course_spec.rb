@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Authenticated user buy course' do
   it 'in order view' do
-    
     login_user
     course = Fabricate(:course)
 
@@ -14,7 +13,6 @@ describe 'Authenticated user buy course' do
 
   context 'when pay_type is selected' do
     it 'returns successfully with credit card' do
-
       login_user
       course = Fabricate(:course)
 
