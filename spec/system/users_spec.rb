@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'create user and access user panel' do
+describe 'user registration' do
   it 'visit register page' do
     visit root_path
     assert_text 'Code Play'
@@ -11,9 +11,19 @@ describe 'create user and access user panel' do
     assert_current_path new_user_registration_path
 
     assert_no_text 'Cadastrar'
+    assert_text 'Nome completo'
     assert_text 'Email'
     assert_text 'Senha'
     assert_text 'Confirmar senha'
+    assert_text 'Data de nascimento'
+    assert_text 'CPF'
+    assert_text 'Endereço'
+    assert_text 'Rua'
+    assert_text 'Número'
+    assert_text 'Complemento'
+    assert_text 'CEP'
+    assert_text 'Cidade'
+    assert_text 'Estado'
     expect(page).to have_selector(:button, 'Cadastrar')
   end
 
@@ -23,10 +33,18 @@ describe 'create user and access user panel' do
     click_on 'Cadastrar'
 
     assert_current_path new_user_registration_path
-
+    fill_in 'Nome completo', with: 'John Doe'
     fill_in 'Email', with: 'john.doe@codesaga.com.br'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar senha', with: '12345678'
+    fill_in 'Data de nascimento', with: '08/08/1990'
+    fill_in 'CPF', with: '000.000.003-53'
+    fill_in 'Rua', with: 'Av. Marechal Tito'
+    fill_in 'Número', with: '36'
+    fill_in 'Complemento', with: 'Apto 48'
+    fill_in 'CEP', with: '08040-150'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     within 'form' do
       click_on 'Cadastrar'
     end
@@ -40,7 +58,17 @@ describe 'create user and access user panel' do
     click_on 'Cadastrar'
 
     assert_current_path new_user_registration_path
-
+    fill_in 'Nome completo', with: 'John Doe'
+    fill_in 'Senha', with: '12345678'
+    fill_in 'Confirmar senha', with: '12345678'
+    fill_in 'Data de nascimento', with: '08/08/1990'
+    fill_in 'CPF', with: '000.000.003-53'
+    fill_in 'Rua', with: 'Av. Marechal Tito'
+    fill_in 'Número', with: '36'
+    fill_in 'Complemento', with: 'Apto 48'
+    fill_in 'CEP', with: '08040-150'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar senha', with: '12345678'
     within 'form' do
@@ -57,8 +85,16 @@ describe 'create user and access user panel' do
     click_on 'Cadastrar'
 
     assert_current_path new_user_registration_path
-
+    fill_in 'Nome completo', with: 'John Doe'
     fill_in 'Email', with: 'john.doe@codesaga.com.br'
+    fill_in 'Data de nascimento', with: '08/08/1990'
+    fill_in 'CPF', with: '000.000.003-53'
+    fill_in 'Rua', with: 'Av. Marechal Tito'
+    fill_in 'Número', with: '36'
+    fill_in 'Complemento', with: 'Apto 48'
+    fill_in 'CEP', with: '08040-150'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     within 'form' do
       click_on 'Cadastrar'
     end
@@ -73,9 +109,18 @@ describe 'create user and access user panel' do
 
     assert_current_path new_user_registration_path
 
+    fill_in 'Nome completo', with: 'John Doe'
     fill_in 'Email', with: 'john.doe@gmail.com'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar senha', with: '12345678'
+    fill_in 'Data de nascimento', with: '08/08/1990'
+    fill_in 'CPF', with: '000.000.003-53'
+    fill_in 'Rua', with: 'Av. Marechal Tito'
+    fill_in 'Número', with: '36'
+    fill_in 'Complemento', with: 'Apto 48'
+    fill_in 'CEP', with: '08040-150'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     within 'form' do
       click_on 'Cadastrar'
     end

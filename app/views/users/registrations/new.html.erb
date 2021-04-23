@@ -4,6 +4,11 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :full_name, 'Nome completo' %><br />
+    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email, 'Email' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -19,6 +24,48 @@
   <div class="field">
     <%= f.label :password_confirmation, 'Confirmar senha' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birthdate, 'Data de nascimento' %><br />
+    <%= f.date_field :birthdate, autofocus: true, autocomplete: "birthdate" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :cpf, 'CPF' %><br />
+    <%= f.text_field :cpf, autofocus: true, autocomplete: "cpf" %>
+  </div>
+  
+  <h2>Endereço</h2>
+
+  <div class="field">
+    <%= f.label :street, 'Rua' %><br />
+    <%= f.text_field :street, autofocus: true, autocomplete: "street" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number, 'Número' %><br />
+    <%= f.text_field :number, autofocus: true, autocomplete: "number" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :complement, 'Complemento' %><br />
+    <%= f.text_field :complement, autofocus: true, autocomplete: "complement" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zipcode, 'CEP' %><br />
+    <%= f.text_field :zipcode, autofocus: true, autocomplete: "zipcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city, 'Cidade' %><br />
+    <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state, 'Estado' %><br />
+    <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
   </div>
 
   <div class="actions">
