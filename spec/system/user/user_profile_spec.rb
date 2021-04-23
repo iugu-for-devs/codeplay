@@ -7,7 +7,7 @@ describe 'User' do
 
     visit root_path
 
-    expect(page).to have_link('Meu Perfil', href: user_profile_path(client))
+    expect(page).to have_link('Meu Perfil', href: user_profile_path)
     expect(page).to have_link('Cursos', href: courses_path)
     expect(page).to have_link('Assinaturas', href: subscriptions_path)
     expect(page).to have_link('Sair', href: destroy_user_session_path)

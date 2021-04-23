@@ -16,7 +16,7 @@
         <div class="container d-flex flex-wrap">
           <ul class="nav me-auto">
             <% if user_signed_in? %>
-              <li class="nav-item"><a href="<%= user_profile_path(current_user) %>" class="nav-link link-dark px-2"><%= t('.buttons.profile') %></a></li>
+              <li class="nav-item"><a href="<%= user_profile_path %>" class="nav-link link-dark px-2"><%= t('.buttons.profile') %></a></li>
             <% else %>
               <li class="nav-item"><a href="<%= root_path %>" class="nav-link link-dark px-2"><%= t('.buttons.home') %></a></li>
             <% end %>
