@@ -15,10 +15,9 @@
       <nav class="py-2 bg-light border-bottom">
         <div class="container d-flex flex-wrap">
           <ul class="nav me-auto">
+            <li class="nav-item"><a href="<%= root_path %>" class="nav-link link-dark px-2"><%= t('.buttons.home') %></a></li>
             <% if user_signed_in? %>
               <li class="nav-item"><a href="<%= user_profile_path %>" class="nav-link link-dark px-2"><%= t('.buttons.profile') %></a></li>
-            <% else %>
-              <li class="nav-item"><a href="<%= root_path %>" class="nav-link link-dark px-2"><%= t('.buttons.home') %></a></li>
             <% end %>
             <li class="nav-item"><a href="<%= courses_path %>" class="nav-link link-dark px-2"><%= t('.buttons.courses') %></a></li>
             <li class="nav-item"><a href="<%= subscriptions_path %>" class="nav-link link-dark px-2"><%= t('.buttons.subscriptions') %></a></li>
