@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
   it { should validate_presence_of(:status) }
   it { should validate_presence_of(:token) }
 
-  it { shoul belong_to :course }
+  it { should belong_to :course }
   it { should belong_to :user }
 
   # método de intancia já que iremos esperar valores que modifiquem o status do produto
@@ -21,8 +21,11 @@ RSpec.describe Order, type: :model do
         old_order_status = 'pending'
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
 
-        allow(order).to receive(:send_invoice_request).and_return({ status: 'approved',
-                                                                    token: returned_token })
+        response = order.send_invoice_request
+
+
+        # (order).to allow receive(:send_invoice_request).and_return({ status: 'approved',
+        #                                                             token: returned_token })
 
         expect(order.status).to_not eq(old_order_status)
       end
