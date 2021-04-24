@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe 'user billing option' do
-	
-	
-	
+
 	it 'user add billing option' do
 		user = Fabricate(:user)
 		login_as(user, scope: :user)
@@ -16,13 +14,10 @@ describe 'user billing option' do
 		fill_in 'Código de segurança', with: '777'
 
 		click_on 'Cadastrar'
+		token = SecureRandom.hex(20)
 
+		allow(PaymentMethods).to receive(:get_token).and_return(token)
 		byebug
-   # token = SecureRandom.hex(20)
-
-	#	allow(SecureRandom).to receive(:hex).and_return(user.token)
-
-
 	end
 
 end
