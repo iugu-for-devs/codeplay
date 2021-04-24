@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 describe 'Home page' do
-  
-  describe 'Unauthenticated user' do 
-    
-    context 'header' do 
+  describe 'Unauthenticated user' do
+    context 'header' do
       it 'can see link buttons' do
         visit root_path
 
@@ -19,7 +17,7 @@ describe 'Home page' do
       #   expect(page).to have_css("img[src*='logo-codeplay-black.svg']")
       # end
 
-      it 'can see login button' do 
+      it 'can see login button' do
         visit root_path
 
         click_on 'Entrar'
@@ -34,7 +32,7 @@ describe 'Home page' do
       end
     end
 
-    context 'intro content' do 
+    context 'intro content' do
       it 'can see call text' do
         visit root_path
 
@@ -63,18 +61,17 @@ describe 'Home page' do
         end
 
         expect(page).to have_content('Bem-vindo à CodePlay.')
-        expect(page).to have_no_selector("div.intro-content")
+        expect(page).to have_no_selector('div.intro-content')
         expect(current_path).to eq(root_path)
       end
 
       it 'can see button to see some courses' do
-
         visit root_path
 
         within '.intro-content' do
           expect(page).to have_link('Veja alguns cursos')
         end
       end
-    end 
+    end
   end
 end
