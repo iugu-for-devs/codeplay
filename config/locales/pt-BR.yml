@@ -4,6 +4,7 @@ pt-BR:
     register: Cadastrar %{model}
     delete: Apagar %{model}
     edit: Editar %{model}
+    back: 'Voltar'
 
   courses: 
     create:
@@ -19,5 +20,3 @@ pt-BR:
         profile: Meu Perfil
         sign_up: Nova Conta
         subscriptions: Assinaturas
-
-
