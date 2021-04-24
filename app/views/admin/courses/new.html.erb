@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 <div>
-  <%= form_with model: @course, local: true do |f| %>
+  <%= form_with model: [:admin, @course], local: true do |f| %>
     <div>
       <%= f.label :name %><span style="color:red">*</span>
       <%= f.text_field :name %>
@@ -30,9 +30,9 @@
       <%= f.text_field :requirements %>
     </div>
     <div>
-      <%= f.submit 'Cadastrar' %>
+      <%= f.submit 'Cadastrar Curso' %>
     </div>
     <% end %>
 </div>
 <br>
-<%= link_to 'Voltar', courses_path %>
+<%= link_to t('buttons.back'), courses_path %>

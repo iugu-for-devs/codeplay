@@ -1,0 +1,29 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Aluno
+        other: Alunos
+    attributes:
+      user:
+        email: E-mail
+        password: Senha
+        remember_me: Lembre-se de mim
+  user:
+    sidebar:
+      links:
+        courses: Meus Cursos
+        subscriptions: Meus Planos
+        pay_types: Meio de Pagamento
+        orders: Minhas Compras
+  users:
+    shared:
+      links:
+        back: Voltar
+        didn_t_receive_confirmation_instructions: Não recebeu instruções de confirmação?
+        didn_t_receive_unlock_instructions: Não recebeu instruções de desbloqueio?
+        forgot_your_password: Esqueceu sua senha?
+        sign_in: Login
+        sign_in_with_provider: Entrar com %{provider}
+        sign_up: Cadastrar

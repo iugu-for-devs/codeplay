@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+  as :user do
+    get 'user', to: 'user#show', as: :user_profile
+    get 'user/subscriptions', to: 'user#subscriptions', as: :user_subscriptions
+    get 'user/courses', to: 'user#courses', as: :user_courses
+    get 'user/orders', to: 'user#orders', as: :user_orders
+  end
+
   devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -13,7 +20,7 @@ Rails.application.routes.draw do
       resources :courses, only: [] do
       end
     end
-    resources :courses, only: [:index, :show] do
+    resources :courses, only: [:new, :create, :index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     resources :members
@@ -23,6 +30,5 @@ Rails.application.routes.draw do
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
   end
-
   resources :orders, only:[:new, :create]
 end
