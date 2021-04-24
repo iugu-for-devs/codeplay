@@ -19,6 +19,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop-rails', require: false
+  gem 'faraday'
 end
 
 group :development do

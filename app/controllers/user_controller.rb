@@ -30,6 +30,22 @@ class UserController < ApplicationController
     ]
   end
 
+  def create_payment_methods
+    name = params[:name]
+    number = params[:number]  
+    expiration_date = params[:expiration_date]
+    cvv = params[:security_code]
+    card = {name: name, number: number, expiration_date: expiration_date, cvv: cvv}
+
+    response = Faraday.get('https://my-json-server.typicode.com/lBenevides/demo/posts')
+
+    url = 'https://my-json-server.typicode.com/lBenevides/demo/posts'
+    resp = Faraday.post(url, card.to_json,
+      "Content-Type" => "application/json"
+    )
+  end
+
+
   private
 
   def set_user
