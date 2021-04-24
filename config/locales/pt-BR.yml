@@ -5,18 +5,15 @@ pt-BR:
     delete: Apagar %{model}
     edit: Editar %{model}
     back: 'Voltar'
-
+    courses: Cursos
+    home: Home
+    log_in: Entrar
+    log_out: Sair
+    profile: Meu Perfil
+    sign_up: Nova Conta
+    subscriptions: Assinaturas
   courses: 
     create:
       success: "%{course} cadastrado com sucesso"
 
-  layouts:
-    application:
-      buttons:
-        courses: Cursos
-        home: Home
-        log_in: Entrar
-        log_out: Sair
-        profile: Meu Perfil
-        sign_up: Nova Conta
-        subscriptions: Assinaturas
+
