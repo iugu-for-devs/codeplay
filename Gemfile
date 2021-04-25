@@ -29,6 +29,7 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'

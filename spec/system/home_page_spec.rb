@@ -73,7 +73,6 @@ describe 'Home page' do
           click_on('Veja alguns cursos')
         end
         expect(current_path).to eq(courses_path)
-
       end
     end
 
@@ -114,6 +113,7 @@ describe 'Home page' do
         within '.courses-section' do
           courses.each do |course|
             expect(page).to have_content(course.price)
+            click_on('Próximo')
           end
         end
       end
