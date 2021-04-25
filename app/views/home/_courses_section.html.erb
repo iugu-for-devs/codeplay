@@ -1,0 +1,30 @@
+<div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+  <div class="container" >
+    <div class="row">
+
+      <div class="owl-carousel col-12 nonloop-block-14">
+
+        <% Course.all.each do |course| %>
+          <div class="course bg-white h-100 align-self-stretch">
+            <figure class="m-0">
+              <a href="course-single.html"><%= image_tag("home_template_images/img_1.jpg") %></a>
+            </figure>
+            <div class="course-inner-text py-4 px-4">
+              <span class="course-price"><%= course.price %></span>
+              <div class="meta"><span class="icon-clock-o"></span><%= course.lessons.size %> Aulas </div>
+              <h3><a href="#"><%= course.name %></a></h3>
+              <p><%= course.description %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-7 text-center">
+        <button class="customPrevBtn btn btn-primary m-1">Anterior</button>
+        <button class="customNextBtn btn btn-primary m-1">Próximo</button>
+      </div>
+    </div>
+  </div>
+</div>
