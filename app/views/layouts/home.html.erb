@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <div class="site-wrap">
@@ -16,6 +17,7 @@
       <%= render partial: 'shared/flashes' %>
       <%= yield %>
     </body>
+
     <%= javascript_pack_tag 'home_template/main', 'data-turbolinks-track': 'reload' %>
   </div>
 </html>
