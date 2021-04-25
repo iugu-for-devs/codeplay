@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_193323) do
+ActiveRecord::Schema.define(version: 2021_04_25_025800) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
     t.string "cover"
     t.string "requirements"
     t.integer "admin_id", null: false
+    t.string "token"
+    t.decimal "price", precision: 10, scale: 2
     t.index ["admin_id"], name: "index_courses_on_admin_id"
   end
 
@@ -80,6 +82,12 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "pay_type"
+    t.string "status", default: "pending"
+    t.string "token"
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.index ["course_id"], name: "index_orders_on_course_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "subscription_courses", force: :cascade do |t|
@@ -109,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -117,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_193323) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "admins"
   add_foreign_key "lessons", "courses"
+  add_foreign_key "orders", "courses"
+  add_foreign_key "orders", "users"
   add_foreign_key "subscription_courses", "courses"
   add_foreign_key "subscription_courses", "subscriptions"
 end
