@@ -42,7 +42,7 @@ describe 'Home page' do
         end
       end
 
-      it 'can see a carousel can be seen with some courses' do
+      it 'can see quick registration form' do
         visit root_path
 
         within '.intro-content form' do
@@ -50,7 +50,7 @@ describe 'Home page' do
         end
       end
 
-      it 'can see registration form' do
+      it 'can registration form' do
         visit root_path
 
         within '.intro-content form' do
@@ -70,6 +70,82 @@ describe 'Home page' do
 
         within '.intro-content' do
           expect(page).to have_link('Veja alguns cursos')
+          click_on('Veja alguns cursos')
+        end
+        expect(current_path).to eq(courses_path)
+
+      end
+    end
+
+    context 'courses section' do  
+      let!(:courses) { Fabricate.times(6, :course) }
+
+      it 'can see buttons control carousel' do
+        visit root_path 
+
+        page.execute_script "window.scrollBy(0,10000)"
+        
+        within '.courses-section' do
+          expect(page).to have_content('Anterior')
+          expect(page).to have_content('Próximo')
+        end
+      end
+
+      it 'can be seen a carousel with some courses' do
+        visit root_path
+
+        page.execute_script "window.scrollBy(0,10000)"
+
+        within '.courses-section' do
+          courses.each do |course|
+            expect(page).to have_content(course.name)
+            click_on('Próximo')
+          end
+
+          expect(page).to have_css(".course", :count => 3)
+        end
+      end
+        
+      it 'can see prices' do
+        visit root_path
+
+        page.execute_script "window.scrollBy(0,10000)"
+        
+        within '.courses-section' do
+          courses.each do |course|
+            expect(page).to have_content(course.price)
+          end
+        end
+      end
+
+      it 'can see names and descriptions' do
+        visit root_path
+        
+        page.execute_script "window.scrollBy(0,10000)"
+
+        within '.courses-section' do
+          courses.each do |course|
+            expect(page).to have_content(course.name)
+            expect(page).to have_content(course.description)
+            click_on('Próximo')
+          end
+        end
+      end
+
+      it 'can see number of lessons' do
+        courses.each do |course|
+          Fabricate.times(7,:lesson, course: course )
+        end
+
+        visit root_path
+
+        page.execute_script "window.scrollBy(0,10000)"
+        
+        within  '.courses-section' do
+          courses.each do |course| 
+            expect(page).to have_content("#{course.lessons.size} Aulas")
+            click_on('Próximo')
+          end
         end
       end
     end
