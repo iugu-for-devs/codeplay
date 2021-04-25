@@ -1,1 +1,10 @@
 <%= link_to 'Adicionar cartão de crédito', new_user_payment_methods_path %>
+
+	<% @payment_methods.each do |card| %>
+  <div>
+		nome no cartão:  <%= card.user_name %> <br> 
+		ultimos 4 digitos:  <%= card.last_digits %> <br>
+		data de expiração:  <%= card.expiration_date %>
+</div>
+<hr>
+	<% end%>
