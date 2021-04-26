@@ -46,6 +46,12 @@
           <td><%= lesson.description%></td>
         </tr>
       <% end %>
+      <% @course.text_lessons.each do |lesson| %>
+        <tr class="text-white">
+          <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+          <td><%= lesson.description%></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

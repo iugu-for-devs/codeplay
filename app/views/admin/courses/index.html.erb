@@ -10,7 +10,7 @@
 <% if @courses.empty?	%>
   <h3><%=t('.empty')%></h3>
 <% end %>
-
+<%= link_to t('buttons.register', model: Course.model_name.human), new_admin_course_path, class:"btn btn-primary" %>
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">
@@ -27,4 +27,4 @@
     </tbody>
   </table>
 </div>
-<%= link_to t('buttons.register'), new_admin_course_path %>
+

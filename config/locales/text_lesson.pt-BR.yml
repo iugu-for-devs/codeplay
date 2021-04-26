@@ -17,6 +17,6 @@ pt-BR:
       destroy:
         success: Aula %{lesson_name} apagada com sucesso
       new:
-        header_title: Cadastro de Aula Texto
+        header_title: Cadastro de Aula
       edit:
-        header_title: Edição de Aula Texto
+        header_title: Edição de Aula

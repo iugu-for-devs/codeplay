@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :subscriptions, only: %i[index show]
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
+    resources :text_lessons, only: [:show]
   end
   resources :orders, only:[:new, :create]
 end

@@ -5,10 +5,10 @@ describe 'text_lessons', type: :request do
     login_as(Fabricate(:admin), scope: :admin)
     course = Fabricate(:course)
 
-    post "/admin/courses/#{course.id}/text_lessons", params: { text_lesson: 
-																															Fabricate.attributes_for(:text_lesson, course: course) }
+    post "/admin/courses/#{course.id}/text_lessons", params: { text_lesson:
+                                                              Fabricate.attributes_for(:text_lesson, course: course) }
 
-		text_lesson = TextLesson.last
+    text_lesson = TextLesson.last
     assert_redirected_to admin_course_text_lesson_path(course, text_lesson)
     follow_redirect!
     expect(response).to have_http_status(:ok)
@@ -19,8 +19,8 @@ describe 'text_lessons', type: :request do
   it 'cannot create text lesson without login' do
     course = Fabricate(:course)
 
-    post "/admin/courses/#{course.id}/text_lessons", params: { text_lesson: 
-																															Fabricate.attributes_for(:text_lesson, course: course) }
+    post "/admin/courses/#{course.id}/text_lessons", params: { text_lesson:
+                                                              Fabricate.attributes_for(:text_lesson, course: course) }
 
     expect(response).to redirect_to(new_admin_session_path)
   end
