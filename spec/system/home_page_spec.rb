@@ -208,7 +208,7 @@ describe 'Home page' do
 
         within '#testimonial-section' do
           expect(page).to have_content('Yukihiro Matsumoto')
-          expect(page).to have_content('Ter realizados os cursos na CodePlay ... '\
+          expect(page).to have_content('Ter realizado os cursos na CodePlay ... '\
                                        'bem sem palavras foi uma ótima experiência '\
                                        'Não só recomendo como espero que você já seja um Code. ;)')
         end
