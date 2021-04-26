@@ -8,7 +8,7 @@ describe 'lessons management' do
 
     login_as(admin, scope: :admin)
     visit admin_root_path
-    click_on 'Gerenciamento de Cursos'
+    click_on 'Cursos'
     click_on course.name
 
     expect(lessons.count).to eq(5)

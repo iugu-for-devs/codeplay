@@ -8,7 +8,7 @@ describe 'Admin creates' do
 
     visit admin_root_path
     click_on 'Membros'
-    click_on 'Novo Membro'
+    click_on 'Cadastrar Membro'
 
     fill_in 'E-mail', with: 'gabriel@codeplay.com.br'
     fill_in 'Nome', with: 'Gabriel Silva'
@@ -27,7 +27,7 @@ describe 'Admin creates' do
 
     visit admin_root_path
     click_on 'Membros'
-    click_on 'Novo Membro'
+    click_on 'Cadastrar Membro'
 
     fill_in 'E-mail', with: 'gabriel@bol.com.br'
     fill_in 'Nome', with: 'Gabriel Silva'
@@ -44,7 +44,7 @@ describe 'Admin creates' do
 
     visit admin_root_path
     click_on 'Membros'
-    click_on 'Novo Membro'
+    click_on 'Cadastrar Membro'
 
     fill_in 'E-mail', with: 'admin1@codeplay.com.br'
     fill_in 'Nome', with: 'Admin 1'
