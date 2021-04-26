@@ -11,12 +11,6 @@ describe 'Home page' do
         expect(page).to have_link('Assinaturas', href: subscriptions_path)
       end
 
-      # it 'can see company logo' do
-      #   visit root_path
-
-      #   expect(page).to have_css("img[src*='logo-codeplay-black.svg']")
-      # end
-
       it 'can see login button' do
         visit root_path
 
@@ -202,6 +196,21 @@ describe 'Home page' do
           expect(page).to have_content('Somos apaixonados pelo ensino, lutamos, portanto, '\
                                        'por uma sociedade na qual todo indivíduo tenha acesso '\
                                        'ao ensino online de forma completa e qualitativa.')
+        end
+      end
+    end
+
+    context 'testimonial_section' do
+      it 'can see testimony of a student' do
+        visit root_path
+
+        page.execute_script 'window.scrollBy(0,1000)'
+
+        within '#testimonial-section' do
+          expect(page).to have_content('Yukihiro Matsumoto')
+          expect(page).to have_content('Ter realizados os cursos na CodePlay ... '\
+                                       'bem sem palavras foi uma ótima experiência '\
+                                       'Não só recomendo como espero que você já seja um Code. ;)')
         end
       end
     end
