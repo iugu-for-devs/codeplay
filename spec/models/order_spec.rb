@@ -23,7 +23,6 @@ RSpec.describe Order, type: :model do
 
         response = order.send_invoice_request
 
-
         # (order).to allow receive(:send_invoice_request).and_return({ status: 'approved',
         #                                                             token: returned_token })
 

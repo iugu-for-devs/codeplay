@@ -8,7 +8,7 @@ class Order < ApplicationRecord
 
   def send_invoice_request
     response = generate_invoice
-    self.status = response[:status] # aprovado recusado ou pendente
+    self.status = response[:status]
     self.token = response[:token]
 
     if status.eql? 'approved'

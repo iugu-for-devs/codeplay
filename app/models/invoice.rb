@@ -1,12 +1,10 @@
 class Invoice
-  
-  def initialize(data:, token:, pay_type:)
-  end
+  def initialize(data:, token:, pay_type:); end
 
   def self.generate(token_course:, token_user:, token_pay_type:)
     possible_status = %w[refused pending approved]
     returned_token = '0123456789'
-        
+
     { status: 'approved', token: returned_token }
   end
 end

@@ -4,7 +4,7 @@ class Course < ApplicationRecord
   belongs_to :admin
   has_many :subscription_courses, dependent: :destroy
   has_many :subscriptions, through: :subscription_courses
-  has_many :orders 
+  has_many :orders
   has_many :users, through: :orders
   validates :name, :description, presence: true
 

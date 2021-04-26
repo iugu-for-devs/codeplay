@@ -8,7 +8,7 @@ class PayType
 
   def self.all
     [
-      new(name: 'Boleto', token: '0123456789' ),
+      new(name: 'Boleto', token: '0123456789'),
       new(name: 'Cartão de Crédito', token: '3333333333'),
       new(name: 'PIX', token: '4444444444')
     ]
