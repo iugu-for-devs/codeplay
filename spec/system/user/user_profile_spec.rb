@@ -17,21 +17,6 @@ describe 'User' do
     expect(page).not_to have_link('Nova Conta', href: new_user_registration_path)
   end
 
-  it 'not logged can view specific navbar' do
-    Fabricate(:user)
-
-    visit root_path
-
-    expect(page).not_to have_link('Meu Perfil', href: user_profile_path)
-    expect(page).not_to have_link('Sair', href: destroy_user_session_path)
-
-    expect(page).to have_link('Home', href: root_path)
-    expect(page).to have_link('Cursos', href: courses_path)
-    expect(page).to have_link('Assinaturas', href: subscriptions_path)
-    expect(page).to have_link('Entrar', href: new_user_session_path)
-    expect(page).to have_link('Nova Conta', href: new_user_registration_path)
-  end
-
   it 'can view user profile' do
     client = Fabricate(:user)
     login_as client, scope: :user

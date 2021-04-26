@@ -17,6 +17,12 @@ pt-BR:
         subscriptions: Meus Planos
         pay_types: Meio de Pagamento
         orders: Minhas Compras
+    registration:
+        email: E-mail
+        password: Senha
+        remember_me: Lembre-se de mim
+        password_confirmation: Confirmar Senha
+
   users:
     shared:
       links:

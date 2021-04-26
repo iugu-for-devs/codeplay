@@ -22,6 +22,7 @@ describe 'Subscription plan' do
 
     login_as admin, scope: :admin
     visit admin_subscriptions_path
+
     click_on subscription.name
 
     expect(page).to have_text(subscription.name)

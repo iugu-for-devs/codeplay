@@ -1,5 +1,5 @@
 Fabricator(:subscription) do
-  name { sequence(:name) { |i| "Subscription-##{i + 1}" } }
-  description 'Esta assinatura ira abranger todos os cursos de Ruby e Rails'
-  price 25
+  name { "Jornada com #{Faker::ProgrammingLanguage.unique.name}" }
+  description { Faker::Lorem.paragraphs(number: 1) }
+  price { Faker::Commerce.price(range: 50.00..400.00) }
 end

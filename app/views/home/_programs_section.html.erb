@@ -1,0 +1,73 @@
+<div class="row mb-5 justify-content-center">
+  <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
+    <h2 class="section-title">Nossa forma de Fazer você aprender!</h2>
+  </div>
+</div>
+
+<div class="row mb-5 align-items-center">
+  <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
+    <%= image_tag("home_template_images/undraw_youtube_tutorial.svg", 
+                  alt:'Ilustração de curso em vídeo', class:"img-fluid") %>
+  </div>
+  <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-black mb-4">
+      Diga a nós o que você quer aprender, Que nós mostraremos como!
+    </h2>
+    <p class="mb-4">
+      Nossa plataforma utiliza de curso em vídeo e textos para passar 
+      o melhor conteúdo que se encontre no mercado.
+    </p>
+
+    <div class="d-flex align-items-center custom-icon-wrap mb-3">
+      <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
+      <div><h3 class="m-0">São <%= @courses.size %> cursos de várias linguagens.</h3></div>
+    </div>
+
+    <div class="d-flex align-items-center custom-icon-wrap">
+      <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
+      <div>
+        <h3 class="m-0">
+          São mais de <%= @users.size %> alunos em nosso plataforma.
+        </h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row mb-5 align-items-center">
+  <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+    <%= image_tag("home_template_images/undraw_teaching.svg", class:"img-fluid") %>
+  </div>
+  <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-black mb-4">A estrutura que você merece!</h2>
+    <p class="mb-4">
+      Nosso maior desejo é proporcionar conhecimento e conteúdo de qualidade.
+    </p>
+
+    <div class="d-flex align-items-center custom-icon-wrap mb-3">
+      <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
+      <div>
+        <h3 class="m-0">
+          São <%= @subscriptions.size %> assinaturas só para clicar e aproveitar.
+        </h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row mb-5 align-items-center">
+  <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
+    <%= image_tag("home_template_images/undraw_teacher.svg", class:"img-fluid") %>
+  </div>
+  <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-black mb-4">Ensinar para à vida!</h2>
+    <p class="mb-4">
+      Somos apaixonados pelo ensino, lutamos, portanto,
+      por uma sociedade na qual todo indivíduo tenha acesso
+      ao ensino online de forma completa e qualitativa.
+    </p>
+  </div>
+</div>
+
