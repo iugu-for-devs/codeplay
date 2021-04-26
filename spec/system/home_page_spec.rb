@@ -218,7 +218,7 @@ describe 'Home page' do
     context 'why choose' do
       it 'can see platform qualities' do
         visit root_path
-        
+
         page.execute_script 'window.scrollBy(0,1000000)'
 
         within '#why_choose' do
@@ -229,6 +229,24 @@ describe 'Home page' do
           expect(page).to have_content('Melhores Professores')
         end
       end
+    end
+
+    context 'footer' do 
+      it 'can see footer' do
+        visit root_path
+
+        page.execute_script 'window.scrollBy(0,1000000)'
+
+        within '.footer-section' do
+          expect(page).to have_content('SOBRE À CODEPLAY')
+          expect(page).to have_content('Nossa missão é propiciar educação online de qualidade')
+          expect(page).to have_content('DEIXE SEU EMAIL')
+          expect(page).to have_content('Para receber avisos e notícias por email')
+          expect(page).to have_link('Home', href: root_path)
+          expect(page).to have_link('Cursos', href: courses_path)
+          expect(page).to have_link('Assinaturas', href: subscriptions_path)
+        end
+      end      
     end
   end
 end
