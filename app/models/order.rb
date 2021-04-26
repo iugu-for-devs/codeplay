@@ -6,12 +6,9 @@ class Order < ApplicationRecord
   validates :status, presence: true
   validates :token, presence: true
 
-  validates :status, presence: true
-  validates :token, presence: true
-
   def send_invoice_request
     response = generate_invoice
-    self.status = response[:status]
+    self.status = response[:status] # aprovado recusado ou pendente
     self.token = response[:token]
 
     if status.eql? 'approved'
@@ -26,6 +23,7 @@ class Order < ApplicationRecord
                      token_course: course.token,
                      token_pay_type: pay_type
                     )
+                    {status token }
 
   end
 end

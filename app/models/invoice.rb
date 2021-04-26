@@ -6,7 +6,7 @@ class Invoice
   def self.generate(token_course:, token_user:, token_pay_type:)
     possible_status = %w[refused pending approved]
     returned_token = '0123456789'
-
+        
     { status: 'approved', token: returned_token }
   end
 end
