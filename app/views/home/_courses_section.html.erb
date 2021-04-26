@@ -4,7 +4,7 @@
 
       <div class="owl-carousel col-12 nonloop-block-14">
 
-        <% Course.all.each do |course| %>
+        <% @courses.each do |course| %>
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
               <a href="course-single.html"><%= image_tag("home_template_images/img_1.jpg") %></a>
