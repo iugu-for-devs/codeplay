@@ -15,13 +15,16 @@
   <br>
   <% if user_signed_in? %>
     <%= current_user.email %>
-    <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+    <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
+    <%= link_to t('.home'), root_path %>
+    <br>
+    <%= link_to t('.edit_user'), edit_user_registration_path %>
   <% else %>
     <% if current_page?(new_user_registration_path) == false %>
-      <%= link_to 'Cadastrar', new_user_registration_path %>
+      <%= link_to t('.signup'), new_user_registration_path %>
     <% end %>
     <% if current_page?(new_user_session_path) == false %>
-      <%= link_to 'Entrar', new_user_session_path %>
+      <%= link_to t('.signin'), new_user_session_path %>
     <% end %>  
   <% end %>
   </nav>

@@ -1,75 +1,75 @@
-<h2>Novo Cadastro</h2>
+<h2><%= t('.new_registration') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :full_name, 'Nome completo' %><br />
+    <%= f.label :full_name %><br />
     <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name" %>
   </div>
 
   <div class="field">
-    <%= f.label :email, 'Email' %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password, 'Senha' %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> carateres no mínimo)</em>
+    <em>(<%= @minimum_password_length %>  <%= t('.minimun_characters') %>)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, 'Confirmar senha' %><br />
+    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :birthdate, 'Data de nascimento' %><br />
+    <%= f.label :birthdate %><br />
     <%= f.date_field :birthdate, autofocus: true, autocomplete: "birthdate" %>
   </div>
   
   <div class="field">
-    <%= f.label :cpf, 'CPF' %><br />
+    <%= f.label :cpf %><br />
     <%= f.text_field :cpf, autofocus: true, autocomplete: "cpf" %>
   </div>
   
-  <h2>Endereço</h2>
+  <h3><%= t('.address') %></h3>
 
   <div class="field">
-    <%= f.label :street, 'Rua' %><br />
+    <%= f.label :street %><br />
     <%= f.text_field :street, autofocus: true, autocomplete: "street" %>
   </div>
 
   <div class="field">
-    <%= f.label :number, 'Número' %><br />
+    <%= f.label :number %><br />
     <%= f.text_field :number, autofocus: true, autocomplete: "number" %>
   </div>
   
   <div class="field">
-    <%= f.label :complement, 'Complemento' %><br />
+    <%= f.label :complement %><br />
     <%= f.text_field :complement, autofocus: true, autocomplete: "complement" %>
   </div>
 
   <div class="field">
-    <%= f.label :zipcode, 'CEP' %><br />
+    <%= f.label :zipcode %><br />
     <%= f.text_field :zipcode, autofocus: true, autocomplete: "zipcode" %>
   </div>
 
   <div class="field">
-    <%= f.label :city, 'Cidade' %><br />
+    <%= f.label :city %><br />
     <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
   </div>
 
   <div class="field">
-    <%= f.label :state, 'Estado' %><br />
+    <%= f.label :state %><br />
     <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Cadastrar" %>
+    <%= f.submit t('.sign_up')%>
   </div>
 <% end %>
 
