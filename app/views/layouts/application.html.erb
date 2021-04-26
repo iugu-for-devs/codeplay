@@ -13,10 +13,10 @@
   <body>
   <nav>
   <br>
+  <%= link_to t('.home'), root_path %>
   <% if user_signed_in? %>
     <%= current_user.email %>
     <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
-    <%= link_to t('.home'), root_path %>
     <br>
     <%= link_to t('.edit_user'), edit_user_registration_path %>
   <% else %>
@@ -25,7 +25,7 @@
     <% end %>
     <% if current_page?(new_user_session_path) == false %>
       <%= link_to t('.signin'), new_user_session_path %>
-    <% end %>  
+    <% end %>
   <% end %>
   </nav>
     <%= render partial: 'shared/flashes' %>

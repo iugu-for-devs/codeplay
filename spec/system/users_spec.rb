@@ -164,8 +164,10 @@ describe 'user registration' do
     assert_current_path user_registration_path
     assert_text 'Não foi possível salvar usuário'
   end
+end
 
-  it 'user login' do
+describe 'user login' do
+  it 'user can login' do
     user = Fabricate(:user)
     user.confirm
     visit root_path
@@ -264,7 +266,9 @@ describe 'user registration' do
 
     assert_text 'Antes de continuar, confirme a sua conta'
   end
+end
 
+describe 'user can change password' do
   it 'user can request reset password' do
     user = Fabricate(:user)
     user.confirm
@@ -293,12 +297,4 @@ describe 'user registration' do
     assert_text 'Sua senha foi alterada com sucesso. Você está logado.'
     assert_current_path root_path
   end
-
-  xit 'user cannot login without recaptcha' do
-    # TODO
-  end
-
-  # TODO: Definir para qual path o usuário será direcionado após o login
-  # TODO: Add 'home' link to all pages except root_path
-  # TODO: Refatorar logon com login as (definir método e chamar)
 end
