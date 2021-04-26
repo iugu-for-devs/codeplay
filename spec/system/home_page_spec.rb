@@ -231,7 +231,7 @@ describe 'Home page' do
       end
     end
 
-    context 'footer' do 
+    context 'footer' do
       it 'can see footer' do
         visit root_path
 
@@ -246,7 +246,7 @@ describe 'Home page' do
           expect(page).to have_link('Cursos', href: courses_path)
           expect(page).to have_link('Assinaturas', href: subscriptions_path)
         end
-      end      
+      end
     end
   end
 end

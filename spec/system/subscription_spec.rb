@@ -19,7 +19,7 @@ describe 'Subscription plan' do
     subscription = Fabricate(:subscription)
 
     visit subscriptions_path
-    click_on 'Rails'
+    click_on subscription.name
 
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
@@ -27,10 +27,10 @@ describe 'Subscription plan' do
   end
 
   it 'view a subscription plan and return to index' do
-    Fabricate(:subscription)
+    subscription = Fabricate(:subscription)
 
     visit subscriptions_path
-    click_on 'Rails'
+    click_on subscription.name
     click_on 'Voltar'
 
     expect(current_path).to eq(subscriptions_path)

@@ -6,6 +6,10 @@ pt-BR:
         one: Aluno
         other: Alunos
     attributes:
+      user:
+        email: E-mail
+        password: Senha
+        remember_me: Lembre-se de mim
   user:
     sidebar:
       links:
