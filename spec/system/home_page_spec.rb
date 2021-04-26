@@ -200,7 +200,7 @@ describe 'Home page' do
       end
     end
 
-    context 'testimonial_section' do
+    context 'testimonial section' do
       it 'can see testimony of a student' do
         visit root_path
 
@@ -211,6 +211,22 @@ describe 'Home page' do
           expect(page).to have_content('Ter realizado os cursos na CodePlay ... '\
                                        'bem sem palavras foi uma ótima experiência '\
                                        'Não só recomendo como espero que você já seja um Code. ;)')
+        end
+      end
+    end
+
+    context 'why choose' do
+      it 'can see platform qualities' do
+        visit root_path
+        
+        page.execute_script 'window.scrollBy(0,1000000)'
+
+        within '#why_choose' do
+          expect(page).to have_content('Por que nos escolher!??')
+          expect(page).to have_content('Somos os melhores profissionais deste mundo')
+          expect(page).to have_content('Expandir seu conhecimento')
+          expect(page).to have_content('Melhor ensino à distância disponível no mercado')
+          expect(page).to have_content('Melhores Professores')
         end
       end
     end
