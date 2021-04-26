@@ -1,10 +1,17 @@
-<%= link_to 'Adicionar cartão de crédito', new_user_payment_methods_path %>
+<%= link_to 'Adicionar cartão de crédito', new_user_payment_methods_path, class: 'btn btn-primary'%>
+<br>
+<h4>
+  <% if @payment_methods.empty?%>
+    Nenhum cartão cadastrado
+  <% end %>
+</h4>
 
-	<% @payment_methods.each do |card| %>
-  <div>
-		nome no cartão:  <%= card.user_name %> <br> 
-		ultimos 4 digitos:  <%= card.last_digits %> <br>
-		data de expiração:  <%= card.expiration_date %>
-</div>
-<hr>
-	<% end%>
+<% @payment_methods.each do |card| %>
+  <div id=c<%= card.last_digits%>>
+    nome no cartão:  <%= card.user_name %> <br>
+    ultimos 4 digitos:  <%= card.last_digits %> <br>
+    data de expiração:  <%= card.expiration_date %>
+    <%= link_to 'Remover', user_delete_payment_methods_path(card.token), method: :delete, class: 'btn btn-danger'%>
+  </div>
+  <hr>
+<% end%>

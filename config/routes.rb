@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get  'user/paymentmethods/show',  to: 'user#show_payment_methods', as: :show_user_payment_methods
     get  'user/paymentmethods/new',  to: 'user#new_payment_methods', as: :new_user_payment_methods
     post 'user/paymentmethods/create', to: 'user#create_payment_methods', as: :create_user_payment_methods
+    delete  'user/paymentmethods/delete/:card',  to: 'user#delete_payment_methods', as: :user_delete_payment_methods
   end
 
   devise_for :admins
