@@ -1,4 +1,4 @@
 class TextLesson < ApplicationRecord
-	belongs_to :courses
-	validates :name, :lesson_body, presence: true
+  belongs_to :course
+  validates :name, :lesson_body, presence: true
 end

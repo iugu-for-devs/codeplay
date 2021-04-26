@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     resources :courses, only: [:new, :create, :index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
+      resources :text_lessons, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     resources :members
   end
