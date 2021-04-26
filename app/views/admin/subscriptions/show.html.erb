@@ -1,0 +1,58 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
+                                class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_subscriptions_path %>"
+                                class="link-dark"><%=Subscription.model_name.human count: 2 %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@subscription.name %></li>
+  </ol>
+</h5>
+
+<dl>
+  <h3><%= @subscription.name %></h3>
+
+  <dt><%= Subscription.human_attribute_name(:description) %></dt>
+  <dd><%= @subscription.description %></dd>
+
+  <dt><%= Subscription.human_attribute_name(:price)%></dt>
+  <dd><%= @subscription.price %></dd>
+</dl>
+<hr>
+
+<h4><%= t('.add_course') %></h4>
+<div class="col-sm-8">
+  <%= form_with url: search_course_admin_subscription_path, method: :get do |f| %>
+    <div class="mb-8">
+      <%= f.text_field :name, class: 'form-control', placeholder: "#{t('.course_name')}" %>
+      <br>
+      <%= f.submit t('buttons.search', model: Course.model_name.human), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+<% if @courses.blank? %>
+  <p><%= t('.no_course_found') %></p>
+<% else %>
+  <p><strong><%= t('.courses_found', course_size: @courses.size)%></strong></p>
+    <%= form_with url: add_course_admin_subscription_path(@subscription) do |form| %>
+      <%= form.collection_select "course_id", @courses, :id, :name ,{}, {class: 'form-select'}  %> <br>
+      <%= form.submit 'Adicionar curso', class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+</div>
+
+<hr>
+<h4><%= t('.subscription_courses') %></h4>
+<% if @subscription.courses.any? %>
+  <% @subscription.courses.each do |course| %>
+    <dl>
+      <dt><%= Course.human_attribute_name(:name) %></dt>
+      <dd> <%= course.name  %></dd>
+
+      <dt><%= Course.human_attribute_name(:description) %> </dt>
+      <dd> <%= course.description%> </dd>
+      <hr>
+    </dl>
+  <% end %>
+  <% else %>
+    <p><%= t('.no_courses_added') %></p>
+<% end  %>

@@ -5,7 +5,7 @@ describe 'Subscription plan', type: :request do
     user = Fabricate(:user)
     login_as user, scope: :user
 
-    get new_subscription_path
+    get new_admin_subscription_path
 
     expect(response).to redirect_to(new_admin_session_path)
   end
@@ -14,7 +14,7 @@ describe 'Subscription plan', type: :request do
     user = Fabricate(:user)
     login_as user, scope: :user
 
-    post subscriptions_path, params: {
+    post admin_subscriptions_path, params: {
       subscription: Fabricate(:subscription)
     }
 
@@ -27,9 +27,7 @@ describe 'Subscription plan', type: :request do
     course = Fabricate(:course)
     subscription = Fabricate(:subscription)
 
-    post add_subscription_course_path(subscription, course), params: {
-      course_id: course.id
-    }
+    post add_course_admin_subscription_path(subscription), params: { course_id: course.id }
 
     expect(response).to redirect_to(new_admin_session_path)
   end

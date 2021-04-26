@@ -70,7 +70,6 @@ describe 'Course Management' do
       visit course_path(course)
       expect(page).to have_text(course.name)
       expect(page).to have_text(course.description)
-      expect(page).to have_link('Voltar')
     end
   end
 
