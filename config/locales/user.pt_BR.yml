@@ -17,7 +17,6 @@ pt-BR:
         subscriptions: Meus Planos
         pay_types: Meio de Pagamento
         orders: Minhas Compras
-
   users:
     shared:
       links:

@@ -4,12 +4,11 @@ pt-BR:
     register: Cadastrar %{model}
     delete: Apagar %{model}
     edit: Editar %{model}
+    search: Buscar %{model}
     back: 'Voltar'
-
-  courses: 
+  courses:
     create:
       success: "%{course} cadastrado com sucesso"
-
   layouts:
     application:
       buttons:
