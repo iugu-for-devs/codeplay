@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^5.0.0-beta3",
+    "jquery": "^3.6.0",
+    "owl.carousel": "^2.3.4",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

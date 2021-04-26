@@ -1,3 +1,11 @@
+<% if @lesson.errors.any?%>
+  <ul>
+    <% @lesson.errors.each do |error| %>
+      <li class='alert-success'><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2><%= header_title %></h2>
 <%= form_with model: [:admin, :course, @lesson] do |form| %>
     <div class="mx-auto">

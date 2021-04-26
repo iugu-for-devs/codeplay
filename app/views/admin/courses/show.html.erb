@@ -4,18 +4,19 @@
                                 class="link-dark"><%=t('headers.dashboard')%></a></li>
     <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"
                                 class="link-dark"><%=t('headers.course_managment')%></a></li>
-    <li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
 </h5>
 
 <h2><%= @course.name %></h2>
+<h2><%= @course.description %></h2>
 
 <% if @course.lessons.empty?%>
   <h3><%= t('.empty')%></h3>
 <% end %>
 
 <%= link_to t('buttons.register', model:Lesson.model_name.human),
-            new_admin_course_lesson_path(@course), class:"btn btn-warning"%>
+            new_admin_course_lesson_path(@course), class:"btn btn-primary"%>
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">

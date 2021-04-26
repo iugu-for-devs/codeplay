@@ -1,0 +1,52 @@
+<header>
+    
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid">
+      <div class="site-logo mr-auto">
+        <%= image_tag 'logo-codeplay-black.svg', alt:'Logo da code play' %>  
+      </div>
+
+      <button class="navbar-toggler" type="button" 
+              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+              aria-controls="navbarSupportedContent" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="mx-auto text-center">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-right">
+            <li class="nav-item">
+              <%= link_to t('buttons.home'), root_path, class:'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('buttons.courses'), courses_path, class:'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('buttons.subscriptions'), subscriptions_path, class:'nav-link' %>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-flex">
+          <% if user_signed_in? %> 
+            <%= link_to t('buttons.profile'), user_profile_path, class:'btn btn-outline-primary me-2' %>
+            <%= link_to  t('buttons.log_out'), destroy_user_session_path, 
+                class:'btn btn-outline-primary me-2',
+                method: :delete,
+                data: { confirm: 'Deseja sair?' }
+                  %>
+          <% else %>
+            <%= button_to t('buttons.log_in'), 
+                new_user_session_path, 
+                class:'btn btn-outline-primary me-2', method: :get  %>
+            <%= button_to t('buttons.sign_up'), 
+                new_user_registration_path, 
+                class:'btn btn-primary', method: :get %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>

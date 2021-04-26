@@ -18,7 +18,7 @@
               <p class="fw-normal"><%= current_admin.email %></p>
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <%= link_to 'Dashboard', admin_root_path, class: 'nav-link' %>
+                  <%= link_to t('headers.dashboard'), admin_root_path, class: 'nav-link' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to 'Membros', admin_members_path, class: 'nav-link' %>
@@ -36,12 +36,12 @@
               <h1 class="h2">CodePlay</h1>
             </div>
             <%= render partial: 'shared/flashes' %>
-            <%= yield %>
+              <div>
+                <%= yield %>
+              </div>
           </main>
         </div>
       </div>
-    <% else %>
-      <%= yield %>
     <% end %>
   </body>
 </html>

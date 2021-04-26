@@ -9,6 +9,6 @@ class Course < ApplicationRecord
   validates :name, :description, presence: true
 
   def self.search(query)
-    where('name LIKE ?', "%#{query}%")
+    where('courses.name LIKE ?', "%#{query}%")
   end
 end

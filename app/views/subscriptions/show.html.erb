@@ -1,8 +1,17 @@
-<%= link_to 'Voltar', subscriptions_path %>
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>"
+                                class="link-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="<%= subscriptions_path %>"
+                                class="link-dark"><%= Subscription.model_name.human count: 2 %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@subscription.name %></li>
+  </ol>
+</h5>
+
 
 <dl>
   <h3><%= @subscription.name %></h3>
-  
+
   <dt><%= Subscription.human_attribute_name(:description) %></dt>
   <dd><%= @subscription.description %></dd>
 
@@ -11,32 +20,20 @@
 </dl>
 <hr>
 
-<h4>Adicionar um curso</h4>
-
-<%= form_with url: search_course_subscription_path, method: :get do |f| %>
-  <%= f.label :name, 'Nome do curso' %> <br>
-  <%= f.text_field :name %> <br>
-  <%= f.submit 'Buscar curso' %> 
-<% end %>
-
-
-<% if !@courses.nil? %>
-  <%= render partial: "course" %>
-<% end %>
-
-<hr>
-<h4>Cursos da assinatura</h4>
-<% if @subscription.courses.any? %>
-  <% @subscription.courses.each do |course| %>
-    <dl>
-      <dt>Curso </dt>
-      <dd> <%= course.name  %></dd>
-      
-      <dt>Descrição </dt>
-      <dd> <%= course.description%> </dd>
-      <hr>
-    </dl>
-  <% end %>
-  <% else %>
-  <p>Nenhum curso cadastrado para este plano</p>
-<% end  %>
+<h4><%= t('.subscription_courses') %></h4>
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+      <th scope="col"><%= Course.human_attribute_name(:description) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subscription.courses.each do |course| %>
+      <tr class="text-white">
+        <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
+        <td><%= course.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

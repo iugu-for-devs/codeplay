@@ -1,5 +1,5 @@
 Fabricator(:subscription) do
-  name        'Jornada Web com Rails'
-  description 'Esta assinatura ira abranger todos os cursos de Ruby e Rails'
-  price '50'
+  name { "Jornada com #{Faker::ProgrammingLanguage.unique.name}" }
+  description { Faker::Lorem.paragraphs(number: 1) }
+  price { Faker::Commerce.price(range: 50.00..400.00) }
 end
