@@ -31,7 +31,6 @@ describe 'Subscription plan' do
   end
 
   it 'view a subscription plan and return to index' do
-
     admin = Fabricate(:admin)
     subscription = Fabricate(:subscription)
 
