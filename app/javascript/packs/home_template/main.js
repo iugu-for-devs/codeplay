@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
      });
    }
 
-
    if ( $('.nonloop-block-14').length > 0 ) {
      $('.nonloop-block-14').owlCarousel({
        center: false,
