@@ -30,6 +30,24 @@ class UserController < ApplicationController
     ]
   end
 
+  def payment_methods
+    @payment_methods = PaymentMethods.search(@user.id)
+  end
+
+  def create_payment_methods
+    @user_info = PaymentMethods.create_token(name: params[:name],
+                                             card_number: params[:number],
+                                             expiration_date: params[:expiration_date],
+                                             security_code: params[:security_code],
+                                             user: current_user)
+    redirect_to user_payment_methods_path
+  end
+
+  def delete_payment_methods
+    PaymentMethods.delete_method(params[:card])
+    redirect_to user_payment_methods_path
+  end
+
   private
 
   def set_user

@@ -1,0 +1,15 @@
+<%= form_with url: create_user_payment_methods_path, method: :post do |form| %>
+  <%= form.label :number, 'Numero do cartão' %>
+  <%= form.number_field :number %>
+
+  <%= form.label :name, 'Nome no cartão' %>
+  <%= form.text_field :name %>
+
+  <%= form.label :expiration_date, 'Data de expiração' %>
+  <%= form.date_field :expiration_date %>
+
+  <%= form.label :security_code, 'Código de segurança' %>
+  <%= form.number_field :security_code %>
+
+  <%= form.submit 'Cadastrar' %>
+<% end %>
