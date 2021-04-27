@@ -1,5 +1,5 @@
 module LoginUser
-  def login_user(user = User.create!(email: 'admin1@gmail.com.br', password: '12345678'))
+  def login_user(user = Fabricate(:user))
     login_as user, scope: :user
     user
   end
