@@ -2,10 +2,13 @@ class Invoice
   def initialize(data:, token:, pay_type:); end
 
   def self.generate(token_course:, token_user:, token_pay_type:)
-    possible_status = %w[refused pending approved]
-    returned_token = '0123456789'
+    invoice_data = { token_course: token_course, token_user: token_user, token_pay_type: token_pay_type}
 
-    { status: 'approved', token: returned_token }
+    endpoint = "invoices_generate_approved"
+
+    url = "https://my-json-server.typicode.com/JorgeLAB/codeplay/#{endpoint}"
+
+    Faraday.post(url, invoice_data.to_json, 'Content-Type' => 'application/json')
   end
 end
 

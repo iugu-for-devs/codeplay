@@ -15,16 +15,17 @@ RSpec.describe Order, type: :model do
       it 'can change order status' do
         client = Fabricate(:user)
         course = Fabricate(:course)
-        payment_method_chosen = PayType.all.first
+        payment_method_chosen = PayType.all.last
 
-        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         old_order_status = 'pending'
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
 
-        response = order.send_invoice_request
 
-        # (order).to allow receive(:send_invoice_request).and_return({ status: 'approved',
-        #                                                             token: returned_token })
+        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+
+        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
+
+        response = order.send_invoice_request
 
         expect(order.status).to_not eq(old_order_status)
       end
@@ -32,12 +33,13 @@ RSpec.describe Order, type: :model do
       it 'must set order token' do
         client = Fabricate(:user)
         course = Fabricate(:course)
-        payment_method_chosen = PayType.all.first
-        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+        payment_method_chosen = PayType.all.first
 
-        allow(order).to receive(:send_invoice_request).and_return({ status: 'approved',
-                                                                    token: returned_token })
+        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+
+        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
+        order.send_invoice_request
 
         expect(order.token).to eq(returned_token)
       end
@@ -46,11 +48,11 @@ RSpec.describe Order, type: :model do
         client = Fabricate(:user)
         course = Fabricate(:course)
         payment_method_chosen = PayType.all.first
-        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
 
-        allow(order).to receive(:send_invoice_request).and_return({ status: 'approved',
-                                                                    token: returned_token })
+        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
+        order.send_invoice_request
 
         expect(order.status).to eq('approved')
       end
@@ -59,11 +61,11 @@ RSpec.describe Order, type: :model do
         client = Fabricate(:user)
         course = Fabricate(:course)
         payment_method_chosen = PayType.all.first
-        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+        allow(Faraday).to receive(:post).and_return({ status: 'refused', token: returned_token  })
 
-        allow(order).to receive(:send_invoice_request).and_return({ status: 'refused',
-                                                                    token: returned_token })
+        order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
+        order.send_invoice_request
 
         expect(order.status).to eq('refused')
       end
