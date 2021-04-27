@@ -11,12 +11,28 @@ pt-BR:
         name: Nome
         password: Senha
         remember_me: Lembre-se de mim
+
   admin:
     members:
       create:
         success: Membro cadastrado com sucesso!
 
   admins:
+    passwords:
+      edit:
+        change_my_password: Alterar minha senha
+        change_your_password: Alterar sua senha
+        confirm_new_password: Confirme sua nova senha
+        new_password: Nova senha
+      new:
+        forgot_your_password: Esqueceu sua senha?
+        send_me_reset_password_instructions: Enviar instruções para redefinição da senha
+    sessions:
+      new:
+        sign_in: Login
+      signed_in: Login efetuado com sucesso!
+      signed_out: Saiu com sucesso.
+      already_signed_out: Saiu com sucesso.
     shared:
       links:
         back: Voltar
@@ -26,3 +42,6 @@ pt-BR:
         sign_in: Login
         sign_in_with_provider: Entrar com %{provider}
         sign_up: Cadastrar
+
+  headers:
+    member_managment: Gerenciamento de Membros

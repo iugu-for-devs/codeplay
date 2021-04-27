@@ -4,11 +4,16 @@ pt-BR:
     register: Cadastrar %{model}
     delete: Apagar %{model}
     edit: Editar %{model}
+    save: Salvar %{model}
     search: Buscar %{model}
     back: 'Voltar'
-  courses:
-    create:
-      success: "%{course} cadastrado com sucesso"
+    courses: Cursos
+    home: Home
+    log_in: Entrar
+    log_out: Sair
+    profile: Meu Perfil
+    sign_up: Nova Conta
+    subscriptions: Assinaturas
   layouts:
     application:
       buttons:

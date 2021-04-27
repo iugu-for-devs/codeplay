@@ -5,7 +5,11 @@
   </ol>
 </h5>
 
-<h2><%=t('headers.course_managment')%></h2>
+<div class="btn-group">
+  <%= link_to t('buttons.register', model: Course.model_name.human), new_admin_course_path, class: 'btn btn-primary' %>
+</div>
+
+<p class="h5 mb-3 fw-normal text-center">Lista de <%= Course.model_name.human(count: :other) %></p>
 
 <% if @courses.empty?	%>
   <h3><%=t('.empty')%></h3>

@@ -1,0 +1,9 @@
+<div class="btn-group me-2" role="group">
+<%- if controller_name != 'sessions' %>
+  <%= link_to t('.sign_in'), new_admin_session_path, class: 'btn btn-outline-secondary' %><br />
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to t('.forgot_your_password'), new_admin_password_path, class: 'btn btn-outline-secondary' %><br />
+<% end %>
+</div>
