@@ -89,7 +89,7 @@ describe 'lessons management' do
     fill_in 'Nome', with: 'Arrays em Ruby'
     fill_in 'Descrição', with: 'Novos métodos de Array'
     fill_in 'Código do Video', with: '1234'
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
 
     expect(current_path).to eq(admin_course_lesson_path(course_id: Lesson.last.course.id, id: Lesson.last.id))
     expect(page).to have_text('Arrays em Ruby')
@@ -106,7 +106,7 @@ describe 'lessons management' do
     click_on 'Cadastrar Aula'
     fill_in 'Nome', with: ''
     fill_in 'Código do Video', with: ''
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
 
     expect(Lesson.new).to_not be_valid
     expect(page).to have_text('não pode ficar em branco', count: 2)
@@ -122,7 +122,7 @@ describe 'lessons management' do
     click_on 'Cadastrar Aula'
     fill_in 'Nome', with: 'Aula1'
     fill_in 'Código do Video', with: '1234'
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
 
     expect(Lesson.new).to_not be_valid
     expect(page).to have_text('já está em uso', count: 1)
@@ -139,7 +139,7 @@ describe 'lessons management' do
     fill_in 'Nome', with: 'Ruby on Rails'
     fill_in 'Descrição', with: 'Aula de Rotas'
     fill_in 'Código do Video', with: '34563456'
-    click_on 'Atualizar Aula'
+    click_on 'Salvar Aula'
 
     expect(current_path).to eq(admin_course_lesson_path(course, lesson))
     expect(page).to have_text('Ruby on Rails')
@@ -157,7 +157,7 @@ describe 'lessons management' do
     click_on 'Editar Aula'
     fill_in 'Nome', with: ''
     fill_in 'Código do Video', with: ''
-    click_on 'Atualizar Aula'
+    click_on 'Salvar Aula'
 
     expect(page).to have_text('não pode ficar em branco', count: 2)
   end
@@ -172,7 +172,7 @@ describe 'lessons management' do
     visit admin_course_lesson_path(course, lesson)
     click_on 'Editar Aula'
     fill_in 'Código do Video', with: '1234'
-    click_on 'Atualizar Aula'
+    click_on 'Salvar Aula'
 
     expect(page).to have_text('já está em uso', count: 1)
   end

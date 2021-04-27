@@ -10,18 +10,18 @@
 </h5>
 
 <%= form_with model: [:admin, @subscription] do |form| %>
-  <div class="mx-auto">
+  <div class="mx-auto mb-3">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control"%>
   </div>
-  <div class="mx-auto">
+  <div class="mx-auto mb-3">
     <%= form.label :description, class:"form-label" %>
     <%= form.text_area :description, class:"form-control", rows:"3" %>
   </div>
 
-  <div class="mx-auto">
+  <div class="mx-auto mb-3">
     <%= form.label :price, class:"form-label" %>
     <%= form.number_field :price, class:"form-control" %>
   </div>
-  <div><%= form.submit class:"btn btn-primary" %></div>
+  <div><%= form.submit t('buttons.register', model: Subscription.model_name.human), class:"btn btn-primary" %></div>
 <% end %>

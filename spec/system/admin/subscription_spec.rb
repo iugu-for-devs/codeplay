@@ -51,7 +51,7 @@ describe 'Subscription plan' do
     fill_in 'Nome', with: 'Jornada Web com Rails'
     fill_in 'Descrição', with: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails'
     fill_in 'Preço', with: '50'
-    click_on 'Criar Plano'
+    click_on 'Cadastrar Plano'
 
     expect(page).to have_text('Plano cadastrado com sucesso')
     expect(page).to have_text('Jornada Web com Rails')
@@ -68,7 +68,7 @@ describe 'Subscription plan' do
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
     fill_in 'Preço', with: ''
-    click_on 'Criar Plano'
+    click_on 'Cadastrar Plano'
 
     expect(page).to have_text('Nome não pode ficar em branco')
   end

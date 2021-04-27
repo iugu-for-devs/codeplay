@@ -1,5 +1,6 @@
 class Admin::LessonsController < Admin::ApplicationController
   before_action :fetch_lesson, only: %i[show edit update destroy]
+  before_action :set_course, only: %i[new create]
 
   def show; end
 
@@ -8,8 +9,7 @@ class Admin::LessonsController < Admin::ApplicationController
   end
 
   def create
-    course = Course.find(params[:course_id])
-    @lesson = course.lessons.new(lesson_params)
+    @lesson = @course.lessons.new(lesson_params)
     if @lesson.save
       redirect_to [:admin, @lesson.course, @lesson]
     else
@@ -35,6 +35,10 @@ class Admin::LessonsController < Admin::ApplicationController
   end
 
   private
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
 
   def lesson_params
     params.require(:lesson).permit(:name, :description, :video_code)
