@@ -22,10 +22,12 @@ Rails.application.routes.draw do
     end
     resources :courses, only: [:new, :create, :index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
-      get 'requirements', on: :member
-      get 'search_courses', on: :member
-      post 'add_requirement', on: :member
-      delete 'delete_requirement/:requirement_id', to: 'courses#delete_requirement', as: :delete_requirement, on: :member
+      member do
+        get 'requirements'
+        get 'search_courses'
+        post 'add_requirement'
+        delete 'delete_requirement/:requirement_id', to: 'courses#delete_requirement', as: :delete_requirement
+      end
     end
     resources :members
   end

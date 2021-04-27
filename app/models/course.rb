@@ -6,10 +6,10 @@ class Course < ApplicationRecord
   has_many :subscriptions, through: :subscription_courses
   validates :name, :description, presence: true
 
-  has_many :requirements, class_name: "Course",
-                          foreign_key: "requirement_id"
+  has_many :requirements, class_name: 'Course',
+                          foreign_key: 'requirement_id', dependent: :destroy
 
-  belongs_to :requirement, class_name: "Course", optional: true
+  belongs_to :requirement, class_name: 'Course', optional: true
 
   def self.search(query)
     where('courses.name LIKE ?', "%#{query}%")

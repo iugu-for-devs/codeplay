@@ -14,8 +14,4 @@ describe 'Course Requirements' do
     expect(page).to have_text('Requisito(s):')
     expect(page).to have_text(required_course.name)
   end
-
-  it '' do
-    
-  end
 end

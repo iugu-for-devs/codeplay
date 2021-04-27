@@ -16,10 +16,10 @@ gem 'webpacker', '~> 5.0'
 
 group :development, :test do
   gem 'fabrication'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop-rails', require: false
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 end
 
 group :development do

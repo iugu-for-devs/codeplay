@@ -31,6 +31,7 @@ class Admin::CoursesController < Admin::ApplicationController
 
   def add_requirement
     @course.requirements << Course.find(params[:course_id])
+
     redirect_to requirements_admin_course_path
   end
 

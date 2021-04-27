@@ -25,12 +25,9 @@ describe 'Course Requirements' do
     visit admin_course_path(courses.first)
     click_on 'Listar Requerimentos'
 
-    
     within "div#Curso#{courses.last.id}" do
-        click_on 'Remover'
+      click_on 'Remover'
     end
     expect(page).to_not have_text(courses.last.name)
   end
-
-
 end
