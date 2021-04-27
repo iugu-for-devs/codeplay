@@ -19,6 +19,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop-rails', require: false
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 end
 
 group :development do
@@ -29,7 +30,6 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'

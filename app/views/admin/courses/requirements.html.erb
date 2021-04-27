@@ -1,0 +1,34 @@
+<h3><strong><%= @course.name %></strong></h3>
+<%= form_with url: search_courses_admin_course_path, method: :get do |f| %>
+    <div class="mb-8">
+        <%= f.text_field :name, class: 'form-control', placeholder: "Nome do curso" %>
+        <br>
+        <%= f.submit 'Buscar', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+
+<% if @courses.blank? %>
+<% else %>
+  <p><strong><%= t('Foram encontrados ', course_size: @courses.size)%></strong></p>
+    <%= form_with url: add_requirement_admin_course_path(@course) do |form| %>
+      <%= form.collection_select "course_id", @courses, :id, :name ,{}, {class: 'form-select'}  %> <br>
+      <%= form.submit 'Adicionar curso', class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+</div>
+
+
+<h4><strong><%= 'Requisitos do curso' %></strong></h4>
+<% if @course.requirements.any? %>
+  <% @course.requirements.each do |course| %>
+      <div id="Curso<%= course.id %>">
+        <dl>
+            <dd> <%= course.name  %></dd>
+            <dd> <%= link_to 'Remover', delete_requirement_admin_course_path(@course, course.id), method: :delete %>
+        </dl>
+      </div>
+  <% end %>
+  <% else %>
+    <p><%= 'Nenhum requisito para esse curso' %></p>
+<% end  %>
