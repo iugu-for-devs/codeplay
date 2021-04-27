@@ -22,6 +22,7 @@ pt-BR:
         password: Senha
         remember_me: Lembre-se de mim
         password_confirmation: Confirmar Senha
+    purchaser_error: Não foi possível criar perfil de pagamento
 
   users:
     shared:
