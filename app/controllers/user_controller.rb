@@ -30,21 +30,28 @@ class UserController < ApplicationController
     ]
   end
 
-  def payment_methods
-    @payment_methods = PaymentMethods.search(@user.id)
-  end
+  def payment_methods; end
 
-  def create_payment_methods
-    @user_info = PaymentMethods.create_token(name: params[:name],
+  def create_credit_card
+    user_info = CreditCard.create_token(name: params[:name],
                                              card_number: params[:number],
                                              expiration_date: params[:expiration_date],
                                              security_code: params[:security_code],
                                              user: current_user)
+
+    Card.create(token: user_info.token, name: user_info.user_name, last_digits: user_info.last_digits, 
+             expiration_date: user_info.expiration_date, user: current_user)
+
     redirect_to user_payment_methods_path
   end
 
   def delete_payment_methods
-    PaymentMethods.delete_method(params[:card])
+    card = Card.find_by(token: params[:card])
+    #response = Faraday.delete(url, card.to_json, 'Content-Type' => 'application/json')
+    # response.status == 200
+
+    card.destroy
+    #PaymentMethods.delete_method(params[:card])
     redirect_to user_payment_methods_path
   end
 

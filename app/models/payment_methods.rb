@@ -29,19 +29,19 @@ class PaymentMethods
         expiration_date: expiration_date)
   end
 
-  def self.all
-    @methods
-  end
+  # def self.all
+  #   @methods
+  # end
 
-  def self.search(id)
-    PaymentMethods.all.filter do |credit_card|
-      credit_card.id == id
-    end
-  end
+  # def self.search(id)
+  #   PaymentMethods.all.filter do |credit_card|
+  #     credit_card.id == id
+  #   end
+  # end
 
-  def self.delete_method(token)
-    @methods.each_with_index do |credit_card, index|
-      @methods.delete_at(index) if credit_card.token == token
-    end
-  end
+  # def self.delete_method(token)
+  #   @methods.each_with_index do |credit_card, index|
+  #     @methods.delete_at(index) if credit_card.token == token
+  #   end
+  # end
 end

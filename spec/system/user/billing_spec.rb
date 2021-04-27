@@ -21,16 +21,19 @@ describe 'billing option' do
   it 'user delete a credit card' do
     user = Fabricate(:user)
     login_as(user, scope: :user)
-    PaymentMethods.new(token: '79EAECADCAE842154', user_name: 'John Doe', last_digits: '4151',
-                       expiration_date: '15/7/2021', id: user.id)
+    card = Fabricate(:card, user: user, last_digits: '4444')
+    # user_info = PaymentMethods.new(token: '79EAECADCAE842154', user_name: 'John Doe', last_digits: '4151',
+    #                    expiration_date: '15/7/2021', id: user.id)
 
     visit user_profile_path
     click_on 'Meios de Pagamento'
 
-    within 'div#c4151' do
+    within 'div#c4444' do
       click_on 'Remover'
     end
 
     expect(page).to have_text('Nenhum cartão cadastrado')
   end
 end
+
+
