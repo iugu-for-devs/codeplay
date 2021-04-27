@@ -5,13 +5,7 @@ class UserController < ApplicationController
   def show; end
 
   def courses
-    @courses = [
-      Course.new(
-        name: 'Curso de Ruby 1.0',
-        description: 'Curso Avançado de Ruby',
-        admin_id: 1
-      )
-    ]
+    @courses = Course.where(course_id: User.orders.course_id)
   end
 
   def subscriptions
@@ -25,9 +19,7 @@ class UserController < ApplicationController
   end
 
   def orders
-    @orders = [
-      Order.new(pay_type: 'PIX')
-    ]
+    @orders = Order.where(user_id: current_user.id)
   end
 
   private

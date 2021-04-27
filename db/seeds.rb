@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-john_doe = User.create(
+john_doe = User.create!(
   #full_name: 'John Doe',
   email: 'user01@iugu.com.br',
   password: 'Iugu@1234',
@@ -24,7 +24,7 @@ john_doe = User.create(
   #resource.skip_confirmation!
 #end
 
-bob_doe = User.create(
+bob_doe = User.create!(
   # full_name: 'Bob Doe',
   email: 'user02@iugu.com.br',
   password: 'Iugu@1234',
@@ -41,40 +41,64 @@ bob_doe = User.create(
   # }
 )
 
-admin_adamastor = Admin.create(
+admin_adamastor = Admin.create!(
     name: 'Adamastor',
     email: 'admin1@codeplay.com.br',
     password: '123456'
 )
 
-rails_course = Course.create(
+rails_course = Course.create!(
   name: 'Curso de Rails',
   description:  'Curso de especialização em Rudby on Rails 7.0',
   price: 50.00,
   admin_id: admin_adamastor.id
 )
 
-sql_course = Course.create(
+sql_course = Course.create!(
   name: 'Curso de SQL',
   description:  'Curso de especialização em Sql',
   price: 70.00,
   admin_id: admin_adamastor.id
 )
 
-first_lesson = Lesson.create(
+first_lesson = Lesson.create!(
   name: 'Aula-01',
   description: 'Isso é uma aula',
   course: rails_course,
   video_code: '139407849'
 )
 
-monthly_subscription = Subscription.create(
+monthly_subscription = Subscription.create!(
   name: 'Jornada Mensal',
   description:  'Plano com cobrança mensal que cobre todos os cursos da plataforma',
   price: 30.00
 )
 
-subscription_rails = SubscriptionCourse.create(
+subscription_rails = SubscriptionCourse.create!(
   course: rails_course,
   subscription: monthly_subscription
+)
+
+first_lesson_buy = Order.create!(
+  pay_type: 'PIX',
+  status: 'approved',
+  user_id: john_doe.id,
+  course_id: rails_course.id,
+  token:'1234567890' 
+)
+
+second_lesson_buy = Order.create!(
+  pay_type: 'PIX',
+  status: 'approved',
+  user_id: bob_doe.id,
+  course_id: sql_course.id,
+  token:'1234567890' 
+)
+
+third_lesson_buy = Order.create!(
+  pay_type: 'PIX',
+  status: 'approved',
+  user_id: bob_doe.id,
+  course_id: rails_course.id,
+  token:'1234567890' 
 )
