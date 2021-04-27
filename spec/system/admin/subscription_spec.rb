@@ -37,7 +37,7 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
     visit admin_subscriptions_path
     click_on subscription.name
-    click_on 'Planos'
+    find('li.breadcrumb-item', text: 'Planos').click
 
     expect(current_path).to eq(admin_subscriptions_path)
   end
@@ -79,7 +79,7 @@ describe 'Subscription plan' do
 
     visit admin_subscriptions_path
     click_on 'Cadastrar Plano'
-    click_on 'Planos'
+    find('li.breadcrumb-item', text: 'Planos').click
 
     expect(current_path).to eq(admin_subscriptions_path)
   end
