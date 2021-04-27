@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  # jsonb address nested fields
   store_accessor :address, :street, :number, :zipcode, :complement, :state, :city
 
   validates :email, format: { with: /

@@ -11,34 +11,28 @@ RSpec.describe User, type: :model do
       expect(user.errors[:address]).to include('não pode ficar em branco')
       expect(user.errors[:cpf]).to include('não pode ficar em branco')
       expect(user.errors[:birthdate]).to include('não pode ficar em branco')
-      expect(user.valid?).to eq(false)
+      expect(user).not_to be_valid
     end
 
-    it 'registrate a new user' do
-      user = User.new(full_name: 'Johnny Doe', email: 'johnny.doe@codesaga.com', password: '12345678',
-                      password_confirmation: '12345678',
-                      address: { street: 'Rua Bastião', number: '101',
-                                 complement: 'casa 1', cep: '09941070', city: 'São Paulo', state: 'SP' },
-                      birthdate: '08/08/1990', cpf: '00000000353').save
-      expect(user).to eq(true)
-    end
-
-    it 'ensures email do not use a public domain' do
-      user = User.create(full_name: 'Johnny Doe', email: 'johnny.doe@gmail.com', password: '12345678',
+    it 'ensures a new user is properly created' do
+      user = User.create(full_name: 'Johnny Doe', email: 'johnny.doe@codesaga.com', password: '12345678',
                          password_confirmation: '12345678',
                          address: { street: 'Rua Bastião', number: '101',
                                     complement: 'casa 1', cep: '09941070', city: 'São Paulo', state: 'SP' },
                          birthdate: '08/08/1990', cpf: '00000000353')
+      expect(user).to be_persisted
+    end
+
+    it 'ensures email do not use a public domain' do
+      user = Fabricate.build(:user, email: 'johnny.doe@gmail.com')
+      user.save
       expect(user.errors[:email]).to include('não é válido')
     end
 
     it 'ensures email is unique' do
       user = Fabricate(:user)
-      new_user = User.create(full_name: 'Johnny Doe', email: user.email, password: '12345678',
-                             password_confirmation: '12345678',
-                             address: { street: 'Rua Bastião', number: '101',
-                                        complement: 'casa 1', cep: '09941070', city: 'São Paulo', state: 'SP' },
-                             birthdate: '08/08/1990', cpf: '00000000353')
+      new_user = Fabricate.build(:user, email: user.email)
+      new_user.save
       expect(new_user.errors[:email]).to include('já está em uso')
     end
   end
