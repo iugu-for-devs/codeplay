@@ -29,6 +29,6 @@ class Admin::CoursesController < Admin::ApplicationController
   def course_params
     params
       .require(:course)
-      .permit(:name, :description, :instructor, :cover, :requirements)
+      .permit(:name, :description, :instructor, :cover, :token, :price)
   end
 end
