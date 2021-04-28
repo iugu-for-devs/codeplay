@@ -186,7 +186,7 @@ describe 'Home page' do
         end
       end
 
-      it 'can see the third section' do
+      xit 'can see the third section' do
         visit root_path
 
         page.execute_script 'window.scrollBy(0,10000)'
