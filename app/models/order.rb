@@ -14,9 +14,7 @@ class Order < ApplicationRecord
   end
 
   def situation
-    if self.status.eql?'approved'
-      save
-    end
+    save if status.eql? 'approved'
   end
 
   private
@@ -24,7 +22,6 @@ class Order < ApplicationRecord
   def generate_invoice
     Invoice.generate(token_user: user.token,
                      token_course: course.token,
-                     token_pay_type: pay_type
-                    )
+                     token_pay_type: pay_type)
   end
 end

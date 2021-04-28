@@ -7,9 +7,9 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'faraday'
 gem 'puma', '~> 5.0'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
-gem 'faraday'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'

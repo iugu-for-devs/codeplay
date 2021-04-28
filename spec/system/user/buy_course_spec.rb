@@ -14,7 +14,7 @@ describe 'Authenticated user buy course' do
   context 'when pay_type is selected' do
     it 'returns successfully with credit card' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token })
 
       login_user
       course = Fabricate(:course)
@@ -34,7 +34,7 @@ describe 'Authenticated user buy course' do
 
     it 'returns successfully with pix' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token })
       login_user
       course = Fabricate(:course)
 
@@ -52,7 +52,7 @@ describe 'Authenticated user buy course' do
 
     it 'returns successfully with boleto' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token })
       login_user
       course = Fabricate(:course)
 
@@ -68,7 +68,6 @@ describe 'Authenticated user buy course' do
       expect(current_path).to eq(course_path(course))
     end
   end
-
 end
 
 describe 'Unauthenticated user' do
@@ -84,7 +83,7 @@ describe 'Unauthenticated user' do
 
   it 'loggin, visit course page and buy course' do
     returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-    allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+    allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token })
     User.create!(email: 'test@gmail.com', password: '123456')
     course = Fabricate(:course)
 
@@ -109,8 +108,7 @@ describe 'Unauthenticated user' do
     returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
 
     allow(Faraday).to receive(:post).and_return({ status: 'approved',
-                                                  token: returned_token
-                                                })
+                                                  token: returned_token })
     course = Fabricate(:course)
 
     visit course_path(course)

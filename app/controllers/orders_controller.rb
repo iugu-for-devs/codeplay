@@ -13,8 +13,6 @@ class OrdersController < ApplicationController
 
     @order.send_invoice_request
 
-    if @order.situation
-      return redirect_to @course, notice: t('.success')
-    end
+    return redirect_to @course, notice: t('.success') if @order.situation
   end
 end

@@ -4,18 +4,16 @@ describe 'has status approved' do
   it 'user can access course lessons' do
     client = login_user
     course = Fabricate(:course)
-    returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
     course_lessons = Fabricate.times(5, :lesson, course: course)
-    order = Fabricate(:order, user: client, course: course)
 
-    allow(Invoice).to receive(:get_request).and_return([{ status: 'approved',
-                                                          token: returned_token  }])
+    Fabricate(:order,
+              user: client,
+              course: course,
+              status: 'approved')
 
     visit course_path(course)
 
     expect(page).to have_no_content('Comprar')
-
-    click_on('Aulas')
 
     expect(course_lessons.count).to eq(5)
     course_lessons.each do |lesson|
@@ -23,34 +21,34 @@ describe 'has status approved' do
     end
   end
 
-  # it 'user can see the course in your course list' do
-  # 	client = login_user
-  # course = Fabricate.times(5,:course)
+  it 'user can see the course in your course list' do
+    client = login_user
 
-  # order  = Fabricate(:order, user: client, course: course)
+    orders = Fabricate.times(4, :order,
+                             user: client,
+                             status: 'approved')
 
-  #  visit user_dashbord_path(user)
+    user_courses = orders.map(&:course)
 
-  #  click_on('Meus Cursos')
+    visit user_courses_path(client)
 
-  # 	expect(page).to have_content()
-  # end
+    user_courses.each do |course|
+      expect(page).to have_content(course.name)
+      expect(page).to have_content(course.description)
+    end
+  end
 
   # it 'user can see the course receipt' do
-  #  	client = login_user
-  # course = Fabricate(:course)
-  # order  = Fabricate(:order, user: client, course: course)
+  #   client = login_user
+  #   course = Fabricate(:course)
+  #   order  = Fabricate(:order, user: client, course: course)
 
-  #  allow(order).to receive(:send_invoice_request).and_return({ status: "approved",
-  # 																											  		token: returned_token
-  # 																										  		})
+  #   visit user_receipts_path
+  #   click_on course.name
 
-  #  visit user_receipts_path
-  #  click_on course.name
-
-  #  expect(page).to have_content(course.name)
-  #  expect(page).to have_content("Data da compra do curso")
-  #  expect(page).to have_content("Compra Aprovada")
-  #  expect(page).to have_link("Link para o courso : #{course.name}", course_path(course))
+  #   expect(page).to have_content(course.name)
+  #   expect(page).to have_content("Data da compra do curso")
+  #   expect(page).to have_content("Compra Aprovada")
+  #   expect(page).to have_link("Link para o courso : #{course.name}", course_path(course))
   # end
 end
