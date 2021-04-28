@@ -10,9 +10,11 @@ describe 'text_lessons management' do
     visit admin_course_path(course)
     click_on text_lessons.first.name
 
-    expect(page).to have_text(text_lessons.first.name)
-    expect(page).to have_text(text_lessons.first.description)
-    expect(page).to have_text('Lorem ipsum dolor sit amet consectetur.')
+    lesson = text_lessons.first
+
+    expect(page).to have_text(lesson.name)
+    expect(page).to have_text(lesson.description)
+    expect(page).to have_text(lesson.lesson_body.to_plain_text)
     expect(page).to_not have_text(text_lessons.second.name)
     expect(page).to have_css("a[href=\"#{admin_courses_path}\"]")
     expect(page).to have_css("a[href=\"#{admin_course_path(text_lessons.first.course.id)}\"]")
