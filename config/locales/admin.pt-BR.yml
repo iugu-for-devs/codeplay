@@ -11,12 +11,10 @@ pt-BR:
         name: Nome
         password: Senha
         remember_me: Lembre-se de mim
-
   admin:
     members:
       create:
         success: Membro cadastrado com sucesso!
-
   admins:
     passwords:
       edit:
@@ -45,3 +43,4 @@ pt-BR:
 
   headers:
     member_managment: Gerenciamento de Membros
+    admin_list: Lista de Administradores

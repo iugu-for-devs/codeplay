@@ -7,12 +7,19 @@
         <% @courses.each do |course| %>
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><%= image_tag("home_template_images/img_1.jpg") %></a>
+              <div>
+                <% if course.cover.attached? %>
+                    <%= image_tag course.cover, size:'240x290' %>
+                  <% else %>
+                    <%= image_tag 'covers/404.jpg', size:'360x360' %> 
+                <% end %>
+              </div>
             </figure>
             <div class="course-inner-text py-4 px-4">
               <span class="course-price"><%= course.price %></span>
-              <div class="meta"><span class="icon-clock-o"></span><%= course.lessons.size %> Aulas </div>
-              <h3><a href="#"><%= course.name %></a></h3>
+              <div class="meta"><span class="icon-clock-o"></span>
+              <%= course.lessons.size + course.text_lessons.size %> Aulas </div>
+              <h3><%= link_to course.name, course%></h3>
               <p><%= course.description %></p>
             </div>
           </div>

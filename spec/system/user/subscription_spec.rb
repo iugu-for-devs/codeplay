@@ -9,9 +9,9 @@ describe 'View Subscriptions' do
                                                 'de Dart e o framework Flutter')
 
     visit root_path
-    expect(page).to have_text('BOAS VINDAS AO CODEPLAY')
-    click_on 'Planos de Assinatura'
-
+    within 'li#subscriptions' do
+      click_on 'Assinaturas'
+    end
     expect(page).to have_text(subscription.name)
     expect(page).to have_text(subscription.description)
     expect(page).to have_text(other_subscription.name)
@@ -25,7 +25,9 @@ describe 'View Subscriptions' do
     subscription.courses << course
 
     visit root_path
-    click_on 'Planos de Assinatura'
+    within 'li#subscriptions' do
+      click_on 'Assinaturas'
+    end
     click_on subscription.name
     click_on course.name
 

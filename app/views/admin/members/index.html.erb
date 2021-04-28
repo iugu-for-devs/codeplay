@@ -9,7 +9,7 @@
   <%= link_to t('buttons.register', model: Admin.model_name.human), new_admin_member_path, class: 'btn btn-primary' %>
 </div>
 
-<p class="h5 mb-3 fw-normal text-center">Lista de <%= Admin.model_name.human(count: :other) %></p>
+<p class="h5 mb-3 fw-normal text-center"><%= t('headers.admin_list') %></p>
 
 <div>
   <table class="table table-bordered">

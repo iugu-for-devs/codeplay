@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <% @subscriptions.each do |subscription| %>
-        <tr class="text-white">
+        <tr class="text">
           <div id="<%= subscription.id %>">
             <th><%= link_to subscription.name, subscription , class: 'btn btn-light'%></th>
             <th><%= subscription.description %></th>
