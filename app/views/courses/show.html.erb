@@ -49,5 +49,6 @@
     </tbody>
   </table>
 </div>
-
-<%= link_to t('buttons.buy'), new_order_path(course: @course), class: 'btn btn-primary' %>
+<% unless current_user.courses.ids.include?(@course.id) %>
+  <%= link_to t('buttons.buy'), new_order_path(course: @course), class: 'btn btn-primary' %>
+<% end %>
