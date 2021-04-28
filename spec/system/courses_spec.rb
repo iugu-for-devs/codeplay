@@ -13,7 +13,6 @@ describe 'Course Management' do
       expect(page).to have_text('Descrição')
       expect(page).to have_text('Professor(es)')
       expect(page).to have_text('Endereço da capa')
-      expect(page).to have_text('Requisito(s)')
     end
   end
 
