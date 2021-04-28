@@ -13,6 +13,9 @@ describe 'Authenticated user buy course' do
 
   context 'when pay_type is selected' do
     it 'returns successfully with credit card' do
+      returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+
       login_user
       course = Fabricate(:course)
 
@@ -30,6 +33,8 @@ describe 'Authenticated user buy course' do
     end
 
     it 'returns successfully with pix' do
+      returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
       login_user
       course = Fabricate(:course)
 
@@ -46,6 +51,8 @@ describe 'Authenticated user buy course' do
     end
 
     it 'returns successfully with boleto' do
+      returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+      allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
       login_user
       course = Fabricate(:course)
 
@@ -62,22 +69,6 @@ describe 'Authenticated user buy course' do
     end
   end
 
-  context 'when pay_type is not selected' do
-    it 'returns message error' do
-      login_user
-      course = Fabricate(:course)
-
-      visit course_path(course)
-      click_on 'Comprar'
-
-      within 'form' do
-        click_on 'Efetuar Compra'
-      end
-
-      expect(page).to have_content('Forma de Pagamento não pode ficar em branco')
-      expect(page).to have_current_path(orders_path(course: course.id))
-    end
-  end
 end
 
 describe 'Unauthenticated user' do
@@ -92,6 +83,8 @@ describe 'Unauthenticated user' do
   end
 
   it 'loggin, visit course page and buy course' do
+    returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+    allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
     User.create!(email: 'test@gmail.com', password: '123456')
     course = Fabricate(:course)
 
@@ -113,6 +106,11 @@ describe 'Unauthenticated user' do
   end
 
   it 'visit course page, sign up and buy course' do
+    returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
+
+    allow(Faraday).to receive(:post).and_return({ status: 'approved',
+                                                  token: returned_token
+                                                })
     course = Fabricate(:course)
 
     visit course_path(course)

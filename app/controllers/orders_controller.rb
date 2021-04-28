@@ -11,20 +11,10 @@ class OrdersController < ApplicationController
                        user: current_user,
                        pay_type: params[:pay_type])
 
-    # response = Invoice.generate(token_user: current_user.token, token_course: @course.token, token_pay_type: params[:pay_type])
-    # @order = Order.new(pay_type: params[:pay_type], status: response[:status])
+    @order.send_invoice_request
 
-    response = @order.send_invoice_request
-
-    return redirect_to @course, notice: t('Compra efetuada com sucesso') if response?('Aprovado') && @order.save
-
-    if @order.status.eql?('pending') && @order.save
-      return redirect_to @course, notice: t('Fatura enviada para seu email.')
-    end
-
-    if @order.status.eql? 'refused'
-      flash.now[:error] = 'Fatura não pode ser gerada tente novamente'
-      render :new
+    if @order.situation
+      return redirect_to @course, notice: t('.success')
     end
   end
 end

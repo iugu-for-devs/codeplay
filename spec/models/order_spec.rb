@@ -20,8 +20,7 @@ RSpec.describe Order, type: :model do
         old_order_status = 'pending'
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
 
-
-        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+        allow(Invoice).to receive(:get_request).and_return([{ status: 'pedding', token: returned_token  }])
 
         order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
 
@@ -36,7 +35,7 @@ RSpec.describe Order, type: :model do
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
         payment_method_chosen = PayType.all.first
 
-        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+        allow(Invoice).to receive(:get_request).and_return([{ status: 'approved', token: returned_token  }])
 
         order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         order.send_invoice_request
@@ -49,7 +48,7 @@ RSpec.describe Order, type: :model do
         course = Fabricate(:course)
         payment_method_chosen = PayType.all.first
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-        allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token  })
+        allow(Invoice).to receive(:get_request).and_return([{ status: 'approved', token: returned_token  }])
 
         order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         order.send_invoice_request
@@ -62,7 +61,7 @@ RSpec.describe Order, type: :model do
         course = Fabricate(:course)
         payment_method_chosen = PayType.all.first
         returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-        allow(Faraday).to receive(:post).and_return({ status: 'refused', token: returned_token  })
+        allow(Invoice).to receive(:get_request).and_return([{ status: 'refused', token: returned_token  }])
 
         order = Order.new(user: client, course: course, pay_type: payment_method_chosen)
         order.send_invoice_request

@@ -9,15 +9,20 @@ class Order < ApplicationRecord
   def send_invoice_request
     response = generate_invoice
 
-    self.status = response[:status]
     self.token = response[:token]
+    self.status = response[:status]
+  end
 
+  def situation
+    if self.status.eql?'approved'
+      save
+    end
   end
 
   private
 
   def generate_invoice
-    Invoice.generate(token_user: user.email,
+    Invoice.generate(token_user: user.token,
                      token_course: course.token,
                      token_pay_type: pay_type
                     )

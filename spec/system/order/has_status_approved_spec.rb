@@ -4,11 +4,12 @@ describe 'has status approved' do
   it 'user can access course lessons' do
     client = login_user
     course = Fabricate(:course)
+    returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
     course_lessons = Fabricate.times(5, :lesson, course: course)
     order = Fabricate(:order, user: client, course: course)
 
-    allow(order).to receive(:send_invoice_request).and_return({ status: 'approved',
-                                                                token: returned_token })
+    allow(Invoice).to receive(:get_request).and_return([{ status: 'approved',
+                                                          token: returned_token  }])
 
     visit course_path(course)
 

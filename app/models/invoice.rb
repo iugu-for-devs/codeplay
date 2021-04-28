@@ -1,16 +1,26 @@
 class Invoice
   def initialize(data:, token:, pay_type:); end
 
-  def self.generate(token_course:, token_user:, token_pay_type:)
-    invoice_data = { token_course: token_course, token_user: token_user, token_pay_type: token_pay_type}
-
+  def self.generate(attributes = {})
     endpoint = "invoices_generate_approved"
+    get_request(endpoint, attributes).first
+  end
 
-    url = "https://my-json-server.typicode.com/JorgeLAB/codeplay/#{endpoint}"
+  private
 
-    Faraday.post(url, invoice_data.to_json, 'Content-Type' => 'application/json')
+  def self.conn_faraday
+    Faraday.new(
+      url: 'https://my-json-server.typicode.com/JorgeLAB/codeplay/',
+      headers: {'Content-Type' => 'application/json'}
+    )
+  end
+
+  def self.get_request( endpoint, data = {} )
+    response = conn_faraday.get(endpoint){ |req| req.params = data }
+    load_json(response)
+  end
+
+  def self.load_json(response)
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
-
-# TODO: Devemos persistir pedido de faturas recusados? acho que sim
-# TODO: Devemos ter token de pedido de faturas recusada ? acho que sim
