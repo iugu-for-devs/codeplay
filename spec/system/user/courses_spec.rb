@@ -14,7 +14,9 @@ describe 'Course Management' do
   end
 
   it 'visit course lessons' do
+    user = login_user
     course = Fabricate(:course)
+    Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     visit course_path(course)
 
@@ -23,12 +25,13 @@ describe 'Course Management' do
     end
   end
 
-  it 'visit video lesson with login' do
-    user = Fabricate(:user)
-    login_as(user, scope: :user)
+  it 'visit lesson with login' do
+    user = login_user
     course = Fabricate(:course)
+    Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     visit course_path(course)
+
     click_on lessons.first.name
 
     expect(page).to have_text(lessons.first.name)

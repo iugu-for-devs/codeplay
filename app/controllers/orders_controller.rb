@@ -7,11 +7,12 @@ class OrdersController < ApplicationController
 
   def create
     @course = Course.find(params[:course])
-    @order = Order.new(pay_type: params[:pay_type])
+    @order = Order.new(course: @course,
+                       user: current_user,
+                       pay_type: params[:pay_type])
 
-    return redirect_to @course, notice: t('.success') if @order.save
+    @order.send_invoice_request
 
-    flash.now[:notice] = @order.errors.full_messages
-    render :new
+    return redirect_to @course, notice: t('.success') if @order.situation
   end
 end

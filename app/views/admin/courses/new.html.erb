@@ -37,10 +37,6 @@
       <%= f.file_field :cover, class: 'form-control' %>
     </div>
     <div class="mx-auto mb-3">
-      <%= f.label :requirements %>
-      <%= f.text_field :requirements, class: 'form-control' %>
-    </div>
-    <div class="mx-auto mb-3">
       <%= f.submit t('buttons.register', model: Course.model_name.human), class: 'btn btn-primary' %>
     </div>
   <% end %>
