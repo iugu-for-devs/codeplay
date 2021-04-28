@@ -9,13 +9,15 @@ class Invoice
   def self.conn_faraday
     Faraday.new(
       url: 'https://my-json-server.typicode.com/JorgeLAB/codeplay/',
-      headers: { 'Content-Type' => 'application/json' },
+      headers: { 'Content-Type' => 'application/json' }
     )
   end
 
   def self.get_request(endpoint, data = {})
     response = conn_faraday.get(endpoint) { |req| req.params = data }
     load_json(response)
+  rescue Faraday::ConnectionFailed => e
+    "Rescued: #{e.inspect}"
   end
 
   def self.load_json(response)

@@ -33,8 +33,9 @@ Rails.application.routes.draw do
   end
 
   resources :subscriptions, only: %i[index show]
+
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
+    resources :orders, only:[:new, :create]
   end
-  resources :orders, only:[:new, :create]
 end

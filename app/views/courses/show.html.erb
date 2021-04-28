@@ -57,7 +57,7 @@
 <% else %>
 
   <%= link_to t('buttons.buy'),
-      new_order_path(course: @course),
+      new_course_order_path(@course),
       class: 'btn btn-primary' %>
 
 <% end %>
