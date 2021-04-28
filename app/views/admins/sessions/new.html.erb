@@ -15,14 +15,14 @@
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class="field mb-3">
+        <div class="field mb-3" style="margin-left: 20px;">
           <%= f.check_box :remember_me, class: 'form-check-input' %>
           <%= f.label :remember_me %>
         </div>
       <% end %>
 
       <div class="actions mb-3">
-        <%= f.submit "Log in", class: 'btn btn-primary' %>
+        <%= f.submit t('.sign_in'), class: 'btn btn-primary' %>
       </div>
     <% end %>
 

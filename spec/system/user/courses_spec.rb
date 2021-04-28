@@ -4,6 +4,7 @@ describe 'Course Management' do
   it 'visit courses index' do
     courses = Fabricate.times(3, :course)
     visit root_path
+    expect(page).to have_text('BOAS VINDAS AO CODEPLAY')
     click_on 'Ver Cursos'
 
     courses.each do |course|

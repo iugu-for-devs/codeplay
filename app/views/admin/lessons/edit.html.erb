@@ -1,1 +1,16 @@
-<%= render partial: 'form_lessons', locals:{header_title: t('.header_title')} %>
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
+                                class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"
+                                class="link-dark"><%=t('headers.course_managment')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_course_path(@lesson.course) %>"
+                                class="link-dark"><%= @lesson.course.name %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%= t('buttons.edit', model: Lesson.model_name.human) %></li>
+  </ol>
+</h5>
+
+<%= render partial: 'form_lessons', locals:{
+    header_title: t('.header_title'),
+    btn_submit: t('buttons.save', model: Lesson.model_name.human)
+} %>
