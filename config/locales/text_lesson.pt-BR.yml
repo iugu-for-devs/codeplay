@@ -2,16 +2,16 @@
 pt-BR:
   activerecord:
     models:
-      lesson:
-        one: Aula Video
-        other: Aulas Video
+      text_lesson:
+        one: Aula Texto
+        other: Aulas Texto
     attributes:
-      lesson:
+      text_lesson:
         name: Nome
         description: Descrição
-        video_code: Código do Video
+        lesson_body: Conteúdo
   admin:
-    lessons:
+    text_lessons:
       update:
         success: Aula atualizada com sucesso
       destroy:

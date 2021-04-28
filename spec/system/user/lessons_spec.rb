@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'View Lessons' do
-
   context 'click in conclusion lesson button' do
     it 'check' do
       client = login_user
@@ -9,7 +8,7 @@ describe 'View Lessons' do
       lessons = Fabricate.times(5, :lesson, course: course)
       Fabricate(:order, user: client, course: course)
 
-      visit course_lesson_path( course, lessons.first )
+      visit course_lesson_path(course, lessons.first)
 
       expect(page).to have_content('Marcar como concluído')
 
@@ -23,10 +22,10 @@ describe 'View Lessons' do
     it 'unchecked' do
       client = login_user
       course = Fabricate(:course)
-      lessons = Fabricate.times(5, :lesson, course: course, done: "check")
+      lessons = Fabricate.times(5, :lesson, course: course, done: 'check')
       Fabricate(:order, user: client, course: course)
 
-      visit course_lesson_path( course, lessons.last )
+      visit course_lesson_path(course, lessons.last)
 
       expect(page).to have_content('Concluído!')
 

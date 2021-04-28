@@ -9,6 +9,7 @@ class Lesson < ApplicationRecord
 
   def done?
     return true if done.eql? 'check'
+
     false
   end
 end

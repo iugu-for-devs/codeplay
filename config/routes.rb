@@ -22,6 +22,13 @@ Rails.application.routes.draw do
     end
     resources :courses, only: [:new, :create, :index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
+      resources :text_lessons, only: [:show, :new, :create, :edit, :update, :destroy]
+      member do
+        get 'requirements'
+        get 'search_courses'
+        post 'add_requirement'
+        delete 'delete_requirement/:requirement_id', to: 'courses#delete_requirement', as: :delete_requirement
+      end
     end
     resources :members
   end
@@ -32,6 +39,8 @@ Rails.application.routes.draw do
       post 'check_done',  on: :member
       post 'uncheck_done', on: :member
     end
+    resources :lessons, only: [:show]
+    resources :text_lessons, only: [:show]
   end
   resources :orders, only:[:new, :create]
 end

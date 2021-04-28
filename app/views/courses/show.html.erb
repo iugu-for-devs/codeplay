@@ -4,7 +4,7 @@
                                 class="link-dark">Home</a></li>
     <li class="breadcrumb-item"><a href="<%= courses_path %>"
                                 class="link-dark"><%= Course.model_name.human count: 2 %></a></li>
-    <li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
 </h5>
 
@@ -25,8 +25,10 @@
       <% end %>
   </dd>
   <% if @course.requirements %>
-    <dt><%= Course.human_attribute_name(:requirements) %></dt>
-    <dd><%= @course.requirements %></dd>
+    <dt><%= Course.human_attribute_name(:requirements) %>: </dt>
+  <% @course.requirements.each do |requirement| %>
+    <dd><%= requirement.name %></dd>
+   <% end %>
   <% end %>
 </dl>
 <br>
@@ -43,7 +45,7 @@
         </thead>
       <tbody>
         <% @course.lessons.each do |lesson| %>
-          <tr class="text-white">
+          <tr class="textrubocop">
             <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
             <td><%= lesson.description%></td>
           </tr>
@@ -57,5 +59,29 @@
   <%= link_to t('buttons.buy'),
       new_order_path(course: @course),
       class: 'btn btn-primary' %>
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
+      </tr>
+      </thead>
+    <tbody>
+      <% @course.lessons.each do |lesson| %>
+        <tr class="text">
+          <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+          <td><%= lesson.description%></td>
+        </tr>
+      <% end %>
+      <% @course.text_lessons.each do |lesson| %>
+        <tr class="text">
+          <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+          <td><%= lesson.description%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <% end %>

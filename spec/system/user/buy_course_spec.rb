@@ -59,10 +59,8 @@ describe 'Authenticated user buy course' do
       visit course_path(course)
       click_on 'Comprar'
 
-      within 'form' do
-        select 'Boleto', from: 'Forma de Pagamento'
-        click_on 'Efetuar Compra'
-      end
+      select 'Boleto', from: 'Forma de Pagamento'
+      click_on 'Efetuar Compra'
 
       expect(page).to have_content('Compra realizada com sucesso!')
       expect(current_path).to eq(course_path(course))
