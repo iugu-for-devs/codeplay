@@ -6,9 +6,9 @@ class Course < ApplicationRecord
   has_many :subscriptions, through: :subscription_courses
 
   has_many :requirements, class_name: 'Course',
-                          foreign_key: 'requirement_id', dependent: :destroy, inverse_of: :requirements
+                          foreign_key: 'requirement_id', dependent: :destroy, inverse_of: :requirement
 
-  belongs_to :requirement, class_name: 'Course', optional: true
+  belongs_to :requirement, class_name: 'Course', optional: true, inverse_of: :requirements
 
   validates :name, :description, presence: true
 
