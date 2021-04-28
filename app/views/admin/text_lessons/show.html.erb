@@ -32,7 +32,9 @@
         <br>
         <h6 id='lesson_body'>
           <p><%=TextLesson.human_attribute_name(:lesson_body) %>:</p>
-          <p><%= @lesson.lesson_body %></p>
+          <div id='trix' class="trix-content">
+            <%= @lesson.lesson_body %>
+          </div>
         </h6>
       </div>
     </div>

@@ -13,7 +13,7 @@ describe 'text_lessons', type: :request do
     follow_redirect!
     expect(response).to have_http_status(:ok)
     expect(text_lesson).to be_valid
-    expect(response.body).to include(text_lesson.name, text_lesson.description, text_lesson.lesson_body)
+    expect(response.body).to include(text_lesson.name, text_lesson.description, text_lesson.lesson_body.to_plain_text)
   end
 
   it 'cannot create text lesson without login' do
