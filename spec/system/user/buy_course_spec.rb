@@ -118,7 +118,7 @@ describe 'Unauthenticated user' do
     within 'form' do
       fill_in 'E-mail', with: 'test@gmail.com'
       fill_in 'Senha', with: '123456'
-      click_on 'Log in'
+      click_on 'Login'
     end
 
     within 'form' do
@@ -137,12 +137,12 @@ describe 'Unauthenticated user' do
 
     visit course_path(course)
     click_on 'Comprar'
-    click_on 'Sign up'
+    click_on 'Cadastrar'
     within 'form' do
       fill_in 'E-mail', with: 'test@gmail.com'
       fill_in 'Senha', with: '123456'
       fill_in 'Password confirmation', with: '123456'
-      click_on 'Sign up'
+      click_on 'Cadastrar'
     end
 
     within 'form' do

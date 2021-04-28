@@ -51,7 +51,7 @@ describe 'Home page' do
           fill_in 'E-mail', with: 'test@gmail.com'
           fill_in 'Senha', with: '123456789'
           fill_in 'Confirmar Senha', with: '123456789'
-          click_on 'Nova Conta'
+          click_on 'Cadastrar'
         end
 
         expect(page).to have_content('Bem-vindo à CodePlay.')
