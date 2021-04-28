@@ -10,6 +10,9 @@ class Course < ApplicationRecord
 
   belongs_to :requirement, class_name: 'Course', optional: true, inverse_of: :requirements
 
+  has_many :orders, dependent: :destroy
+  has_many :users, through: :orders
+
   validates :name, :description, presence: true
 
   def self.search(query)

@@ -8,7 +8,7 @@ pt-BR:
     attributes:
       order:
         pay_type: Forma de Pagamento
-        
+
   orders:
     new:
       submit: Efetuar Compra

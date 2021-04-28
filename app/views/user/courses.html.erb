@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-            <% @courses.each do |course| %>
+            <% current_user.approved_courses.each do |course| %>
               <tr>
                 <td><%= course.name %></td>
                 <td><%= course.description %></td>
