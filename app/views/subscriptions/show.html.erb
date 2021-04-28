@@ -30,7 +30,7 @@
   </thead>
   <tbody>
     <% @subscription.courses.each do |course| %>
-      <tr class="text-white">
+      <tr class="text">
         <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
         <td><%= course.description %></td>
       </tr>
