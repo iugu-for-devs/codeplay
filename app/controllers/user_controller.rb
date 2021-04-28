@@ -5,21 +5,15 @@ class UserController < ApplicationController
   def show; end
 
   def courses
-    @courses = Course.where(course_id: User.orders.course_id)
+    @courses = current_user.courses
   end
 
   def subscriptions
-    @subscriptions = [
-      Subscription.new(
-        name: 'Jornada Web com Rails',
-        description: 'Esta assinatura ira abranger todos os cursos de Ruby e Rails',
-        price: 50
-      )
-    ]
+    @subscriptions = current_user.subscriptions
   end
 
   def orders
-    @orders = Order.where(user_id: current_user.id)
+    @orders = current_user.orders
   end
 
   private

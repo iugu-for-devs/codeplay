@@ -61,11 +61,25 @@ sql_course = Course.create!(
   admin_id: admin_adamastor.id
 )
 
+c_course = Course.create!(
+  name: 'Curso de c',
+  description:  'Curso de especialização em Sql',
+  price: 70.00,
+  admin_id: admin_adamastor.id
+)
+
 first_lesson = Lesson.create!(
   name: 'Aula-01',
   description: 'Isso é uma aula',
   course: rails_course,
   video_code: '139407849'
+)
+
+first_lesson = Lesson.create!(
+  name: 'Aula-02',
+  description: 'Isso é uma aula',
+  course: rails_course,
+  video_code: '139407848'
 )
 
 monthly_subscription = Subscription.create!(
@@ -74,12 +88,18 @@ monthly_subscription = Subscription.create!(
   price: 30.00
 )
 
+bimonthly_subscription = Subscription.create!(
+  name: 'Jornada Bimestral',
+  description:  'Plano com cobrança bimestral que cobre todos os cursos da plataforma',
+  price: 50.00
+)
+
 subscription_rails = SubscriptionCourse.create!(
   course: rails_course,
   subscription: monthly_subscription
 )
 
-first_lesson_buy = Order.create!(
+first_course_buy = Order.create!(
   pay_type: 'PIX',
   status: 'approved',
   user_id: john_doe.id,
@@ -87,7 +107,7 @@ first_lesson_buy = Order.create!(
   token:'1234567890' 
 )
 
-second_lesson_buy = Order.create!(
+second_course_buy = Order.create!(
   pay_type: 'PIX',
   status: 'approved',
   user_id: bob_doe.id,
@@ -95,7 +115,7 @@ second_lesson_buy = Order.create!(
   token:'1234567890' 
 )
 
-third_lesson_buy = Order.create!(
+third_course_buy = Order.create!(
   pay_type: 'PIX',
   status: 'approved',
   user_id: bob_doe.id,

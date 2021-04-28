@@ -16,8 +16,8 @@
             <tbody>
             <% @courses.each do |course| %>
               <tr>
-                <td><%= course.name %></td>
-                <td><%= course.description %></td>
+                <td><%=link_to course.name, course_path(course.id) %></td>
+                <td><%=link_to course.description,  course_path(course.id) %></td>
               </tr>
             <% end %>
             </tbody>
