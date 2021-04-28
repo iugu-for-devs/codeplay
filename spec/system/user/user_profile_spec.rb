@@ -36,7 +36,7 @@ describe 'User' do
     clients = Fabricate.times(2, :user)
     clients[0].confirm
     clients[1].confirm
-    
+
     login_as clients[0], scope: :user
 
     visit root_path
