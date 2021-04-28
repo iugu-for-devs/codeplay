@@ -2,10 +2,11 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<%= root_path %>"
                                 class="link-dark">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Cursos</li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%= Course.model_name.human count: 2 %></li>
   </ol>
 </h5>
 
+<hr>
 <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Course.model_name.human(count: :other)) %></p>
 
 <div>
@@ -18,7 +19,7 @@
       </thead>
   <tbody>
     <% @courses.each do |course| %>
-      <tr>
+      <tr class="text">
         <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
         <td><%= course.description %></td>
       </tr>

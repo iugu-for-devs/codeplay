@@ -8,6 +8,7 @@
 <%= link_to t('buttons.register', model:Subscription.model_name.human), 
             new_admin_subscription_path, class:"btn btn-primary" %>
 
+<hr>
 <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Subscription.model_name.human(count: :other)) %></p>
 
 <div>
@@ -15,12 +16,14 @@
     <thead class="table-dark">
       <tr>
         <th scope="col"><%= Subscription.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Subscription.human_attribute_name(:description) %></th>
       </tr>
     </thead>
     <tbody>
       <% @subscriptions.each do |subscription| %>
-        <tr id="<%= subscription.id %>" class="text-white">
+        <tr id="<%= subscription.id %>" class="text">
           <td><%= link_to subscription.name, admin_subscription_path(subscription), class:"btn btn-light" %></td>
+          <td><%= subscription.description %></td>
         </tr>
       <% end %>
     </tbody>

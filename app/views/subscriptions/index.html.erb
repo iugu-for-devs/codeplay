@@ -7,6 +7,7 @@
   </ol>
 </h5>
 
+<hr>
 <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Subscription.model_name.human(count: :other)) %></p>
 
 <div>
@@ -20,7 +21,7 @@
     </thead>
     <tbody>
       <% @subscriptions.each do |subscription| %>
-        <tr class="text-white">
+        <tr class="text">
           <div id="<%= subscription.id %>">
             <th><%= link_to subscription.name, subscription , class: 'btn btn-light'%></th>
             <th><%= subscription.description %></th>

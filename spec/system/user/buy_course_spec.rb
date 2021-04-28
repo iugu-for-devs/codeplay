@@ -141,7 +141,7 @@ describe 'Unauthenticated user' do
     within 'form' do
       fill_in 'E-mail', with: 'test@gmail.com'
       fill_in 'Senha', with: '123456'
-      fill_in 'Password confirmation', with: '123456'
+      fill_in 'Confirmar Senha', with: '123456'
       click_on 'Cadastrar'
     end
 

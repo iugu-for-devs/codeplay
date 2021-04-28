@@ -9,25 +9,27 @@
   <%= link_to t('buttons.register', model: Course.model_name.human), new_admin_course_path, class: 'btn btn-primary' %>
 </div>
 
-<p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Course.model_name.human(count: :other)) %></p>
+<hr>
+<h3><%=t('.empty')%></h3>
 
-<% if @courses.empty?	%>
-  <h3><%=t('.empty')%></h3>
-<% end %>
+<p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Course.model_name.human(count: :other)) %></p>
 
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">
       <tr>
         <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Course.human_attribute_name(:description) %></th>
       </tr>
     </thead>
     <tbody>
       <% @courses.each do |course| %>
-        <tr>
+        <tr class="text">
           <td><%= link_to course.name, admin_course_path(course), class:"btn btn-light" %></td>
+          <td><%= course.description %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
