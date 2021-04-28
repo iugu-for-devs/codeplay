@@ -12,6 +12,7 @@ class IuguLite::Purchaser
 
   class << self
     def create(**args)
+      args.merge!(name: args[:email])
       response = IuguLite.client.post('purchasers') do |req|
         req.body = args.to_json
       end

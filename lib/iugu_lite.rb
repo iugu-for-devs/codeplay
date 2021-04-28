@@ -17,7 +17,10 @@ module IuguLite
     private
 
     def new_connection
-      Faraday.new(url: iugu_lite_uri) do |faraday|
+      Faraday.new(
+        url: iugu_lite_uri,
+        params: { company_token: Rails.configuration.iugu_lite_token }
+      ) do |faraday|
         faraday.headers['Content-Type'] = 'application/json'
         faraday.response :json, parser_options: { symbolize_names: true },
                                 content_type: /\bjson$/

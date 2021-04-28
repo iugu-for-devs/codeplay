@@ -35,5 +35,7 @@ module Codeplay
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.external_apis = config_for(:external_apis).symbolize_keys
+    # Use credentials on future
+    config.iugu_lite_token = '46a9c9e65f59c14c046b665ef8aa16e03b1fb64b'
   end
 end

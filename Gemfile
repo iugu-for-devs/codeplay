@@ -18,6 +18,7 @@ gem 'webpacker', '~> 5.0'
 
 group :development, :test do
   gem 'fabrication'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop-rails', require: false
@@ -31,7 +32,6 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
