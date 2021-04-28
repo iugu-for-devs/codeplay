@@ -4,6 +4,7 @@ pt-BR:
     register: Cadastrar %{model}
     delete: Apagar %{model}
     edit: Editar %{model}
+    save: Salvar %{model}
     search: Buscar %{model}
     back: 'Voltar'
     courses: Cursos
