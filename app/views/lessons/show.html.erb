@@ -13,6 +13,15 @@
 <br>
 
 <div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">
+
+  <% if @lesson.done? %>
+    <%= link_to 'Concluído!', uncheck_done_course_lesson_path(lesson: @lesson), method: :post %>
+  <% else %>
+    <%= link_to 'Marcar como concluído', check_done_course_lesson_path(lesson: @lesson), method: :post %>
+  <% end  %>
+
+
+
   <div class="row gx-0">
     <div class="col">
       <div class="p-3" id='iframe' >
@@ -26,7 +35,7 @@
         </h4>
         <br>
         <h6 id='description'>
-          <p><%=Lesson.human_attribute_name(:description) %>:</p> 
+          <p><%=Lesson.human_attribute_name(:description) %>:</p>
           <p><%= @lesson.description %></p>
         </h6>
       </div>

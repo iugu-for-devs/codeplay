@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_025800) do
+ActiveRecord::Schema.define(version: 2021_04_28_070825) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_025800) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "course_id", null: false
     t.string "video_code"
+    t.integer "done", default: 10
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["video_code"], name: "index_lessons_on_video_code", unique: true
   end

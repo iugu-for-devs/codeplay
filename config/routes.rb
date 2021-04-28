@@ -28,7 +28,10 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: %i[index show]
   resources :courses, only:[:index, :show] do
-    resources :lessons, only: [:show]
+    resources :lessons, only: [:show] do
+      post 'check_done',  on: :member
+      post 'uncheck_done', on: :member
+    end
   end
   resources :orders, only:[:new, :create]
 end
