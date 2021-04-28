@@ -9,6 +9,7 @@ describe 'View Subscriptions' do
                                                 'de Dart e o framework Flutter')
 
     visit root_path
+    expect(page).to have_text('BOAS VINDAS AO CODEPLAY')
     click_on 'Planos de Assinatura'
 
     expect(page).to have_text(subscription.name)

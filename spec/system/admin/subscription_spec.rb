@@ -37,7 +37,7 @@ describe 'Subscription plan' do
     login_as admin, scope: :admin
     visit admin_subscriptions_path
     click_on subscription.name
-    click_on 'Planos'
+    find('li.breadcrumb-item', text: 'Planos').click
 
     expect(current_path).to eq(admin_subscriptions_path)
   end
@@ -51,7 +51,7 @@ describe 'Subscription plan' do
     fill_in 'Nome', with: 'Jornada Web com Rails'
     fill_in 'Descrição', with: 'Esta assinatura irá englobar todos os cursos de Ruby e Rails'
     fill_in 'Preço', with: '50'
-    click_on 'Criar Plano'
+    click_on 'Cadastrar Plano'
 
     expect(page).to have_text('Plano cadastrado com sucesso')
     expect(page).to have_text('Jornada Web com Rails')
@@ -68,7 +68,7 @@ describe 'Subscription plan' do
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
     fill_in 'Preço', with: ''
-    click_on 'Criar Plano'
+    click_on 'Cadastrar Plano'
 
     expect(page).to have_text('Nome não pode ficar em branco')
   end
@@ -79,7 +79,7 @@ describe 'Subscription plan' do
 
     visit admin_subscriptions_path
     click_on 'Cadastrar Plano'
-    click_on 'Planos'
+    find('li.breadcrumb-item', text: 'Planos').click
 
     expect(current_path).to eq(admin_subscriptions_path)
   end

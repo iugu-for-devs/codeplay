@@ -8,7 +8,7 @@ describe 'Admin authorization' do
 
     fill_in 'E-mail', with: admin.email
     fill_in 'Senha', with: admin.password
-    click_on 'Log in'
+    click_on 'Login'
 
     expect(current_path).to eq(admin_root_path)
     expect(page).to have_text('Login efetuado com sucesso!')
@@ -21,7 +21,7 @@ describe 'Admin authorization' do
 
     fill_in 'E-mail', with: admin.email
     fill_in 'Senha', with: admin.password
-    click_on 'Log in'
+    click_on 'Login'
     click_on 'Sair'
     page.driver.browser.switch_to.alert.accept
 

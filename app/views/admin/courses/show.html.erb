@@ -15,8 +15,11 @@
   <h3><%= t('.empty')%></h3>
 <% end %>
 
-<%= link_to t('buttons.register', model:Lesson.model_name.human),
+<%= link_to t('buttons.register', model: Lesson.model_name.human),
             new_admin_course_lesson_path(@course), class:"btn btn-primary"%>
+
+<p class="h5 mb-3 fw-normal text-center">Lista de <%= Lesson.model_name.human(count: :other) %></p>
+
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">
