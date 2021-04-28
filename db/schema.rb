@@ -70,10 +70,11 @@ ActiveRecord::Schema.define(version: 2021_04_28_010048) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "instructor"
     t.string "cover"
-    t.string "requirements"
     t.integer "admin_id", null: false
     t.decimal "price", precision: 10, scale: 2
+    t.integer "requirement_id"
     t.index ["admin_id"], name: "index_courses_on_admin_id"
+    t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_010048) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "admins"
+  add_foreign_key "courses", "courses", column: "requirement_id"
   add_foreign_key "lessons", "courses"
   add_foreign_key "subscription_courses", "courses"
   add_foreign_key "subscription_courses", "subscriptions"

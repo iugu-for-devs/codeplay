@@ -21,8 +21,7 @@ class Admin::TextLessonsController < Admin::ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      flash[:notice] = t('.success')
-      redirect_to [:admin, @lesson.course, @lesson]
+      redirect_to [:admin, @lesson.course, @lesson], notice: t('.success')
     else
       render :edit
     end
@@ -30,8 +29,7 @@ class Admin::TextLessonsController < Admin::ApplicationController
 
   def destroy
     @lesson.destroy
-    flash[:notice] = t('.success', lesson_name: @lesson.name)
-    redirect_to admin_course_path(@lesson.course.id)
+    redirect_to admin_course_path(@lesson.course.id), notice: t('.success', lesson_name: @lesson.name)
   end
 
   private
