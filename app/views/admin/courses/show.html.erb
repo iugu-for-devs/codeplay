@@ -32,13 +32,13 @@
       </thead>
     <tbody>
       <% @course.lessons.each do |lesson| %>
-        <tr class="text-white">
+        <tr class="text">
           <td><%= link_to lesson.name, admin_course_lesson_path(id: lesson, course_id: @course), class:"btn btn-light"  %></td>
           <td><%= lesson.description%></td>
         </tr>
       <% end %>
       <% @course.text_lessons.each do |lesson| %>
-        <tr class="text-white">
+        <tr class="text">
           <td><%= link_to lesson.name, admin_course_text_lesson_path(id: lesson, course_id: @course), class:"btn btn-light"  %></td>
           <td><%= lesson.description%></td>
         </tr>

@@ -12,9 +12,9 @@ pt-BR:
         instructor: Professor(es)
         cover: Endereço da capa
         requirements: Requisito(s)
-        
   headers:
-      course_managment: Gerenciamento de Cursos
+    course_managment: Gerenciamento de Cursos
+    course_list: Lista de Cursos
   admin:
     courses:
       show:

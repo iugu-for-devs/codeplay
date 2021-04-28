@@ -29,3 +29,4 @@ pt-BR:
         success: Curso adicionado com sucesso
   headers:
     subscription_managment: Gerenciamento de Planos
+    subscription_list: Lista de Planos
