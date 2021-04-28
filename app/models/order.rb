@@ -9,12 +9,11 @@ class Order < ApplicationRecord
   def send_invoice_request
     response = generate_invoice
 
-    self.token = response[:token]
-    self.status = response[:status]
+    update(token: response[:token], status: response[:status])
   end
 
-  def situation
-    save if status.eql? 'approved'
+  def approved?
+    status.eql? 'approved'
   end
 
   private

@@ -37,18 +37,4 @@ describe 'has status approved' do
       expect(page).to have_content(course.description)
     end
   end
-
-  # it 'user can see the course receipt' do
-  #   client = login_user
-  #   course = Fabricate(:course)
-  #   order  = Fabricate(:order, user: client, course: course)
-
-  #   visit user_receipts_path
-  #   click_on course.name
-
-  #   expect(page).to have_content(course.name)
-  #   expect(page).to have_content("Data da compra do curso")
-  #   expect(page).to have_content("Compra Aprovada")
-  #   expect(page).to have_link("Link para o courso : #{course.name}", course_path(course))
-  # end
 end

@@ -11,7 +11,7 @@ describe 'Authenticated user buy course' do
     expect(page).to have_current_path(new_order_path(course: course))
   end
 
-  context 'when pay_type is selected' do
+  context 'when status is approved' do
     it 'returns successfully with credit card' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
       allow(Faraday).to receive(:post).and_return({ status: 'approved', token: returned_token })
