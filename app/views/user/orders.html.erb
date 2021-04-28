@@ -3,13 +3,20 @@
       <%= render partial: 'sidebar' %>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-        <p class="h5 mb-3 fw-normal text-center">Lista de Compras</p>
+        <h5 aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%= user_profile_path %>"class="link-dark"><%=t('breadcrumb.dashboard_user')%></a></li>
+            <li class="breadcrumb-item active text-secondary" aria-current="page"><%=t('breadcrumb.orders')%></li>
+          </ol>
+        </h5>
 
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
-            <thead>
+        <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: "#{t('breadcrumb.orders')}") %></p>
+
+        <div>
+          <table class="table table-bordered">
+            <thead class="table-dark">
               <tr>
-                <th>Metodo de pagamento</th>
+                <th scope="col"><%= Order.human_attribute_name(:pay_type) %></th>
               </tr>
             </thead>
             <tbody>
@@ -21,6 +28,7 @@
             </tbody>
           </table>
         </div>
+
       </main>
   </div>
 </div>

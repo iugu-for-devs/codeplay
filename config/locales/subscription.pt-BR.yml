@@ -25,5 +25,3 @@ pt-BR:
         no_courses_added: Nenhum curso cadastrado para este plano
         no_course_found: Nenhum curso encontrado com esse nome
         courses_found: Foram encontrados %{course_size} cursos
-  headers:
-    subscription_managment: Gerenciamento de Planos

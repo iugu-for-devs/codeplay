@@ -8,7 +8,6 @@
   </ol>
 </h5>
 
-
 <dl>
   <h3><%= @subscription.name %></h3>
 
@@ -20,7 +19,9 @@
 </dl>
 <hr>
 
-<h4><%= t('.subscription_courses') %></h4>
+<p class="h5 mb-3 fw-normal text-center"><%= t('.subscription_courses') %></p>
+
+
 <table class="table table-bordered">
   <thead class="table-dark">
     <tr>
@@ -30,7 +31,7 @@
   </thead>
   <tbody>
     <% @subscription.courses.each do |course| %>
-      <tr class="text-white">
+      <tr>
         <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
         <td><%= course.description %></td>
       </tr>
