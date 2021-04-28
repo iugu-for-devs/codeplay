@@ -12,16 +12,7 @@ class Course < ApplicationRecord
 
   validates :name, :description, presence: true
 
-  validate :uniq_requirements
-
   def self.search(query)
     where('courses.name LIKE ?', "%#{query}%")
   end
-
-  def uniq_requirements
-    unless requirements.uniq 
-      errors.add('teste')
-    end
-  end
-
 end
