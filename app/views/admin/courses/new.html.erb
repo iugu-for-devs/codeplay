@@ -1,0 +1,47 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
+                                class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"
+                                class="link-dark"><%=Course.model_name.human count: 2 %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page">
+    <%=t('buttons.register', model: Course.model_name.human) %></li>
+  </ol>
+</h5>
+
+<% if @course.errors.any? %>
+  <h4>Não foi possível salvar encontramos alguns errors:</h4>
+  <ul>
+    <% @course.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <%= form_with model: [:admin, @course], local: true do |f| %>
+    <div class="mx-auto mb-3">
+      <%= f.label :name %><span style="color:red">*</span>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.label :description %><span style="color:red">*</span>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.label :instructor %>
+      <%= f.text_field :instructor, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.label :cover %>
+      <%= f.file_field :cover, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.label :requirements %>
+      <%= f.text_field :requirements, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.submit t('buttons.register', model: Course.model_name.human), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

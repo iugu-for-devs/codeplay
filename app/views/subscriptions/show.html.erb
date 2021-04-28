@@ -1,0 +1,39 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>"
+                                class="link-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="<%= subscriptions_path %>"
+                                class="link-dark"><%= Subscription.model_name.human count: 2 %></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@subscription.name %></li>
+  </ol>
+</h5>
+
+
+<dl>
+  <h3><%= @subscription.name %></h3>
+
+  <dt><%= Subscription.human_attribute_name(:description) %></dt>
+  <dd><%= @subscription.description %></dd>
+
+  <dt><%= Subscription.human_attribute_name(:price)%></dt>
+  <dd><%= @subscription.price %></dd>
+</dl>
+<hr>
+
+<h4><%= t('.subscription_courses') %></h4>
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+      <th scope="col"><%= Course.human_attribute_name(:description) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subscription.courses.each do |course| %>
+      <tr class="text-white">
+        <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
+        <td><%= course.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

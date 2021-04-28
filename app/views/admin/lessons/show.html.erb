@@ -1,0 +1,40 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark">
+                                <%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"class="link-dark">
+                                <%=t('headers.course_managment')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_course_path(@lesson.course.id) %>"class="link-dark">
+                                <%=@lesson.course.name%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@lesson.name %></li>
+  </ol>
+</h5>
+<div>
+  <%= link_to t('buttons.edit', model: Lesson.model_name.human), edit_admin_course_lesson_path(@lesson),
+                                class:"btn btn-primary"%>
+  <%=link_to t('buttons.delete',model: Lesson.model_name.human), admin_course_lesson_path(@lesson), method: :delete,
+                                class:"btn btn-danger"%>
+</div>
+<br>
+
+<div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">
+  <div class="row gx-0">
+    <div class="col">
+      <div class="p-3" id='iframe' >
+        <%= vimeo_iframe(@lesson.video_code) %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3">
+        <h4 id='name'>
+          <%= @lesson.name %>
+        </h4>
+        <br>
+        <h6 id='description'>
+          <p><%=Lesson.human_attribute_name(:description) %>:</p>
+          <p><%= @lesson.description %></p>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

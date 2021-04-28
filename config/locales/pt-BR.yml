@@ -1,0 +1,26 @@
+---
+pt-BR:
+  buttons:
+    register: Cadastrar %{model}
+    delete: Apagar %{model}
+    edit: Editar %{model}
+    save: Salvar %{model}
+    search: Buscar %{model}
+    back: 'Voltar'
+    courses: Cursos
+    home: Home
+    log_in: Entrar
+    log_out: Sair
+    profile: Meu Perfil
+    sign_up: Nova Conta
+    subscriptions: Assinaturas
+  layouts:
+    application:
+      buttons:
+        courses: Cursos
+        home: Home
+        log_in: Entrar
+        log_out: Sair
+        profile: Meu Perfil
+        sign_up: Nova Conta
+        subscriptions: Assinaturas

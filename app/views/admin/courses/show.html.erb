@@ -1,0 +1,43 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"
+                                class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_courses_path %>"
+                                class="link-dark"><%=t('headers.course_managment')%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
+  </ol>
+</h5>
+
+<h2><%= @course.name %></h2>
+<h2><%= @course.description %></h2>
+
+<% if @course.lessons.empty?%>
+  <h3><%= t('.empty')%></h3>
+<% end %>
+
+<%= link_to 'Listar Requerimentos', requirements_admin_course_path(@course), class:"btn btn-primary" %>
+<%= link_to t('buttons.register', model: Lesson.model_name.human),
+            new_admin_course_lesson_path(@course), class:"btn btn-primary"%>
+
+<p class="h5 mb-3 fw-normal text-center">Lista de <%= Lesson.model_name.human(count: :other) %></p>
+
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
+      </tr>
+      </thead>
+    <tbody>
+      <% @course.lessons.each do |lesson| %>
+        <tr class="text-white">
+          <td><%= link_to lesson.name, admin_course_lesson_path(id: lesson, course_id: @course), class:"btn btn-light"  %></td>
+          <td><%= lesson.description%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

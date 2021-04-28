@@ -1,0 +1,22 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      lesson:
+        one: Aula
+        other: Aulas
+    attributes:
+      lesson:
+        name: Nome
+        description: Descrição
+        video_code: Código do Video
+  admin:
+    lessons:
+      update:
+        success: Aula atualizada com sucesso
+      destroy:
+        success: Aula %{lesson_name} apagada com sucesso
+      new:
+        header_title: Cadastro de Aula
+      edit:
+        header_title: Edição de Aula

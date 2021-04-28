@@ -5,7 +5,11 @@
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :password, "Nova senha" %><br />
+=======
+    <%= f.label :password, "New password" %><br />
+>>>>>>> main
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
@@ -13,12 +17,20 @@
   </div>
 
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :password_confirmation, "Confirmar nova senha" %><br />
+=======
+    <%= f.label :password_confirmation, "Confirm new password" %><br />
+>>>>>>> main
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
+<<<<<<< HEAD
     <%= f.submit "Mudar minha senha" %>
+=======
+    <%= f.submit "Change my password" %>
+>>>>>>> main
   </div>
 <% end %>
 

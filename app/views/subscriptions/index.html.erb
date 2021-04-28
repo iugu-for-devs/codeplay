@@ -1,0 +1,32 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>"
+                                class="link-dark">Home</a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page">
+                                                      <%= Subscription.model_name.human count: 2 %></li>
+  </ol>
+</h5>
+
+<br>
+<h4><%= Subscription.model_name.human count: 2 %></h4>
+<div>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><%= Subscription.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Subscription.human_attribute_name(:description) %></th>
+        <th scope="col"><%= Subscription.human_attribute_name(:price) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subscriptions.each do |subscription| %>
+        <tr class="text-white">
+          <div id="<%= subscription.id %>">
+            <th><%= link_to subscription.name, subscription , class: 'btn btn-light'%></th>
+            <th><%= subscription.description %></th>
+            <th><%= subscription.price %></th>
+          </div>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

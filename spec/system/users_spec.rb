@@ -4,16 +4,15 @@ describe 'user registration' do
   context 'when user makes a new registration' do
     it 'show registrations fields ' do
       visit root_path
-      expect(page).to have_text('Code Play')
-      expect(page).to have_text('Entrar')
-      expect(page).to have_text('Cadastrar')
+      expect(page).to have_button('Entrar')
+      expect(page).to have_button('Nova Conta')
 
-      click_on 'Cadastrar'
+      first(:button, 'Nova Conta').click
       expect(current_path).to eq(new_user_registration_path)
 
       expect(page).not_to have_text('Cadastrar')
       expect(page).to have_text('Nome completo')
-      expect(page).to have_text('Email')
+      expect(page).to have_text('E-mail')
       expect(page).to have_text('Senha')
       expect(page).to have_text('Confirmar senha')
       expect(page).to have_text('Data de nascimento')
@@ -31,12 +30,11 @@ describe 'user registration' do
 
   it 'register a new user' do
     visit root_path
-    expect(page).to have_text('Code Play')
-    click_on 'Cadastrar'
+    first(:button, 'Nova Conta').click
 
     expect(current_path).to eq(new_user_registration_path)
     fill_in 'Nome completo', with: 'John Doe'
-    fill_in 'Email', with: 'john.doe@codesaga.com.br'
+    fill_in 'E-mail', with: 'john.doe@codesaga.com.br'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar senha', with: '12345678'
     fill_in 'Data de nascimento', with: '08/08/1990'
@@ -57,8 +55,7 @@ describe 'user registration' do
   context 'when register with blank mandatory fields' do
     it 'user cannot register with empty email' do
       visit root_path
-      expect(page).to have_text('Code Play')
-      click_on 'Cadastrar'
+      click_on 'Nova Conta'
 
       expect(current_path).to eq(new_user_registration_path)
       fill_in 'Nome completo', with: 'John Doe'
@@ -79,17 +76,14 @@ describe 'user registration' do
       end
 
       expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('Não foi possível salvar usuário')
+      expect(page).to have_text('Não foi possível salvar aluno')
     end
 
     it 'user cannot register with empty password' do
-      visit root_path
-      expect(page).to have_text('Code Play')
-      click_on 'Cadastrar'
+      visit new_user_registration_path
 
-      expect(current_path).to eq(new_user_registration_path)
       fill_in 'Nome completo', with: 'John Doe'
-      fill_in 'Email', with: 'john.doe@codesaga.com.br'
+      fill_in 'E-mail', with: 'john.doe@codesaga.com.br'
       fill_in 'Data de nascimento', with: '08/08/1990'
       fill_in 'CPF', with: '000.000.003-53'
       fill_in 'Rua', with: 'Av. Marechal Tito'
@@ -102,20 +96,16 @@ describe 'user registration' do
         click_on 'Cadastrar'
       end
       expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('Não foi possível salvar usuário')
+      expect(page).to have_text('Não foi possível salvar aluno')
     end
   end
 
   context 'when fields have invalid values' do
     it 'user cannot register with gmail domain' do
-      visit root_path
-      expect(page).to have_text('Code Play')
-      click_on 'Cadastrar'
-
-      expect(current_path).to eq(new_user_registration_path)
+      visit new_user_registration_path
 
       fill_in 'Nome completo', with: 'John Doe'
-      fill_in 'Email', with: 'john.doe@gmail.com'
+      fill_in 'E-mail', with: 'john.doe@gmail.com'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirmar senha', with: '12345678'
       fill_in 'Data de nascimento', with: '08/08/1990'
@@ -130,44 +120,40 @@ describe 'user registration' do
         click_on 'Cadastrar'
       end
       expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('Email não é válido')
+      expect(page).to have_text('E-mail não é válido')
     end
 
     it 'user email must be unique to register' do
       user = Fabricate(:user)
       visit root_path
-      expect(page).to have_text('Code Play')
-
-      click_on 'Cadastrar'
+      first(:button, 'Nova Conta').click
 
       expect(current_path).to eq(new_user_registration_path)
 
-      fill_in 'Email', with: user.email
+      fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirmar senha', with: '12345678'
       within 'form' do
         click_on 'Cadastrar'
       end
       expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('Não foi possível salvar usuário')
+      expect(page).to have_text('Não foi possível salvar aluno')
     end
 
     it 'user password cant be less than eight characters long to register' do
       visit root_path
-      expect(page).to have_text('Code Play')
-
-      click_on 'Cadastrar'
+      first(:button, 'Nova Conta').click
 
       expect(current_path).to eq(new_user_registration_path)
 
-      fill_in 'Email', with: 'jhon.doe@codesaga.com'
+      fill_in 'E-mail', with: 'john.doe@codesaga.com'
       fill_in 'Senha', with: '123456'
       fill_in 'Confirmar senha', with: '123456'
       within 'form' do
         click_on 'Cadastrar'
       end
       expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('Não foi possível salvar usuário')
+      expect(page).to have_text('Não foi possível salvar aluno')
     end
   end
 end
@@ -183,7 +169,7 @@ describe 'user login' do
       expect(current_path).to eq(new_user_session_path)
       expect(page).to have_no_link('Entrar')
 
-      fill_in 'Email', with: user.email
+      fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: user.password
 
       click_on 'Login'
@@ -207,7 +193,7 @@ describe 'user login' do
       click_on 'Login'
 
       expect(current_path).to eq(user_session_path)
-      expect(page).to have_text('Email ou senha inválida')
+      expect(page).to have_text('E-mail ou senha inválida')
     end
 
     it 'user cannot login with empty password' do
@@ -217,12 +203,12 @@ describe 'user login' do
 
       expect(current_path).to eq(new_user_session_path)
 
-      fill_in 'Email', with: user.email
+      fill_in 'E-mail', with: user.email
 
       click_on 'Login'
 
       expect(current_path).to eq(user_session_path)
-      expect(page).to have_text('Email ou senha inválida')
+      expect(page).to have_text('E-mail ou senha inválida')
     end
 
     it 'user cannot login with unregistered email' do
@@ -230,12 +216,12 @@ describe 'user login' do
       click_on 'Entrar'
       expect(current_path).to eq(new_user_session_path)
 
-      fill_in 'Email', with: 'jhon.due@codesaga.com'
+      fill_in 'E-mail', with: 'jhon.due@codesaga.com'
       fill_in 'Senha', with: '12345678'
       click_on 'Login'
 
       expect(current_path).to eq(user_session_path)
-      expect(page).to have_text('Email ou senha inválida')
+      expect(page).to have_text('E-mail ou senha inválida')
     end
   end
 
@@ -250,13 +236,14 @@ describe 'user login' do
 
       expect(page).not_to have_text('Entrar')
       expect(page).not_to have_text('Cadastrar')
-      expect(page).to have_text(user.email)
 
-      click_on 'Sair'
+      accept_confirm do
+        click_on 'Sair'
+      end
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_text('Entrar')
-      expect(page).to have_text('Cadastrar')
+      expect(page).to have_button('Entrar')
+      expect(page).to have_button('Nova Conta')
       expect(page).to have_text('Saiu com sucesso.')
     end
   end
@@ -269,7 +256,7 @@ describe 'user login' do
 
       expect(current_path).to eq(new_user_session_path)
 
-      fill_in 'Email', with: user.email
+      fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: user.password
 
       click_on 'Login'
@@ -291,7 +278,7 @@ describe 'user can change password' do
       click_on 'Esqueceu sua senha?'
       expect(current_path).to eq(new_user_password_path)
       expect(page).to have_text('Esqueceu sua senha?')
-      fill_in 'Email', with: user.email
+      fill_in 'E-mail', with: user.email
       click_on 'Enviar instruções de recuperação de senha'
 
       expect(current_path).to eq(user_session_path)
