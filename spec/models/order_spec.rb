@@ -5,10 +5,9 @@ RSpec.describe Order, type: :model do
   it { should validate_presence_of(:status) }
   it { should validate_presence_of(:token) }
 
-  it { should belong_to :course }
   it { should belong_to :user }
 
-  # método de intancia já que iremos esperar valores que modifiquem o status do produto
+  # método de instancia já que iremos esperar valores que modifiquem o status do produto
 
   context 'when create a order' do
     context '.send_invoice_request' do
