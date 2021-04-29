@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_070825) do
+ActiveRecord::Schema.define(version: 2021_04_29_063806) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 2021_04_28_070825) do
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
 
+  create_table "lesson_statuses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "lesson_id", null: false
+    t.integer "status", default: 10
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_lesson_statuses_on_lesson_id"
+    t.index ["user_id"], name: "index_lesson_statuses_on_user_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -85,7 +95,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_070825) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "course_id", null: false
     t.string "video_code"
-    t.integer "done", default: 10
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["video_code"], name: "index_lessons_on_video_code", unique: true
   end
@@ -149,6 +158,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_070825) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "admins"
   add_foreign_key "courses", "courses", column: "requirement_id"
+  add_foreign_key "lesson_statuses", "lessons"
+  add_foreign_key "lesson_statuses", "users"
   add_foreign_key "lessons", "courses"
   add_foreign_key "orders", "courses"
   add_foreign_key "orders", "users"

@@ -7,6 +7,12 @@ class OrdersController < ApplicationController
 
   def create
     @course = Course.find(params[:course])
+    @course.lessons.each do |lesson|
+      LessonStatus.create(user_id: current_user.id, lesson_id: lesson.id)
+    end
+
+
+
     @order = Order.new(course: @course,
                        user: current_user,
                        pay_type: params[:pay_type])

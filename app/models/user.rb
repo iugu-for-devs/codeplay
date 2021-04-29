@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :courses, through: :orders
 
+  has_many :lesson_statuses
+  has_many :lessons, through: :lesson_statuses, source: :lesson
+
+  # user => courses => lessons => lesson_status => status
+
   def own_course?(course)
     user_courses = approved_courses
     user_courses.include? course

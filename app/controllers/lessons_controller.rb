@@ -2,18 +2,15 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!
   before_action :fetch_lesson
 
-  def show
-    @lesson = Lesson.find(params[:id])
-  end
+  def show;end
 
   def check_done
-    byebug
-    current_user.approved_courses@lesson.check!
+    current_user.lesson_statuses.find_by(lesson_id: @lesson).done!
     redirect_to [@lesson.course, @lesson]
   end
 
   def uncheck_done
-    @lesson.uncheck!
+    current_user.lesson_statuses.find_by(lesson_id: @lesson).undone!
     redirect_to [@lesson.course, @lesson]
   end
 

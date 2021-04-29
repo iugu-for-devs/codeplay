@@ -18,6 +18,9 @@ describe 'Course Management' do
     course = Fabricate(:course)
     Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
+    lessons.each do |lesson|
+      Fabricate(:lesson_status, user:user, lesson:lesson)
+    end
     visit course_path(course)
 
     lessons.each do |lesson|
@@ -30,6 +33,9 @@ describe 'Course Management' do
     course = Fabricate(:course)
     Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
+    lessons.each do |lesson|
+      Fabricate(:lesson_status, user:user, lesson:lesson)
+    end
     visit course_path(course)
 
     click_on lessons.first.name

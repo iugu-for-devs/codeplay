@@ -6,7 +6,7 @@
                                 class="link-dark"><%= Course.model_name.human count: 2 %></a></li>
     <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
-  <%= link_to 'Meu Perfil', user_profile_path, class: 'btn btn-primary' %>
+  <%= link_to 'Meu Perfil', user_courses_path, class: 'btn btn-primary' %>
   
 </h5>
 
@@ -37,18 +37,20 @@
 <br>
 
 <% if(current_user&.own_course? @course) %>
+    
+    <% curren%>
+
+    <% end %>
 
 
-  <div>
-    <h3><%= "Progesso do Curso: #{@course.lessons.check.count}/#{@course.lessons.count}"%></h3>
-  </div>
-  <div>
+    <h4>Progresso: <%= %>/<%=current_user.courses.find(@course.id).lessons.size %></h4>
+
     <table class="table table-bordered">
       <thead class="table-dark">
         <tr>
           <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
           <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
-          <th scope="col"><%= Lesson.human_attribute_name(:done) %></th>
+          <th scope="col">Status</th>
         </tr>
         </thead>
       <tbody>
@@ -56,7 +58,7 @@
           <tr class="textrubocop">
             <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
             <td><%= lesson.description%></td>
-            <td><%= lesson.done%></td>
+            <td><%= current_user.lesson_statuses.find_by(lesson_id: lesson.id).status %></td>
           </tr>
         <% end %>
         <% @course.text_lessons.each do |lesson| %>

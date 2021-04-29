@@ -8,6 +8,7 @@ class Course < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :users, through: :orders
 
+
   has_many :requirements, class_name: 'Course',
                           foreign_key: 'requirement_id', dependent: :nullify, inverse_of: :requirement
 

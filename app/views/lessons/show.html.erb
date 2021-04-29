@@ -14,11 +14,12 @@
 
 
 <div>
-  <% if @lesson.done? %>
+
+  <% if current_user.lesson_statuses.find_by(lesson_id: @lesson.id).done?  %>
     <%= link_to 'Concluído!', uncheck_done_course_lesson_path, method: :post, class:"btn btn-success"%>
   <% else %>
     <%= link_to 'Marcar como concluído', check_done_course_lesson_path, method: :post, class:"btn btn-secondary" %>
-  <% end %>
+  <% end%>
 </div>
 <br>
 <div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">

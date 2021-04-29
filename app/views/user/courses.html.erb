@@ -16,20 +16,25 @@
               </tr>
             </thead>
             <tbody>
-            <% current_user.approved_courses.each do |course| %>
-              <% progress = ((course.lessons.check.count / course.lessons.count.to_f)*100).round(1)%>
-              <tr>
-                <td><%= link_to course.name, course, class: 'btn btn-light'%></td>
-                <td><%= course.description %></td>@
-                <td>
-                  <div class="progress-bar bg-light border border-secondary">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
-                    style="width: <%= progress %>%; height:100%;" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
-                    <%= progress %>%</div>
-                    </div>
-                </td>
-              </tr>
-            <% end %>
+              <% current_user.approved_courses.each do |course| %>
+                
+                <% done = 1 %>
+                <% progress = ((done/course.lessons.count.to_f)*100).round(1)%>
+                
+                <tr>
+               
+                  <td><%= link_to course.name, course, class: 'btn btn-light'%></td>
+                  <td><%= course.description %></td>
+                  <td>
+                    <div class="progress-bar bg-light border border-secondary">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                      role="progressbar" style="width: <%= progress %>%; height:100%;"
+                      aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100"> <%= progress %>%
+                      </div>
+                    </div> 
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
