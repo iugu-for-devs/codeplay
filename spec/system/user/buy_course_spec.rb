@@ -8,7 +8,7 @@ describe 'Authenticated user buy course' do
     visit course_path(course)
     click_on 'Comprar'
 
-    expect(page).to have_current_path(new_order_path(course: course))
+    expect(page).to have_current_path(new_course_order_path(course))
   end
 
   context 'when status is approved' do

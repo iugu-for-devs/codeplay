@@ -5,8 +5,8 @@ describe 'Ownership of courses' do
     courses = Fabricate.times(3, :course)
     client = Fabricate(:user)
     login_as client, scope: :user
-    order = Fabricate(:order, user: client, course: courses.first)
-    
+    Fabricate(:order, user: client, course: courses.first)
+
     visit root_path
     click_on 'Meu Perfil'
     click_on 'Meus Cursos'
@@ -20,8 +20,8 @@ describe 'Ownership of courses' do
     courses = Fabricate.times(3, :course)
     client = Fabricate(:user)
     login_as client, scope: :user
-    order = Fabricate(:order, user: client, course: courses.first)
-    
+    Fabricate(:order, user: client, course: courses.first)
+
     visit root_path
     within('div#navbarSupportedContent') do
       click_on 'Cursos'
@@ -36,13 +36,13 @@ describe 'Ownership of courses' do
 
     expect(page).not_to have_text('Comprar')
   end
-  
+
   it 'buy button visible to unowned courses' do
     courses = Fabricate.times(3, :course)
     client = Fabricate(:user)
     login_as client, scope: :user
-    order = Fabricate(:order, user: client, course: courses.first)
-    
+    Fabricate(:order, user: client, course: courses.first)
+
     visit root_path
     within('div#navbarSupportedContent') do
       click_on 'Cursos'
@@ -62,8 +62,8 @@ describe 'Ownership of courses' do
     courses = Fabricate.times(3, :course)
     client = Fabricate(:user)
     login_as client, scope: :user
-    order = Fabricate(:order, user: client, course: courses.first)
-    
+    Fabricate(:order, user: client, course: courses.first)
+
     visit root_path
     click_on 'Meu Perfil'
     click_on 'Meus Cursos'

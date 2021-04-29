@@ -30,7 +30,7 @@ if Rails.env.development? || Rails.env.test?
       subscriptions.each do |subs|
         subs.courses << courses[0..3]
       end
-      
+
       puts "   #{subscriptions.size} assinaturas foram gerados. \n"
     end
   end

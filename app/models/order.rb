@@ -9,12 +9,12 @@ class Order < ApplicationRecord
   validates :token, presence: true
 
   def send_invoice_request
-    if course
-      response = generate_course_invoice 
-    else
-      response = generate_subscription_invoice
-    end
-    
+    response = if course
+                 generate_course_invoice
+               else
+                 generate_subscription_invoice
+               end
+
     update(token: response[:token], status: response[:status])
   end
 

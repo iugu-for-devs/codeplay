@@ -53,8 +53,10 @@ describe 'User' do
     expect(page).to have_text(course.description)
   end
 
-  it 'user can view you profilea and can see owned subscriptions' do
+  it 'user can view you profile and can see owned subscriptions' do
     client = Fabricate(:user)
+    subscription = Fabricate(:subscription)
+    Fabricate(:order, subscription: subscription, user: client)
 
     login_as client, scope: :user
 
@@ -62,20 +64,8 @@ describe 'User' do
     click_on 'Meu Perfil'
     click_on 'Meus Planos'
 
-    expect(page).to have_text('Jornada Web com Rails')
-    expect(page).to have_text('Esta assinatura ira abranger todos os cursos de Ruby e Rails')
-    expect(page).to have_text('50')
-  end
-
-  it 'user can view you profilea and can see orders history' do
-    client = Fabricate(:user)
-
-    login_as client, scope: :user
-
-    visit root_path
-    click_on 'Meu Perfil'
-    click_on 'Minhas Compras'
-
-    expect(page).to have_text('PIX')
+    expect(page).to have_text(subscription.name)
+    expect(page).to have_text(subscription.description)
+    expect(page).to have_text(subscription.price)
   end
 end

@@ -9,7 +9,7 @@ class Invoice
   def self.conn_faraday
     Faraday.new(
       url: 'https://my-json-server.typicode.com/JorgeLAB/codeplay/',
-      headers: { 'Content-Type' => 'application/json' },
+      headers: { 'Content-Type' => 'application/json' }
     )
   end
 

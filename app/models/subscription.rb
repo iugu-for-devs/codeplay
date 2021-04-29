@@ -3,5 +3,5 @@ class Subscription < ApplicationRecord
   validates :name, uniqueness: true
   has_many :subscription_courses, dependent: :destroy
   has_many :courses, through: :subscription_courses
-  has_many :order
+  has_many :order, dependent: :restrict_with_exception
 end

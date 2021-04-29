@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 describe 'Authenticated user buy course' do
   it 'in order view' do
     login_user

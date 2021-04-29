@@ -4,19 +4,19 @@ class OrdersController < ApplicationController
   before_action :load_product
 
   def new
-      @order = Order.new
+    @order = Order.new
   end
 
   def create
-    if params[:subscription_id]
-      @order = Order.new(subscription: @product,
-        user: current_user,
-        pay_type: load_params[:pay_type])
-    else
-      @order = Order.new(course: @product,
-        user: current_user,
-        pay_type: load_params[:pay_type])
-    end
+    @order = if params[:subscription_id]
+               Order.new(subscription: @product,
+                         user: current_user,
+                         pay_type: load_params[:pay_type])
+             else
+               Order.new(course: @product,
+                         user: current_user,
+                         pay_type: load_params[:pay_type])
+             end
 
     push_invoice
   end
@@ -28,11 +28,11 @@ class OrdersController < ApplicationController
   end
 
   def load_product
-    if params[:subscription_id]
-      @product = Subscription.find(params[:subscription_id])
-    else
-      @product = Course.find(params[:course_id])
-    end
+    @product = if params[:subscription_id]
+                 Subscription.find(params[:subscription_id])
+               else
+                 Course.find(params[:course_id])
+               end
   end
 
   def push_invoice
