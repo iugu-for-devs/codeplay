@@ -37,13 +37,11 @@
 <br>
 
 <% if(current_user&.own_course? @course) %>
-    
-    <% curren%>
 
-    <% end %>
+  
 
 
-    <h4>Progresso: <%= %>/<%=current_user.courses.find(@course.id).lessons.size %></h4>
+    <h4>Progresso: <%= @course.lesson_statuses_by_user(current_user).done.count%>/<%=@course.lessons.count %></h4>
 
     <table class="table table-bordered">
       <thead class="table-dark">

@@ -16,7 +16,15 @@ class Course < ApplicationRecord
 
   validates :name, :description, presence: true
 
+  has_many :lesson_statuses, through: :lessons
+ 
+
   def self.search(query)
     where('courses.name LIKE ?', "%#{query}%")
   end
+
+  def lesson_statuses_by_user(user)
+    lesson_statuses.where(user: user)
+  end
+
 end

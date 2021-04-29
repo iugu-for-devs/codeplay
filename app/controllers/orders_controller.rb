@@ -7,8 +7,9 @@ class OrdersController < ApplicationController
 
   def create
     @course = Course.find(params[:course])
+    
     @course.lessons.each do |lesson|
-      LessonStatus.create(user_id: current_user.id, lesson_id: lesson.id)
+      LessonStatus.create(user: current_user, lesson: lesson)
     end
 
 

@@ -15,7 +15,7 @@
 
 <div>
 
-  <% if current_user.lesson_statuses.find_by(lesson_id: @lesson.id).done?  %>
+  <% if current_user.lesson_statuses.find_by(lesson: @lesson).done?  %>
     <%= link_to 'Concluído!', uncheck_done_course_lesson_path, method: :post, class:"btn btn-success"%>
   <% else %>
     <%= link_to 'Marcar como concluído', check_done_course_lesson_path, method: :post, class:"btn btn-secondary" %>
