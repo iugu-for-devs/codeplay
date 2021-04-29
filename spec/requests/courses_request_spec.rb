@@ -30,7 +30,7 @@ describe 'Course management', type: :request do
       course_params = Fabricate.attributes_for(:course)
       expect do
         post admin_courses_path, params: { course: course_params }
-      end.to change(Course, :count ).by(0)
+      end.to change(Course, :count).by(0)
 
       expect(response).to redirect_to(new_admin_session_path)
     end

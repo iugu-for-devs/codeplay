@@ -17,5 +17,4 @@ describe 'View Subscriptions' do
     expect(page).to have_text(other_subscription.name)
     expect(page).to have_text(other_subscription.description)
   end
-
 end
