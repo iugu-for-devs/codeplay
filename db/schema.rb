@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_183745) do
+ActiveRecord::Schema.define(version: 2021_04_28_010048) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.integer "admin_id", null: false
     t.string "token"
     t.decimal "price", precision: 10, scale: 2
-    t.string "token"
     t.integer "requirement_id"
     t.index ["admin_id"], name: "index_courses_on_admin_id"
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
