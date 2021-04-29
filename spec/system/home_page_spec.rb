@@ -76,7 +76,8 @@ describe 'Home page' do
       it 'can see buttons control carousel' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,10000)'
+        page.execute_script "document.getElementById('courses-section').scrollIntoView();"
+        sleep 0.5
 
         within '.courses-section' do
           expect(page).to have_content('Anterior')
@@ -87,7 +88,8 @@ describe 'Home page' do
       it 'can be seen a carousel with some courses' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000)'
+        page.execute_script "document.getElementById('courses-section').scrollIntoView();"
+        sleep 0.5
 
         within '.courses-section' do
           courses.each do |course|
@@ -103,6 +105,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script 'window.scrollBy(0,1000)'
+        sleep 0.5
 
         within '.courses-section' do
           courses.each do |course|
@@ -115,7 +118,8 @@ describe 'Home page' do
       it 'can see names and descriptions' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000)'
+        page.execute_script "document.getElementById('courses-section').scrollIntoView();"
+        sleep 0.5
 
         within '.courses-section' do
           courses.each do |course|
@@ -133,7 +137,8 @@ describe 'Home page' do
 
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000)'
+        page.execute_script "document.getElementById('courses-section').scrollIntoView();"
+        sleep 0.5
 
         within '.courses-section' do
           courses.each do |course|
@@ -149,6 +154,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('programs-section-title').scrollIntoView();"
+        sleep 0.5
 
         within '#programs-section' do
           expect(page).to have_content('Nossa forma de Fazer você aprender!')
@@ -162,6 +168,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('programs-section-first').scrollIntoView();"
+        sleep 0.5
 
         within '#programs-section' do
           expect(page).to have_content('Diga a nós o que você quer aprender, Que nós mostraremos como!')
@@ -178,6 +185,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('programs-section-second').scrollIntoView();"
+        sleep 0.5
 
         within '#programs-section' do
           expect(page).to have_content('A estrutura que você merece!')
@@ -190,6 +198,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('programs-section-third').scrollIntoView();"
+        sleep 0.5
 
         within '#programs-section' do
           expect(page).to have_content('Ensinar para à vida!')
@@ -205,6 +214,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('testimonial-section').scrollIntoView();"
+        sleep 0.5
 
         within '#testimonial-section' do
           expect(page).to have_content('Yukihiro Matsumoto')
@@ -220,6 +230,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('why_choose').scrollIntoView();"
+        sleep 0.5
 
         within '#why_choose' do
           expect(page).to have_content('Por que nos escolher!??')
@@ -236,6 +247,7 @@ describe 'Home page' do
         visit root_path
 
         page.execute_script "document.getElementById('footer-section').scrollIntoView();"
+        sleep 0.5
 
         within '.footer-section' do
           expect(page).to have_content('SOBRE À CODEPLAY')
