@@ -23,11 +23,11 @@ describe 'Course Management' do
     let(:user) { Fabricate(:user) }
 
     it 'Can create a course' do
-      login_as(admin, scope: :admin)
+      login_admin(admin)
       visit new_admin_course_path
 
       fill_in 'Nome', with: 'Curso de RubyOnRails'
-      fill_in 'Descrição', with: 'Curso de RubyOnRails para Iniciantes'
+      fill_in_rich_text_area 'Descrição', with: 'Curso de RubyOnRails para Iniciantes'
       click_on 'Cadastrar Curso'
 
       expect(current_path).to eq(admin_course_path(Course.last))
@@ -41,7 +41,7 @@ describe 'Course Management' do
       visit new_admin_course_path
 
       fill_in 'Nome', with: ''
-      fill_in 'Descrição', with: ''
+      fill_in_rich_text_area 'Descrição', with: ''
       click_on 'Cadastrar Curso'
 
       expect(page).to have_text('Nome não pode ficar em branco')
@@ -70,21 +70,20 @@ describe 'Course Management' do
 
       visit course_path(course)
       expect(page).to have_text(course.name)
-      expect(page).to have_text(course.description)
+      expect(page).to have_text(course.description.to_plain_text)
     end
   end
 
   context 'Index' do
     it 'Can list all courses' do
-      course_one = Fabricate(:course)
-      course_two = Fabricate(:course)
+      courses = Fabricate.times(2, :course)
 
       visit courses_path
 
-      expect(page).to have_text(course_one.name)
-      expect(page).to have_text(course_one.description)
-      expect(page).to have_text(course_two.name)
-      expect(page).to have_text(course_two.description)
+      courses.each do |course|
+        expect(page).to have_text(course.name)
+        expect(page).to have_text(course.description.to_plain_text)
+      end
     end
   end
 end

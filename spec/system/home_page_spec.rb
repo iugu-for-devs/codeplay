@@ -112,20 +112,6 @@ describe 'Home page' do
         end
       end
 
-      it 'can see names and descriptions' do
-        visit root_path
-
-        page.execute_script 'window.scrollBy(0,1000)'
-
-        within '.courses-section' do
-          courses.each do |course|
-            expect(page).to have_content(course.name)
-            expect(page).to have_content(course.description)
-            click_on('Próximo')
-          end
-        end
-      end
-
       it 'can see number of lessons' do
         courses.each do |course|
           Fabricate.times(7, :lesson, course: course)

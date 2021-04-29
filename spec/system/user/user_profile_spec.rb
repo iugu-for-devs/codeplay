@@ -43,14 +43,14 @@ describe 'User' do
   it 'user can view you profile and can see owned courses' do
     client = login_user
     course = Fabricate(:course)
-    Fabricate(:order, course: course, user: client)
+    Fabricate(:order, course: course, user: client, status: 'approved')
 
     visit root_path
     click_on 'Meu Perfil'
     click_on 'Meus Cursos'
 
     expect(page).to have_text(course.name)
-    expect(page).to have_text(course.description)
+    expect(page).to have_text(course.description.to_plain_text)
   end
 
   it 'user can view you profilea and can see owned subscriptions' do

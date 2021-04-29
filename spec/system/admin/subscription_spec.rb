@@ -97,7 +97,7 @@ describe 'Subscription plan' do
     click_on 'Adicionar curso'
 
     expect(page).to have_text(course.name)
-    expect(page).to have_text(course.description)
+    expect(page).to have_text(course.description.to_plain_text)
   end
 
   it 'admin cannot add same course to subscription' do

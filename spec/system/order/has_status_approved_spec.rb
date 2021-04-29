@@ -34,7 +34,7 @@ describe 'has status approved' do
 
     user_courses.each do |course|
       expect(page).to have_content(course.name)
-      expect(page).to have_content(course.description)
+      expect(page).to have_content(course.description.to_plain_text)
     end
   end
 end
