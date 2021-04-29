@@ -1,0 +1,25 @@
+<% if @lesson.errors.any?%>
+  <ul>
+    <% @lesson.errors.each do |error| %>
+      <li class='alert-success'><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2><%= header_title %></h2>
+<%= form_with model: [:admin, :course, @lesson] do |form| %>
+    <div class="mx-auto">
+      <%= form.label :name%>
+      <%= form.text_field :name, class: "form-control"%>
+    </div>
+    <div class="mx-auto">
+      <%= form.label :description,class:"form-label" %>
+      <%= form.text_area :description,class:"form-control", rows:"3" %>
+    </div>
+    <br>
+    <div class="mx-auto">
+      <%= form.label :lesson_body,class:"form-label" %>
+      <%= form.rich_text_area :lesson_body %>
+    </div>
+    <div><%= form.submit class:"btn btn-primary" %></div>
+<% end %>
