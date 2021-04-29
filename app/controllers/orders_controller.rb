@@ -1,30 +1,46 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_params, only: [:create]
+  before_action :load_product
+
   def new
-    @course = Course.find(params[:course])
-    @order = Order.new
+      @order = Order.new
   end
 
   def create
-    @course = Course.find(params[:course])
-    @order = Order.new(course: @course,
-                       user: current_user,
-                       pay_type: params[:pay_type])
-
-    # response = Invoice.generate(token_user: current_user.token, token_course: @course.token, token_pay_type: params[:pay_type])
-    # @order = Order.new(pay_type: params[:pay_type], status: response[:status])
-
-    response = @order.send_invoice_request
-
-    return redirect_to @course, notice: t('Compra efetuada com sucesso') if response?('Aprovado') && @order.save
-
-    if @order.status.eql?('pending') && @order.save
-      return redirect_to @course, notice: t('Fatura enviada para seu email.')
+    if params[:subscription_id]
+      @order = Order.new(subscription: @product,
+        user: current_user,
+        pay_type: load_params[:pay_type])
+    else
+      @order = Order.new(course: @product,
+        user: current_user,
+        pay_type: load_params[:pay_type])
     end
 
-    if @order.status.eql? 'refused'
-      flash.now[:error] = 'Fatura não pode ser gerada tente novamente'
-      render :new
+    push_invoice
+  end
+
+  private
+
+  def load_params
+    params.require(:order).permit(:pay_type)
+  end
+
+  def load_product
+    if params[:subscription_id]
+      @product = Subscription.find(params[:subscription_id])
+    else
+      @product = Course.find(params[:course_id])
     end
+  end
+
+  def push_invoice
+    @order.send_invoice_request
+    @order.save
+
+    return redirect_to @product, notice: t('.success') if @order.approved?
+
+    return redirect_to @product, notice: 'Aguardando confirmação pagamento.' if @order.status == 'pending'
   end
 end

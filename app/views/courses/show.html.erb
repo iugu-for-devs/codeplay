@@ -21,15 +21,19 @@
      <% if @course.cover.attached? %>
         <%= image_tag @course.cover, size:'360x360' %>
       <% else %>
-        <%= image_tag 'covers/404.jpg', size:'360x360' %> 
+        <%= image_tag 'covers/Logo_verde.jpg', size:'360x360' %>
       <% end %>
   </dd>
   <% if @course.requirements %>
-    <dt><%= Course.human_attribute_name(:requirements) %></dt>
-    <dd><%= @course.requirements %></dd>
+    <dt><%= Course.human_attribute_name(:requirements) %>: </dt>
+  <% @course.requirements.each do |requirement| %>
+    <dd><%= requirement.name %></dd>
+   <% end %>
   <% end %>
 </dl>
 <br>
+
+<% if(current_user&.own_course? @course) %>
 
 <div>
   <table class="table table-bordered">
@@ -38,7 +42,7 @@
         <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
         <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
       </tr>
-      </thead>
+    </thead>
     <tbody>
       <% @course.lessons.each do |lesson| %>
         <tr class="text-white">
@@ -48,7 +52,10 @@
       <% end %>
     </tbody>
   </table>
+  <% else %>
+
+    <%= link_to t('buttons.buy'),
+      new_order_path(course: @course),
+      class: 'btn btn-primary' %>
+  <% end %>
 </div>
-<% unless current_user.courses.ids.include?(@course.id) %>
-  <%= link_to t('buttons.buy'), new_order_path(course: @course), class: 'btn btn-primary' %>
-<% end %>

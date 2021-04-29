@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-            <% @courses.each do |course| %>
+            <% current_user.approved_courses.each do |course| %>
               <tr>
                 <td><%=link_to course.name, course_path(course.id) %></td>
                 <td><%=link_to course.description,  course_path(course.id) %></td>

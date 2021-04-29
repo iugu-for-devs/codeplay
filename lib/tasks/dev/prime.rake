@@ -27,6 +27,10 @@ if Rails.env.development? || Rails.env.test?
 
       subscriptions = Fabricate.times(30, :subscription)
 
+      subscriptions.each do |subs|
+        subs.courses << courses[0..3]
+      end
+      
       puts "   #{subscriptions.size} assinaturas foram gerados. \n"
     end
   end

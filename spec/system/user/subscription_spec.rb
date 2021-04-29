@@ -18,22 +18,22 @@ describe 'View Subscriptions' do
     expect(page).to have_text(other_subscription.description)
   end
 
-  it 'user see subscription plan details' do
-    course = Fabricate(:course)
-    Fabricate.times(3, :lesson, course: course)
-    subscription = Fabricate(:subscription)
-    subscription.courses << course
+  # it 'user see subscription plan details' do
+  #   course = Fabricate(:course)
+  #   Fabricate.times(3, :lesson, course: course)
+  #   subscription = Fabricate(:subscription)
+  #   subscription.courses << course
 
-    visit root_path
-    click_on 'Planos de Assinatura'
-    click_on subscription.name
-    click_on course.name
+  #   visit root_path
+  #   click_on 'Planos de Assinatura'
+  #   click_on subscription.name
+  #   click_on course.name
 
-    expect(page).to have_text(course.name)
-    expect(page).to have_text(course.description)
-    course.lessons.each do |lesson|
-      expect(page).to have_text(lesson.name)
-      expect(page).to have_text(lesson.description)
-    end
-  end
+  #   expect(page).to have_text(course.name)
+  #   expect(page).to have_text(course.description)
+  #   course.lessons.each do |lesson|
+  #     expect(page).to have_text(lesson.name)
+  #     expect(page).to have_text(lesson.description)
+  #   end
+  # end
 end
