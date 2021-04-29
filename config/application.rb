@@ -29,11 +29,13 @@ module Codeplay
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = "Brasilia"
+    config.eager_load_paths << Rails.root.join("lib")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    config.i18n.available_locales = %i[pt-BR en]  
+    config.external_apis = config_for(:external_apis).symbolize_keys
+    # Use credentials on future
+    config.iugu_lite_token = '46a9c9e65f59c14c046b665ef8aa16e03b1fb64b'
   end
 end

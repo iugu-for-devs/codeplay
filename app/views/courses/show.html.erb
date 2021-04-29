@@ -4,7 +4,7 @@
                                 class="link-dark">Home</a></li>
     <li class="breadcrumb-item"><a href="<%= courses_path %>"
                                 class="link-dark"><%= Course.model_name.human count: 2 %></a></li>
-    <li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
 </h5>
 
@@ -31,29 +31,40 @@
    <% end %>
   <% end %>
 </dl>
-<br>
 
-<% if((current_user&.own_course? @course) || (current_user&.own_course_subscription? @course))  %>
+<hr>
 
+<p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Lesson.model_name.human(count: :other)) %></p>
 <div>
-  <table class="table table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
-        <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @course.lessons.each do |lesson| %>
-        <tr class="text-white">
-          <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
-          <td><%= lesson.description%></td>
+  <% if((current_user&.own_course? @course) || (current_user&.own_course_subscription? @course) )  %>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col"><%= Lesson.human_attribute_name(:name) %></th>
+          <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+        <tbody>
+          <% @course.lessons.each do |lesson| %>
+            <tr class="text">
+              <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+              <td><%= lesson.description%></td>
+            </tr>
+          <% end %>
+          <% @course.text_lessons.each do |lesson| %>
+            <tr class="text">
+              <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+              <td><%= lesson.description%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% unless current_user&.own_course? @course %>
+      <%= link_to t('buttons.buy'),
+        new_course_order_path(@course),
+        class: 'btn btn-primary' %>
+    <% end %>
   <% else %>
-
     <%= link_to t('buttons.buy'),
       new_course_order_path(@course),
       class: 'btn btn-primary' %>

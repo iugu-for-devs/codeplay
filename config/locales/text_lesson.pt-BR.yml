@@ -1,0 +1,22 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      text_lesson:
+        one: Aula Texto
+        other: Aulas Texto
+    attributes:
+      text_lesson:
+        name: Nome
+        description: Descrição
+        lesson_body: Conteúdo
+  admin:
+    text_lessons:
+      update:
+        success: Aula atualizada com sucesso
+      destroy:
+        success: Aula %{lesson_name} apagada com sucesso
+      new:
+        header_title: Cadastro de Aula
+      edit:
+        header_title: Edição de Aula

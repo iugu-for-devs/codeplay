@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'User' do
   it 'can view specific navbar when logged in' do
     client = Fabricate(:user)
+
     login_as client, scope: :user
 
     visit root_path
@@ -19,6 +20,7 @@ describe 'User' do
 
   it 'can view user profile' do
     client = Fabricate(:user)
+
     login_as client, scope: :user
 
     visit root_path
@@ -30,6 +32,7 @@ describe 'User' do
 
   it 'can view user profile and only users email' do
     clients = Fabricate.times(2, :user)
+
     login_as clients[0], scope: :user
 
     visit root_path
@@ -40,7 +43,7 @@ describe 'User' do
     expect(page).not_to have_text(clients[1].email)
   end
 
-  it 'user can view you profile and can see owned courses' do
+  it 'user can view their profile and can see owned courses' do
     client = login_user
     course = Fabricate(:course)
     Fabricate(:order, course: course, user: client)
@@ -53,10 +56,10 @@ describe 'User' do
     expect(page).to have_text(course.description)
   end
 
-  it 'user can view you profile and can see owned subscriptions' do
+  it 'user can view their profile and can see owned subscriptions' do
     client = Fabricate(:user)
     subscription = Fabricate(:subscription)
-    Fabricate(:order, subscription: subscription, user: client)
+    order = Fabricate(:order, subscription: subscription, user: client)
 
     login_as client, scope: :user
 

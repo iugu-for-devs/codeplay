@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     resources :courses, only: [:new, :create, :index, :show] do
       resources :lessons, only: [:show, :new, :create, :edit, :update, :destroy]
+      resources :text_lessons, only: [:show, :new, :create, :edit, :update, :destroy]
       member do
         get 'requirements'
         get 'search_courses'
@@ -38,5 +39,6 @@ Rails.application.routes.draw do
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
     resources :orders, only:[:new, :create]
+    resources :text_lessons, only: [:show]
   end
 end

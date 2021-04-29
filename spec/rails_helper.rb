@@ -39,8 +39,10 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 require 'capybara/rspec'
+require 'action_text/system_test_helper'
 
 RSpec.configure do |config|
+  config.include ActionText::SystemTestHelper, type: :system
   config.include Warden::Test::Helpers
   include LoginAdmin
   include LoginUser
@@ -79,6 +81,8 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
+  # config.filter_gems_from_backtrace("gem name")
+  include Warden::Test::Helpers
   config.filter_gems_from_backtrace(/gems/)
 end
 

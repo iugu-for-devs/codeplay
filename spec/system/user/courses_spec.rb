@@ -4,8 +4,9 @@ describe 'Course Management' do
   it 'visit courses index' do
     courses = Fabricate.times(3, :course)
     visit root_path
-    expect(page).to have_text('BOAS VINDAS AO CODEPLAY')
-    click_on 'Ver Cursos'
+    within 'li#courses' do
+      click_on 'Cursos'
+    end
 
     courses.each do |course|
       expect(page).to have_text(course.name)
@@ -38,7 +39,7 @@ describe 'Course Management' do
     expect(page).to have_css("iframe[src*='https://player.vimeo.com/video/#{lessons.first.video_code}']")
   end
 
-  it 'cannot visit lesson without login' do
+  it 'cannot visit video lesson without login' do
     course = Fabricate(:course)
     lessons = Fabricate.times(3, :lesson, course: course)
 

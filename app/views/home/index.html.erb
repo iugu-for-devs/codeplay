@@ -21,7 +21,7 @@
     <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-          <h2 class="section-title">Cursos</h2>
+          <h2 class="section-title"><%= Course.model_name.human count: 2 %></h2>
         </div>
       </div>
     </div>
@@ -42,7 +42,3 @@
 <div id='why_choose'>
   <%= render 'why_choose' %>
 </div>
-<h3>BOAS VINDAS AO CODEPLAY</h3>
-
-<%= link_to 'Ver Cursos', courses_path, class: 'btn btn-primary' %>
-<%= link_to 'Planos de Assinatura', subscriptions_path , class: 'btn btn-primary' %>

@@ -2,7 +2,7 @@ class Invoice
   def initialize(data:, token:, pay_type:); end
 
   def self.generate(attributes = {})
-    endpoint = 'invoices_generate_refused'
+    endpoint = 'invoices_generate_approved'
     get_request(endpoint, attributes).first
   end
 

@@ -3,8 +3,8 @@ pt-BR:
   activerecord:
     models:
       lesson:
-        one: Aula
-        other: Aulas
+        one: Aula Video
+        other: Aulas Video
     attributes:
       lesson:
         name: Nome

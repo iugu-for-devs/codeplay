@@ -14,6 +14,17 @@ pt-BR:
     profile: Meu Perfil
     sign_up: Nova Conta
     subscriptions: Assinaturas
+  label:
+    list: Lista de %{model}
+  breadcrumb:
+    dashboard_admin: Painel de Controle
+    member_managment: Gerenciamento de Membros
+    course_managment: Gerenciamento de Cursos
+    subscription_managment: Gerenciamento de Planos
+    dashboard_user: Meu Perfil
+    subscription: Planos
+    courses: Cursos
+    orders: Compras
   layouts:
     application:
       buttons:
