@@ -19,11 +19,7 @@ class OrdersController < ApplicationController
 
     return redirect_to @course, notice: t('.success') if @order.approved?
 
-    if @order.status == 'pending'
-      return redirect_to @course, notice: "Aguardando confirmação pagamento."
-    end
-
-
+    return redirect_to @course, notice: 'Aguardando confirmação pagamento.' if @order.status == 'pending'
   end
 
   private

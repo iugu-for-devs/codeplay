@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 describe 'order', type: :request do
-
   context 'when params is correct' do
-
     it 'authentided user can create a order' do
       user = login_user
       course = Fabricate(:course)
 
-      old_order_status = 'pending'
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
       allow(Invoice).to receive(:get_request).and_return([{ status: 'pedding', token: returned_token }])
 

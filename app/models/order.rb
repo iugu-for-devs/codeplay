@@ -18,7 +18,6 @@ class Order < ApplicationRecord
   private
 
   def generate_invoice
-
     Invoice.generate(token_user: user.token,
                      token_course: course.token,
                      token_pay_type: pay_type)
