@@ -1,6 +1,6 @@
 Fabricator(:user) do
-  full_name 'John Doe'
-  email { sequence(:email) { |i| "john.doe#{i}@iugu.com.br" } }
+  full_name { sequence(:full_name) { |i| "User #{i}" } }
+  email { sequence(:email) { |i| "user#{i}@gmail.com" } }
   password '12345678'
   birthdate '18/12/2220'
   cpf '00000000353'

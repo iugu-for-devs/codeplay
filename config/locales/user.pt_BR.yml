@@ -9,8 +9,19 @@ pt-BR:
       user:
         email: E-mail
         password: Senha
-        password_confirmation: Confirmar senha
+        password_confirmation: Confirmar Senha
         remember_me: Lembre-se de mim
+        full_name: Nome completo
+        birthdate: Data de nascimento
+        cpf: CPF
+        street: Rua
+        number: Número
+        complement: Complemento
+        zipcode: CEP
+        city: Cidade
+        state: Estado
+        remember_me: Lembrar de mim
+        current_password: Senha atual
   user:
     sidebar:
       links:
@@ -26,6 +37,9 @@ pt-BR:
       sign_up: Cadastrar
 
   users:
+    confirmations:
+      new:
+        resend_instructions: Reenviar instruções de confirmação
     passwords:
       edit:
         change_my_password: Alterar minha senha
@@ -43,10 +57,21 @@ pt-BR:
       already_signed_out: Saiu com sucesso.
     registrations:
       new:
-        email: E-mail
-        password: Senha
-        password_confirmation: Confirmar Senha
+        new_registration: Novo cadastro
         sign_up: Cadastrar
+        minimun_characters: carateres no mínimo
+        address: Endereço
+      edit:
+        title: Editar usuário
+        address: Endereço
+        leave_blank_password: deixe em branco se não quiser alterar
+        minimun_characters: carateres no mínimo
+        need_current_password: precisamos da sua senha atual para confirmar as alterações
+        update_button: Atualizar
+        back: Voltar
+        cancel_my_account: Cancelar minha conta
+        unhappy: Não está feliz?
+        cancel_confirmation: Tem certeza?
     shared:
       links:
         back: Voltar

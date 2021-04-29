@@ -23,12 +23,6 @@ RSpec.describe User, type: :model do
       expect(user).to be_persisted
     end
 
-    it 'ensures email do not use a public domain' do
-      user = Fabricate.build(:user, email: 'johnny.doe@gmail.com')
-      user.save
-      expect(user.errors[:email]).to include('não é válido')
-    end
-
     it 'ensures email is unique' do
       user = Fabricate(:user)
       new_user = Fabricate.build(:user, email: user.email)

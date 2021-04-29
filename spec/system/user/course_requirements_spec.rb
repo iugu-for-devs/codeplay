@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'Course Requirements' do
   it 'User view courses requirements' do
     user = Fabricate(:user)
-    user.confirm
     login_as user, scope: user
     course = Fabricate(:course)
     required_course = Fabricate(:course)

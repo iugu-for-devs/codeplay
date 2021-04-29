@@ -9,11 +9,10 @@ describe 'user registration' do
 
       first(:button, 'Nova Conta').click
       expect(current_path).to eq(new_user_registration_path)
-
       expect(page).to have_text('Nome completo')
       expect(page).to have_text('E-mail')
       expect(page).to have_text('Senha')
-      expect(page).to have_text('Confirmar senha')
+      expect(page).to have_text('Confirmar Senha')
       expect(page).to have_text('Data de nascimento')
       expect(page).to have_text('CPF')
       expect(page).to have_text('Endereço')
@@ -35,7 +34,7 @@ describe 'user registration' do
     fill_in 'Nome completo', with: 'John Doe'
     fill_in 'E-mail', with: 'john.doe@codesaga.com.br'
     fill_in 'Senha', with: '12345678'
-    fill_in 'Confirmar senha', with: '12345678'
+    fill_in 'Confirmar Senha', with: '12345678'
     fill_in 'Data de nascimento', with: '08/08/1990'
     fill_in 'CPF', with: '000.000.003-53'
     fill_in 'Rua', with: 'Av. Marechal Tito'
@@ -48,7 +47,6 @@ describe 'user registration' do
       click_on 'Cadastrar'
     end
     expect(current_path).to eq(root_path)
-    expect(page).to have_text('Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail.')
   end
 
   context 'when register with blank mandatory fields' do
@@ -59,7 +57,7 @@ describe 'user registration' do
       expect(current_path).to eq(new_user_registration_path)
       fill_in 'Nome completo', with: 'John Doe'
       fill_in 'Senha', with: '12345678'
-      fill_in 'Confirmar senha', with: '12345678'
+      fill_in 'Confirmar Senha', with: '12345678'
       fill_in 'Data de nascimento', with: '08/08/1990'
       fill_in 'CPF', with: '000.000.003-53'
       fill_in 'Rua', with: 'Av. Marechal Tito'
@@ -69,7 +67,7 @@ describe 'user registration' do
       fill_in 'Cidade', with: 'São Paulo'
       fill_in 'Estado', with: 'SP'
       fill_in 'Senha', with: '12345678'
-      fill_in 'Confirmar senha', with: '12345678'
+      fill_in 'Confirmar Senha', with: '12345678'
       within 'form' do
         click_on 'Cadastrar'
       end
@@ -100,28 +98,6 @@ describe 'user registration' do
   end
 
   context 'when fields have invalid values' do
-    it 'user cannot register with gmail domain' do
-      visit new_user_registration_path
-
-      fill_in 'Nome completo', with: 'John Doe'
-      fill_in 'E-mail', with: 'john.doe@gmail.com'
-      fill_in 'Senha', with: '12345678'
-      fill_in 'Confirmar senha', with: '12345678'
-      fill_in 'Data de nascimento', with: '08/08/1990'
-      fill_in 'CPF', with: '000.000.003-53'
-      fill_in 'Rua', with: 'Av. Marechal Tito'
-      fill_in 'Número', with: '36'
-      fill_in 'Complemento', with: 'Apto 48'
-      fill_in 'CEP', with: '08040-150'
-      fill_in 'Cidade', with: 'São Paulo'
-      fill_in 'Estado', with: 'SP'
-      within 'form' do
-        click_on 'Cadastrar'
-      end
-      expect(current_path).to eq(user_registration_path)
-      expect(page).to have_text('E-mail não é válido')
-    end
-
     it 'user email must be unique to register' do
       user = Fabricate(:user)
       visit root_path
@@ -131,7 +107,7 @@ describe 'user registration' do
 
       fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: '12345678'
-      fill_in 'Confirmar senha', with: '12345678'
+      fill_in 'Confirmar Senha', with: '12345678'
       within 'form' do
         click_on 'Cadastrar'
       end
@@ -147,7 +123,7 @@ describe 'user registration' do
 
       fill_in 'E-mail', with: 'john.doe@codesaga.com'
       fill_in 'Senha', with: '123456'
-      fill_in 'Confirmar senha', with: '123456'
+      fill_in 'Confirmar Senha', with: '123456'
       within 'form' do
         click_on 'Cadastrar'
       end
@@ -161,7 +137,6 @@ describe 'user login' do
   context 'when signin with valid user' do
     it 'user can login' do
       user = Fabricate(:user)
-      user.confirm
       visit root_path
       click_on 'Entrar'
 
@@ -226,7 +201,6 @@ describe 'user login' do
   context 'when user signout' do
     it 'user logout' do
       user = Fabricate(:user)
-      user.confirm
       login_as user, scope: :user
       visit user_session_path
 
@@ -245,32 +219,12 @@ describe 'user login' do
       expect(page).to have_text('Saiu com sucesso.')
     end
   end
-
-  context 'when user sigin after signup' do
-    it 'user cannot login without email confirmation' do
-      user = Fabricate(:user)
-      visit root_path
-      click_on 'Entrar'
-
-      expect(current_path).to eq(new_user_session_path)
-
-      fill_in 'E-mail', with: user.email
-      fill_in 'Senha', with: user.password
-
-      click_on 'Login'
-
-      expect(current_path).to eq(user_session_path)
-
-      expect(page).to have_text('Antes de continuar, confirme a sua conta')
-    end
-  end
 end
 
 describe 'user can change password' do
   context 'when user changes password' do
     it 'request reset password' do
       user = Fabricate(:user)
-      user.confirm
 
       visit user_session_path
       click_on 'Esqueceu sua senha?'
@@ -285,7 +239,6 @@ describe 'user can change password' do
 
     it 'create a new password' do
       user = Fabricate(:user)
-      user.confirm
       token = user.send_reset_password_instructions
       visit edit_user_password_path(reset_password_token: token)
 
