@@ -35,7 +35,7 @@ class PayType
     end
   end
 
-  def self.name
+  def self.name(pay_type)
     name = PayType.all.select{ |type|  type.token == pay_type}
     name.first.name
   end

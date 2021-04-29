@@ -40,17 +40,28 @@ describe 'User' do
     expect(page).not_to have_text(clients[1].email)
   end
 
-  it 'user can view you profile and can see owned courses' do
+  it 'user view owned courses' do
     client = login_user
-    course = Fabricate(:course)
-    Fabricate(:order, course: course, user: client)
+    courses = Fabricate.times(5, :course)
+    courses.each do |course|
+      Fabricate.times(5, :lesson, course: course)
+      Fabricate(:order, user: client, course: course)
+    end
 
-    visit root_path
-    click_on 'Meu Perfil'
-    click_on 'Meus Cursos'
+    visit user_courses_path
+    courses.each do |course|
+      expect(page).to have_text(course.name)
+      expect(page).to have_text(course.description)
+      within "td#progress_#{course.id}" do
+        expect(page).to have_text('0.0%')
+      end
+    end
+  end
 
-    expect(page).to have_text(course.name)
-    expect(page).to have_text(course.description)
+  it 'user view he has no courses' do
+    client = login_user
+    visit user_courses_path
+    expect(page).to have_text('Você ainda não tem cursos')
   end
 
   it 'user can view his profile and can see owned subscriptions' do
@@ -67,15 +78,19 @@ describe 'User' do
     expect(page).to have_text('50')
   end
 
-  it 'user can view his profile and can see orders history' do
-    client = Fabricate(:user)
+  it 'user can view his orders history' do
+    client = login_user
+    courses = Fabricate.times(5, :course)
+    courses.each do |course|
+      Fabricate(:order, user: client, course: course)
+    end
 
-    login_as client, scope: :user
+    visit user_orders_path
 
-    visit root_path
-    click_on 'Meu Perfil'
-    click_on 'Minhas Compras'
+    courses.each do |course|
+      expect(page).to have_text(course.name)
+    end
 
-    expect(page).to have_text('PIX')
+    # PAY TYPE NAME
   end
 end

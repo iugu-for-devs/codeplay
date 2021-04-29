@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-      <%= render partial: 'sidebar' %>
+    <%= render partial: 'sidebar' %>
+    <% if current_user.courses.empty? %>
+      Você ainda não tem cursos
+    <% else %>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <p class="h5 mb-3 fw-normal text-center">Lista de Cursos</p>
         <div class="table-responsive">
@@ -17,13 +20,20 @@
               <% progress = ((course.lessons.check.count / course.lessons.count.to_f)*100).round(1)%>
               <tr>
                 <td><%= link_to course.name, course, class: 'btn btn-light'%></td>
-                <td><%= course.description %></td>
-                <td ><%= progress %>%</td>
+                <td><%= course.description %></td>@
+                <td>
+                  <div class="progress-bar bg-light border border-secondary">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+                    style="width: <%= progress %>%; height:100%;" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                    <%= progress %>%</div>
+                    </div>
+                </td>
               </tr>
             <% end %>
             </tbody>
           </table>
         </div>
       </main>
+    <% end %>
   </div>
 </div>

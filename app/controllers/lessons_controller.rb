@@ -7,7 +7,8 @@ class LessonsController < ApplicationController
   end
 
   def check_done
-    @lesson.check!
+    byebug
+    current_user.approved_courses@lesson.check!
     redirect_to [@lesson.course, @lesson]
   end
 
