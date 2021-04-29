@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.string "cover"
     t.integer "admin_id", null: false
     t.decimal "price", precision: 10, scale: 2
-    t.string "token"
     t.integer "requirement_id"
+    t.string "token"
     t.index ["admin_id"], name: "index_courses_on_admin_id"
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
