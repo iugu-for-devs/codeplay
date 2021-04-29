@@ -42,5 +42,7 @@ class OrdersController < ApplicationController
     return redirect_to @product, notice: t('.success') if @order.approved?
 
     return redirect_to @product, notice: 'Aguardando confirmação pagamento.' if @order.status == 'pending'
+
+    return redirect_to @product, notice: 'Pedido negado!' if @order.status == 'refused'
   end
 end

@@ -33,7 +33,7 @@
 </dl>
 <br>
 
-<% if(current_user&.own_course? @course) %>
+<% if((current_user&.own_course? @course) || (current_user&.own_course_subscription? @course))  %>
 
 <div>
   <table class="table table-bordered">

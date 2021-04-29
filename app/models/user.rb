@@ -14,7 +14,10 @@ class User < ApplicationRecord
   end
 
   def approved_courses
-    orders.where(status: 'approved').map(&:course)
+    orders.where(status: 'approved').map(&:course).compact
+
+    #orders.where(status: 'approved').map(&:subscription)
+    #byebug
   end
 
   def own_subscription?(subscription)
@@ -22,7 +25,13 @@ class User < ApplicationRecord
     user_subscription.include? subscription
   end
 
+  def own_course_subscription?(course)
+    course_subscription = approved_subscription
+    byebug
+    course_subscription.map(&:courses)
+  end
+
   def approved_subscription
-    orders.where(status: 'approved').map(&:subscription)
+    orders.where(status: 'approved').map(&:subscription).compact
   end
 end
