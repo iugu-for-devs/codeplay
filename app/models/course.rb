@@ -14,6 +14,8 @@ class Course < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :users, through: :orders
 
+  has_rich_text :description
+
   validates :name, :description, presence: true
 
   def self.search(query)
