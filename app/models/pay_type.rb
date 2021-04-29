@@ -34,6 +34,13 @@ class PayType
       new(**attributes)
     end
   end
+
+  def self.name
+    name = PayType.all.select{ |type|  type.token == pay_type}
+    name.first.name
+  end
+
+
 end
 
 # TODO: Podemos abstrair a chamada do faraday

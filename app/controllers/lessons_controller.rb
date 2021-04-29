@@ -8,10 +8,12 @@ class LessonsController < ApplicationController
 
   def check_done
     @lesson.check!
+    redirect_to [@lesson.course, @lesson]
   end
 
   def uncheck_done
     @lesson.uncheck!
+    redirect_to [@lesson.course, @lesson]
   end
 
   private

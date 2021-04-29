@@ -12,16 +12,16 @@
 
 <br>
 
-<div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">
 
+<div>
   <% if @lesson.done? %>
-    <%= link_to 'Concluído!', uncheck_done_course_lesson_path(lesson: @lesson), method: :post %>
+    <%= link_to 'Concluído!', uncheck_done_course_lesson_path, method: :post, class:"btn btn-success"%>
   <% else %>
-    <%= link_to 'Marcar como concluído', check_done_course_lesson_path(lesson: @lesson), method: :post %>
-  <% end  %>
-
-
-
+    <%= link_to 'Marcar como concluído', check_done_course_lesson_path, method: :post, class:"btn btn-secondary" %>
+  <% end %>
+</div>
+<br>
+<div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">
   <div class="row gx-0">
     <div class="col">
       <div class="p-3" id='iframe' >

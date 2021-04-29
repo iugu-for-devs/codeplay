@@ -9,12 +9,14 @@
           <table class="table table-striped table-sm">
             <thead>
               <tr>
+                <th>Produto</th>
                 <th>Metodo de pagamento</th>
               </tr>
             </thead>
             <tbody>
             <% @orders.each do |order| %>
               <tr>
+                <td><%= order.course.name %></td>
                 <td><%= order.pay_type %></td>
               </tr>
             <% end %>

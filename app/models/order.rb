@@ -17,6 +17,12 @@ class Order < ApplicationRecord
     save if status.eql? 'approved'
   end
 
+
+  # def pay_type_name
+  #   name = PayType.all.select{ |type|  type.token == pay_type}
+  #   name.first.name
+  # end
+
   private
 
   def generate_invoice
@@ -24,4 +30,8 @@ class Order < ApplicationRecord
                      token_course: course.token,
                      token_pay_type: pay_type)
   end
+
+
+
+
 end

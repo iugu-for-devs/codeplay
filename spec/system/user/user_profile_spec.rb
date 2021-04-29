@@ -53,7 +53,7 @@ describe 'User' do
     expect(page).to have_text(course.description)
   end
 
-  it 'user can view you profilea and can see owned subscriptions' do
+  it 'user can view his profile and can see owned subscriptions' do
     client = Fabricate(:user)
 
     login_as client, scope: :user
@@ -67,7 +67,7 @@ describe 'User' do
     expect(page).to have_text('50')
   end
 
-  it 'user can view you profilea and can see orders history' do
+  it 'user can view his profile and can see orders history' do
     client = Fabricate(:user)
 
     login_as client, scope: :user

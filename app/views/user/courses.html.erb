@@ -2,22 +2,23 @@
   <div class="row">
       <%= render partial: 'sidebar' %>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
         <p class="h5 mb-3 fw-normal text-center">Lista de Cursos</p>
-
         <div class="table-responsive">
-          <table class="table table-striped table-sm">
+          <table class="table table-bordered table-sm text-center">
             <thead>
               <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Progresso</th>
               </tr>
             </thead>
             <tbody>
             <% current_user.approved_courses.each do |course| %>
+              <% progress = ((course.lessons.check.count / course.lessons.count.to_f)*100).round(1)%>
               <tr>
-                <td><%= course.name %></td>
+                <td><%= link_to course.name, course, class: 'btn btn-light'%></td>
                 <td><%= course.description %></td>
+                <td ><%= progress %>%</td>
               </tr>
             <% end %>
             </tbody>
