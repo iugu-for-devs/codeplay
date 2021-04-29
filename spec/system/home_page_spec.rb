@@ -148,7 +148,7 @@ describe 'Home page' do
       it 'can see title program' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,10000)'
+        page.execute_script "document.getElementById('programs-section-title').scrollIntoView();"
 
         within '#programs-section' do
           expect(page).to have_content('Nossa forma de Fazer você aprender!')
@@ -161,7 +161,7 @@ describe 'Home page' do
 
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,10000)'
+        page.execute_script "document.getElementById('programs-section-first').scrollIntoView();"
 
         within '#programs-section' do
           expect(page).to have_content('Diga a nós o que você quer aprender, Que nós mostraremos como!')
@@ -177,7 +177,7 @@ describe 'Home page' do
 
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,10000)'
+        page.execute_script "document.getElementById('programs-section-second').scrollIntoView();"
 
         within '#programs-section' do
           expect(page).to have_content('A estrutura que você merece!')
@@ -186,10 +186,10 @@ describe 'Home page' do
         end
       end
 
-      xit 'can see the third section' do
+      it 'can see the third section' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,10000)'
+        page.execute_script "document.getElementById('programs-section-third').scrollIntoView();"
 
         within '#programs-section' do
           expect(page).to have_content('Ensinar para à vida!')
@@ -204,7 +204,7 @@ describe 'Home page' do
       it 'can see testimony of a student' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000)'
+        page.execute_script "document.getElementById('testimonial-section').scrollIntoView();"
 
         within '#testimonial-section' do
           expect(page).to have_content('Yukihiro Matsumoto')
@@ -219,7 +219,7 @@ describe 'Home page' do
       it 'can see platform qualities' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000000)'
+        page.execute_script "document.getElementById('why_choose').scrollIntoView();"
 
         within '#why_choose' do
           expect(page).to have_content('Por que nos escolher!??')
@@ -235,7 +235,7 @@ describe 'Home page' do
       it 'can see footer' do
         visit root_path
 
-        page.execute_script 'window.scrollBy(0,1000000)'
+        page.execute_script "document.getElementById('footer-section').scrollIntoView();"
 
         within '.footer-section' do
           expect(page).to have_content('SOBRE À CODEPLAY')
