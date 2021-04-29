@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_04_28_183745) do
-=======
-ActiveRecord::Schema.define(version: 2021_04_28_010048) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -24,7 +21,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_010048) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
->>>>>>> main
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,11 +72,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_010048) do
     t.string "cover"
     t.integer "admin_id", null: false
     t.decimal "price", precision: 10, scale: 2
-<<<<<<< HEAD
     t.string "token"
-=======
     t.integer "requirement_id"
->>>>>>> main
     t.index ["admin_id"], name: "index_courses_on_admin_id"
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
