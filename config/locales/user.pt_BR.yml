@@ -9,22 +9,70 @@ pt-BR:
       user:
         email: E-mail
         password: Senha
+        password_confirmation: Confirmar Senha
         remember_me: Lembre-se de mim
+        full_name: Nome completo
+        birthdate: Data de nascimento
+        cpf: CPF
+        street: Rua
+        number: Número
+        complement: Complemento
+        zipcode: CEP
+        city: Cidade
+        state: Estado
+        remember_me: Lembrar de mim
+        current_password: Senha atual
   user:
     sidebar:
       links:
+        profile: Meu perfil
         courses: Meus Cursos
         subscriptions: Meus Planos
         pay_types: Meio de Pagamento
         orders: Minhas Compras
     registration:
-        email: E-mail
-        password: Senha
-        remember_me: Lembre-se de mim
-        password_confirmation: Confirmar Senha
+      email: E-mail
+      password: Senha
+      remember_me: Lembre-se de mim
+      password_confirmation: Confirmar Senha
+      sign_up: Cadastrar
     purchaser_error: Não foi possível criar perfil de pagamento
-
   users:
+    confirmations:
+      new:
+        resend_instructions: Reenviar instruções de confirmação
+    passwords:
+      edit:
+        change_my_password: Alterar minha senha
+        change_your_password: Alterar sua senha
+        confirm_new_password: Confirme sua nova senha
+        new_password: Nova senha
+      new:
+        forgot_your_password: Esqueceu sua senha?
+        send_me_reset_password_instructions: Enviar instruções para redefinição da senha
+    sessions:
+      new:
+        sign_in: Login
+      signed_in: Login efetuado com sucesso!
+      signed_out: Saiu com sucesso.
+      already_signed_out: Saiu com sucesso.
+    registrations:
+      new:
+        new_registration: Novo cadastro
+        sign_up: Cadastrar
+        minimun_characters: carateres no mínimo
+        address: Endereço
+      edit:
+        title: Editar usuário
+        address: Endereço
+        leave_blank_password: deixe em branco se não quiser alterar
+        minimun_characters: carateres no mínimo
+        need_current_password: precisamos da sua senha atual para confirmar as alterações
+        update_button: Atualizar
+        back: Voltar
+        cancel_my_account: Cancelar minha conta
+        unhappy: Não está feliz?
+        cancel_confirmation: Tem certeza?
     shared:
       links:
         back: Voltar

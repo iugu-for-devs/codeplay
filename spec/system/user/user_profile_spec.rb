@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'User' do
   it 'can view specific navbar when logged in' do
     client = Fabricate(:user)
+
     login_as client, scope: :user
 
     visit root_path
@@ -19,6 +20,7 @@ describe 'User' do
 
   it 'can view user profile' do
     client = Fabricate(:user)
+
     login_as client, scope: :user
 
     visit root_path
@@ -30,6 +32,7 @@ describe 'User' do
 
   it 'can view user profile and only users email' do
     clients = Fabricate.times(2, :user)
+
     login_as clients[0], scope: :user
 
     visit root_path

@@ -1,14 +1,15 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
-    <li class="breadcrumb-item active text-secondary" aria-current="page"><%= t('headers.subscription_managment') %></li>
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('breadcrumb.dashboard_admin')%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%= t('breadcrumb.subscription_managment') %></li>
   </ol>
 </h5>
 
 <%= link_to t('buttons.register', model:Subscription.model_name.human), 
             new_admin_subscription_path, class:"btn btn-primary" %>
 
-<p class="h5 mb-3 fw-normal text-center"><%= t('headers.subscription_list') %></p>
+<hr>
+<p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Subscription.model_name.human(count: :other)) %></p>
 
 <div>
   <table class="table table-bordered">

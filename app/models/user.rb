@@ -4,7 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  store_accessor :address, :street, :number, :zipcode, :complement, :state, :city
+  validates :full_name, :address, :birthdate, :cpf, presence: true
+
   after_create_commit :configurate_buyer_profile
+
+  private
 
   def configurate_buyer_profile
     UserConfigurator.new(self).call

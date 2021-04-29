@@ -11,6 +11,30 @@
   </head>
 
   <body>
+  <header>
+      <nav class="py-2 bg-light border-bottom">
+        <div class="container d-flex flex-wrap">
+          <ul class="nav me-auto">
+            <li class="nav-item"><a href="<%= root_path %>" class="nav-link link-dark px-2"><%= t('.buttons.home') %></a></li>
+            <% if user_signed_in? %>
+              <li class="nav-item"><a href="<%= user_profile_path %>" class="nav-link link-dark px-2"><%= t('.buttons.profile') %></a></li>
+            <% end %>
+            <li class="nav-item"><a href="<%= courses_path %>" class="nav-link link-dark px-2"><%= t('.buttons.courses') %></a></li>
+            <li class="nav-item"><a href="<%= subscriptions_path %>" class="nav-link link-dark px-2"><%= t('.buttons.subscriptions') %></a></li>
+          </ul>
+          <ul class="nav">
+            <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to t('.buttons.log_out'),  destroy_user_session_path, method: :delete,
+                                                                                                data: { confirm: 'Deseja sair?' },
+                                                                                                class: 'nav-link link-dark px-2' %></li>
+            <% else %>
+              <li class="nav-item"><a href="<%= new_user_session_path %>" class="nav-link link-dark px-2"><%= t('.buttons.log_in')%></a></li>
+              <li class="nav-item"><a href="<%= new_user_registration_path %>" class="nav-link link-dark px-2"> <%= t('.buttons.sign_up')%> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <%= render partial: 'shared/flashes' %>
     <div class="container">
       <%= yield %>
