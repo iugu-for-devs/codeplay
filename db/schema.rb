@@ -141,9 +141,11 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.date "birthdate"
     t.string "cpf"
     t.json "address", default: {}, null: false
+    t.string "payment_token"
     t.index ["address"], name: "index_users_on_address"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["payment_token"], name: "index_users_on_payment_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

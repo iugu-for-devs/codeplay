@@ -100,6 +100,17 @@ GEM
     erubi (1.10.0)
     eventmachine (1.2.7)
     fabrication (2.22.0)
+    faraday (1.4.1)
+      faraday-excon (~> 1.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-excon (1.1.0)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.1.0)
+    faraday_middleware (1.0.0)
+      faraday (~> 1.0)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -133,6 +144,7 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multipart-post (2.1.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.7)
@@ -317,6 +329,8 @@ DEPENDENCIES
   devise (~> 4.7, >= 4.7.3)
   fabrication
   faker!
+  faraday (~> 1.4, >= 1.4.1)
+  faraday_middleware (~> 1.0)
   listen (~> 3.3)
   mailcatcher
   pry-byebug
