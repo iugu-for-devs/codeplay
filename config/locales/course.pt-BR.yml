@@ -10,6 +10,8 @@ pt-BR:
         name: Nome
         description: Descrição
         instructor: Professor(es)
+        token: Token para Venda
+        price: Preço
         cover: Endereço da capa
         requirements: Requisito(s)
         
