@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :courses, through: :orders
 
-  has_many :lesson_statuses
+  has_many :lesson_statuses, dependent: :nullify
   has_many :lessons, through: :lesson_statuses, source: :lesson
 
   def own_course?(course)

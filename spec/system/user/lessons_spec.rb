@@ -7,7 +7,7 @@ describe 'View Lessons' do
       course = Fabricate(:course)
       lessons = Fabricate.times(5, :lesson, course: course)
       lessons.each do |lesson|
-        Fabricate(:lesson_status, user:client, lesson:lesson)
+        Fabricate(:lesson_status, user: client, lesson: lesson)
       end
       Fabricate(:order, user: client, course: course)
 
@@ -24,7 +24,7 @@ describe 'View Lessons' do
       course = Fabricate(:course)
       lessons = Fabricate.times(5, :lesson, course: course)
       lessons.each do |lesson|
-        Fabricate(:lesson_status, user:client, lesson:lesson, status: 'done')
+        Fabricate(:lesson_status, user: client, lesson: lesson, status: 'done')
       end
       Fabricate(:order, user: client, course: course)
 
@@ -42,16 +42,18 @@ describe 'View Lessons' do
     it "visit lessons and see if it's done" do
       client = login_user
       course = Fabricate(:course)
+
       lesson = Fabricate(:lesson, course: course)
-      Fabricate(:lesson_status, user:client, lesson:lesson, status:'done')
- 
+      Fabricate(:lesson_status, user: client, lesson: lesson, status: 'done')
+
       other_lesson = Fabricate(:lesson, course: course)
-      Fabricate(:lesson_status, user:client, lesson:other_lesson)
+      Fabricate(:lesson_status, user: client, lesson: other_lesson)
+
       Fabricate(:order, user: client, course: course)
 
       visit course_path(course)
-      expect(lesson.lesson_status.status).to eq('done')
-      expect(other_lesson.lesson_status.status).to eq('not_done')
+      expect(lesson.lesson_status.first.status).to eq('done')
+      expect(other_lesson.lesson_status.first.status).to eq('undone')
     end
   end
 
@@ -61,10 +63,10 @@ describe 'View Lessons' do
       course = Fabricate(:course)
 
       lesson = Fabricate(:lesson, course: course)
-      Fabricate(:lesson_status, user:client, lesson:lesson, status:'done')
+      Fabricate(:lesson_status, user: client, lesson: lesson, status: 'done')
 
       other_lesson = Fabricate(:lesson, course: course)
-      Fabricate(:lesson_status, user:client, lesson:other_lesson)
+      Fabricate(:lesson_status, user: client, lesson: other_lesson)
       Fabricate(:order, user: client, course: course)
 
       visit course_path(course)

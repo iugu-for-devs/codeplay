@@ -19,7 +19,7 @@ describe 'Course Management' do
     Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     lessons.each do |lesson|
-      Fabricate(:lesson_status, user:user, lesson:lesson)
+      Fabricate(:lesson_status, user: user, lesson: lesson)
     end
     visit course_path(course)
 
@@ -34,7 +34,7 @@ describe 'Course Management' do
     Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     lessons.each do |lesson|
-      Fabricate(:lesson_status, user:user, lesson:lesson)
+      Fabricate(:lesson_status, user: user, lesson: lesson)
     end
     visit course_path(course)
 

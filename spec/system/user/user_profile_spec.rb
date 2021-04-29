@@ -52,14 +52,11 @@ describe 'User' do
     courses.each do |course|
       expect(page).to have_text(course.name)
       expect(page).to have_text(course.description)
-      within "td#progress_#{course.id}" do
-        expect(page).to have_text('0.0%')
-      end
     end
   end
 
   it 'user view he has no courses' do
-    client = login_user
+    login_user
     visit user_courses_path
     expect(page).to have_text('Você ainda não tem cursos')
   end
@@ -80,17 +77,11 @@ describe 'User' do
 
   it 'user can view his orders history' do
     client = login_user
-    courses = Fabricate.times(5, :course)
-    courses.each do |course|
-      Fabricate(:order, user: client, course: course)
-    end
+    course = Fabricate(:course)
+    Fabricate(:order, user: client, course: course, pay_type: 12_345_670)
 
     visit user_orders_path
 
-    courses.each do |course|
-      expect(page).to have_text(course.name)
-    end
-
-    # PAY TYPE NAME
+    expect(page).to have_text('PIX')
   end
 end

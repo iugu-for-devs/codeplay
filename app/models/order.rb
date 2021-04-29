@@ -24,8 +24,4 @@ class Order < ApplicationRecord
                      token_course: course.token,
                      token_pay_type: pay_type)
   end
-
-
-
-
 end

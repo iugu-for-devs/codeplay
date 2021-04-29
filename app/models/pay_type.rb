@@ -36,11 +36,9 @@ class PayType
   end
 
   def self.name(pay_type)
-    name = PayType.all.select{ |type|  type.token == pay_type}
+    name = PayType.all.select { |type| type.token == pay_type }
     name.first.name
   end
-
-
 end
 
 # TODO: Podemos abstrair a chamada do faraday

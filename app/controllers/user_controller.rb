@@ -5,7 +5,7 @@ class UserController < ApplicationController
   def show; end
 
   def courses
-   @user.courses
+    @user.courses
   end
 
   def subscriptions
@@ -19,7 +19,7 @@ class UserController < ApplicationController
   end
 
   def orders
-    @orders = @user.orders
+    @orders = current_user.orders.all
   end
 
   private

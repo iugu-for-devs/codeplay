@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!
   before_action :fetch_lesson
 
-  def show;end
+  def show; end
 
   def check_done
     current_user.lesson_statuses.find_by(lesson_id: @lesson).done!

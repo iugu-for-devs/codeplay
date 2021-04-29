@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'has status approved' do
   it 'user can access course lessons' do
-    client = login_user
+    login_user
     course = Fabricate(:course)
     course_lessons = Fabricate.times(5, :lesson, course: course)
 
@@ -15,7 +15,7 @@ describe 'has status approved' do
     click_on 'Comprar'
     select 'Boleto', from: 'Forma de Pagamento'
     click_on 'Efetuar Compra'
-  
+
     expect(page).to have_no_content('Comprar')
     expect(course_lessons.count).to eq(5)
     course_lessons.each do |lesson|
