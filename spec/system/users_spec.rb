@@ -10,7 +10,6 @@ describe 'user registration' do
       first(:button, 'Nova Conta').click
       expect(current_path).to eq(new_user_registration_path)
 
-      expect(page).not_to have_text('Cadastrar')
       expect(page).to have_text('Nome completo')
       expect(page).to have_text('E-mail')
       expect(page).to have_text('Senha')
@@ -167,7 +166,6 @@ describe 'user login' do
       click_on 'Entrar'
 
       expect(current_path).to eq(new_user_session_path)
-      expect(page).to have_no_link('Entrar')
 
       fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: user.password
@@ -279,7 +277,7 @@ describe 'user can change password' do
       expect(current_path).to eq(new_user_password_path)
       expect(page).to have_text('Esqueceu sua senha?')
       fill_in 'E-mail', with: user.email
-      click_on 'Enviar instruções de recuperação de senha'
+      click_on 'Enviar instruções para redefinição da senha'
 
       expect(current_path).to eq(user_session_path)
       expect(page).to have_text('Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.')
