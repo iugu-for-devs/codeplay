@@ -39,8 +39,10 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 require 'capybara/rspec'
+require 'action_text/system_test_helper'
 
 RSpec.configure do |config|
+  config.include ActionText::SystemTestHelper, type: :system
   config.include Warden::Test::Helpers
   include LoginAdmin
 
