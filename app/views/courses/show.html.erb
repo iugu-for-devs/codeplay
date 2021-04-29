@@ -4,7 +4,7 @@
                                 class="link-dark">Home</a></li>
     <li class="breadcrumb-item"><a href="<%= courses_path %>"
                                 class="link-dark"><%= Course.model_name.human count: 2 %></a></li>
-    <li class="breadcrumb-item active text-white" aria-current="page"><%=@course.name %></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
 </h5>
 
@@ -32,7 +32,6 @@
   <% end %>
 </dl>
 <br>
-
 <div>
   <table class="table table-bordered">
     <thead class="table-dark">
@@ -43,8 +42,14 @@
       </thead>
     <tbody>
       <% @course.lessons.each do |lesson| %>
-        <tr class="text-white">
+        <tr class="text">
           <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+          <td><%= lesson.description%></td>
+        </tr>
+      <% end %>
+      <% @course.text_lessons.each do |lesson| %>
+        <tr class="text">
+          <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
           <td><%= lesson.description%></td>
         </tr>
       <% end %>
