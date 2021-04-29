@@ -1,0 +1,35 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>"class="link-dark">
+                                Home</a></li>
+    <li class="breadcrumb-item"><a href="<%= courses_path %>"class="link-dark">
+                                Cursos</a></li>
+    <li class="breadcrumb-item"><a href="<%= course_path(@lesson.course.id) %>"class="link-dark">
+                                <%=@lesson.course.name%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@lesson.name %></li>
+  </ol>
+</h5>
+
+<br>
+
+<div class= "container-fluid px-1 bg-dark bg-gradient text-white text-justify">
+  <div class="row gx-0">
+    <div class="col">
+      <div class="p-3">
+        <h4 id='name'>
+          <%= @lesson.name %>
+        </h4>
+        <br>
+        <h6 id='description'>
+          <p><%=TextLesson.human_attribute_name(:description) %>:</p>
+          <p><%= @lesson.description %></p>
+        </h6>
+        <br>
+        <h6 id='lesson_body'>
+          <p><%=TextLesson.human_attribute_name(:lesson_body) %>:</p>
+          <p><%= @lesson.lesson_body %></p>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

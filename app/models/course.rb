@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   has_many :lessons, dependent: :nullify
+  has_many :text_lessons, dependent: :nullify
   has_one_attached :cover
   belongs_to :admin
   has_many :subscription_courses, dependent: :destroy
