@@ -25,6 +25,7 @@ describe 'Course Management' do
 
   it 'visit video lesson with login' do
     user = Fabricate(:user)
+    user.confirm
     login_as(user, scope: :user)
     course = Fabricate(:course)
     lessons = Fabricate.times(3, :lesson, course: course)
@@ -47,6 +48,7 @@ describe 'Course Management' do
 
   it 'visit text lesson with login' do
     user = Fabricate(:user)
+    user.confirm
     login_as(user, scope: :user)
     course = Fabricate(:course)
     text_lessons = Fabricate.times(2, :text_lesson, course: course)

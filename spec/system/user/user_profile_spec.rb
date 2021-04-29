@@ -3,6 +3,8 @@ require 'rails_helper'
 describe 'User' do
   it 'can view specific navbar when logged in' do
     client = Fabricate(:user)
+    client.confirm
+
     login_as client, scope: :user
 
     visit root_path
@@ -19,6 +21,8 @@ describe 'User' do
 
   it 'can view user profile' do
     client = Fabricate(:user)
+    client.confirm
+
     login_as client, scope: :user
 
     visit root_path
@@ -30,6 +34,8 @@ describe 'User' do
 
   it 'can view user profile and only users email' do
     clients = Fabricate.times(2, :user)
+    clients.each(&:confirm)
+
     login_as clients[0], scope: :user
 
     visit root_path
@@ -42,6 +48,7 @@ describe 'User' do
 
   it 'user can view you profile and can see owned courses' do
     client = Fabricate(:user)
+    client.confirm
 
     login_as client, scope: :user
 
@@ -55,6 +62,7 @@ describe 'User' do
 
   it 'user can view you profilea and can see owned subscriptions' do
     client = Fabricate(:user)
+    client.confirm
 
     login_as client, scope: :user
 
@@ -69,6 +77,7 @@ describe 'User' do
 
   it 'user can view you profilea and can see orders history' do
     client = Fabricate(:user)
+    client.confirm
 
     login_as client, scope: :user
 

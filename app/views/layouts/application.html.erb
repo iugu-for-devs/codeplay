@@ -11,6 +11,23 @@
   </head>
 
   <body>
+  <nav>
+  <br>
+  <%= link_to t('.home'), root_path %>
+  <% if user_signed_in? %>
+    <%= current_user.email %>
+    <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
+    <br>
+    <%= link_to t('.edit_user'), edit_user_registration_path %>
+  <% else %>
+    <% if current_page?(new_user_registration_path) == false %>
+      <%= link_to t('.signup'), new_user_registration_path %>
+    <% end %>
+    <% if current_page?(new_user_session_path) == false %>
+      <%= link_to t('.signin'), new_user_session_path %>
+    <% end %>
+  <% end %>
+  </nav>
     <%= render partial: 'shared/flashes' %>
     <div class="container">
       <%= yield %>

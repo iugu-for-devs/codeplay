@@ -1,0 +1,60 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        email: Email
+        password: Senha
+        password_confirmation: Confirmar senha
+        full_name: Nome completo
+        birthdate: Data de nascimento
+        cpf: CPF
+        street: Rua
+        number: Número
+        complement: Complemento
+        zipcode: CEP
+        city: Cidade
+        state: Estado
+        remember_me: Lembrar de mim
+        current_password: Senha atual
+  users:
+    confirmations:
+      new:
+        resend_instructions: Reenviar instruções de confirmação
+    passwords:
+      new:
+        send_instructions: Enviar instruções de recuperação de senha
+    registrations:
+      new:
+        new_registration: Novo cadastro
+        sign_up: Cadastrar
+        address: Endereço
+        minimun_characters: carateres no mínimo
+      edit:
+        title: Editar usuário
+        address: Endereço
+        leave_blank_password: deixe em branco se não quiser alterar
+        minimun_characters: carateres no mínimo
+        need_current_password: precisamos da sua senha atual para confirmar as alterações
+        update_button: Atualizar
+        back: Voltar
+        cancel_my_account: Cancelar minha conta
+        unhappy: Não está feliz?
+        cancel_confirmation: Tem certeza?
+    sessions:
+      new:
+        login: Login
+    shared:
+      links:
+        forgotten_password: Esqueceu sua senha?
+        unreceived_instructions: Não recebeu as instruções de confirmação?
+  layouts:
+    application:
+      logout: Sair
+      home: Home
+      edit_user: Editar
+      signup: Cadastrar
+      signin: Entrar

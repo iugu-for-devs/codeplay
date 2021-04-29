@@ -36,29 +36,6 @@ describe 'Home page' do
         end
       end
 
-      it 'can see quick registration form' do
-        visit root_path
-
-        within '.intro-content form' do
-          expect(page).to have_content('Cadastrar')
-        end
-      end
-
-      it 'can registration form' do
-        visit root_path
-
-        within '.intro-content form' do
-          fill_in 'E-mail', with: 'test@gmail.com'
-          fill_in 'Senha', with: '123456789'
-          fill_in 'Confirmar Senha', with: '123456789'
-          click_on 'Nova Conta'
-        end
-
-        expect(page).to have_content('Bem-vindo à CodePlay.')
-        expect(page).to have_no_selector('div.intro-content')
-        expect(current_path).to eq(root_path)
-      end
-
       it 'can see button to see some courses' do
         visit root_path
 

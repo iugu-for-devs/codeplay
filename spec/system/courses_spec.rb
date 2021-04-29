@@ -56,6 +56,7 @@ describe 'Course Management' do
     end
 
     it 'Users cannot create' do
+      user.confirm
       login_as(user, scope: :user)
       visit new_admin_course_path
 
