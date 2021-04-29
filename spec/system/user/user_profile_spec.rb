@@ -34,8 +34,7 @@ describe 'User' do
 
   it 'can view user profile and only users email' do
     clients = Fabricate.times(2, :user)
-    clients[0].confirm
-    clients[1].confirm
+    clients.each(&:confirm)
 
     login_as clients[0], scope: :user
 
