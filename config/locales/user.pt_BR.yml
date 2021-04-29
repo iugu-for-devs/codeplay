@@ -9,7 +9,7 @@ pt-BR:
       user:
         email: E-mail
         password: Senha
-        password_confirmation: Confirmar Senha
+        password_confirmation: Confirmar senha
         remember_me: Lembre-se de mim
   user:
     sidebar:
