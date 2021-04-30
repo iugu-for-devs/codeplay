@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  layout 'home'
   before_action :set_subscription, only: %i[show]
 
   def index
