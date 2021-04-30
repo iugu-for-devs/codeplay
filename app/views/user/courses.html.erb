@@ -22,10 +22,10 @@
               </tr>
             </thead>
             <tbody>
-            <% @courses.each do |course| %>
+            <% current_user&.approved_courses&.each do |course| %>
               <tr>
-                <td><%= course.name %></td>
-                <td><%= course.description %></td>
+                <td><%=link_to course.name, course_path(course) %></td>
+                <td><%=link_to course.description,  course_path(course) %></td>
               </tr>
             <% end %>
             </tbody>

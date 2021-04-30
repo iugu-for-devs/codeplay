@@ -1,17 +1,48 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_params, only: [:create]
+  before_action :load_product
+
   def new
-    @course = Course.find(params[:course])
     @order = Order.new
   end
 
   def create
-    @course = Course.find(params[:course])
-    @order = Order.new(pay_type: params[:pay_type])
+    @order = if params[:subscription_id]
+               Order.new(subscription: @product,
+                         user: current_user,
+                         pay_type: load_params[:pay_type])
+             else
+               Order.new(course: @product,
+                         user: current_user,
+                         pay_type: load_params[:pay_type])
+             end
 
-    return redirect_to @course, notice: t('.success') if @order.save
+    push_invoice
+  end
 
-    flash.now[:notice] = @order.errors.full_messages
-    render :new
+  private
+
+  def load_params
+    params.require(:order).permit(:pay_type)
+  end
+
+  def load_product
+    @product = if params[:subscription_id]
+                 Subscription.find(params[:subscription_id])
+               else
+                 Course.find(params[:course_id])
+               end
+  end
+
+  def push_invoice
+    @order.send_invoice_request
+    @order.save
+
+    return redirect_to @product, notice: t('.success') if @order.approved?
+
+    return redirect_to @product, notice: 'Aguardando confirmação pagamento.' if @order.status == 'pending'
+
+    return redirect_to @product, notice: 'Pedido negado!' if @order.status == 'refused'
   end
 end
