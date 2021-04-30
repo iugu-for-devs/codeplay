@@ -23,18 +23,15 @@ describe 'has status approved' do
 
   it 'user can see the course in your course list' do
     client = login_user
-
-    orders = Fabricate.times(4, :order,
-                             user: client,
-                             status: 'approved')
-
-    user_courses = orders.map(&:course)
+    course = Fabricate(:course)
+    Fabricate(:order,
+              course: course,
+              user: client,
+              status: 'approved')
 
     visit user_courses_path(client)
 
-    user_courses.each do |course|
-      expect(page).to have_content(course.name)
-      expect(page).to have_content(course.description)
-    end
+    expect(page).to have_content(course.name)
+    expect(page).to have_content(course.description)
   end
 end

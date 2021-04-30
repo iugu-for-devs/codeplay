@@ -15,18 +15,18 @@
 
         <div>
           <table class="table table-bordered">
-            <thcurrent_user.approved_subscriptions.eachrk">tion
-              <tr>scope="col">
-                <th> <%#=link_to subscription.name, subscription_path(subscription.id) %></td>
-                <th> <%#=link_to subscription.description, Subscription_path(subscription)bute_name(:description) %></th>
-                <th> <%#= Subscription.human_attribute_name(:price) %></th>
+            <thead class="table-dark">
+              <tr scope="col">
+              <th><%=  Subscription.human_attribute_name(:name) %></th>
+              <th><%=  Subscription.human_attribute_name(:description) %></th>
+              <th><%= Subscription.human_attribute_name(:price) %></th>
               </tr>
             </thead>
             <tbody>
             <% @subscriptions.each do |subscription| %>
               <tr>
-                <td><%= subscription.name %></td>
-                <td><%= subscription.description %></td>
+                <td><%= link_to subscription.name, subscription_path(subscription) %></td>
+                <td><%= link_to subscription.description, subscription_path(subscription) %></td>
                 <td><%= "R$ " + subscription.price.to_s %></td>
               </tr>
             <% end %>

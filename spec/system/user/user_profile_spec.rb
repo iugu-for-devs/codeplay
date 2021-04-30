@@ -59,7 +59,7 @@ describe 'User' do
   it 'user can view their profile and can see owned subscriptions' do
     client = Fabricate(:user)
     subscription = Fabricate(:subscription)
-    order = Fabricate(:order, subscription: subscription, user: client)
+    Fabricate(:order, subscription: subscription, user: client)
 
     login_as client, scope: :user
 
