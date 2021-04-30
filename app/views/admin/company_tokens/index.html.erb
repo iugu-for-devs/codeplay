@@ -1,0 +1,16 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=t('headers.token')%></li>
+  </ol>
+</h5>
+
+<p class="h5 mb-3 fw-normal text-center"><%= t('headers.token') %></p>
+
+<% if @company_token %>
+	<%= link_to 'Editar', edit_admin_company_token_path(@company_token), class: 'btn btn-primary' %>
+  <p>Token: <%= @company_token %></p>
+<% else %>
+  <%= link_to 'Cadastrar', new_admin_company_token_path, class: 'btn btn-primary' %>
+  <h3><%=t('.empty')%></h3>
+<% end %>

@@ -1,0 +1,12 @@
+---
+pt-BR:
+  admin:
+    company_tokens:
+      index:
+        empty: Token não cadastrado
+      new:
+        submit: Salvar token
+      create:
+        success: Token cadastrado com sucesso
+      update:
+        success: Token atualizado com sucesso

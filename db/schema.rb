@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_183745) do
+ActiveRecord::Schema.define(version: 2021_04_29_155645) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "company_tokens", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -72,8 +78,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.string "cover"
     t.integer "admin_id", null: false
     t.decimal "price", precision: 10, scale: 2
-    t.integer "requirement_id"
     t.string "token"
+    t.integer "requirement_id"
     t.index ["admin_id"], name: "index_courses_on_admin_id"
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
