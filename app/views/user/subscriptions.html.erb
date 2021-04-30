@@ -3,22 +3,30 @@
       <%= render partial: 'sidebar' %>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-        <p class="h5 mb-3 fw-normal text-center">Lista de Planos</p>
+        <h5 aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%= user_profile_path %>"class="link-dark"><%=t('breadcrumb.dashboard_user')%></a></li>
+            <li class="breadcrumb-item active text-secondary" aria-current="page"><%=t('breadcrumb.subscription')%></li>
+          </ol>
+        </h5>
 
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Preço</th>
+        <hr>
+        <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Subscription.model_name.human(count: :other)) %></p>
+
+        <div>
+          <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr scope="col">
+              <th><%=  Subscription.human_attribute_name(:name) %></th>
+              <th><%=  Subscription.human_attribute_name(:description) %></th>
+              <th><%= Subscription.human_attribute_name(:price) %></th>
               </tr>
             </thead>
             <tbody>
             <% @subscriptions.each do |subscription| %>
               <tr>
-                <td><%= subscription.name %></td>
-                <td><%= subscription.description %></td>
+                <td><%= link_to subscription.name, subscription_path(subscription) %></td>
+                <td><%= link_to subscription.description, subscription_path(subscription) %></td>
                 <td><%= "R$ " + subscription.price.to_s %></td>
               </tr>
             <% end %>

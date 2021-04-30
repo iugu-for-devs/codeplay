@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'Subscription plan', type: :request do
   it 'non admin cannot get to new form subscription plan' do
     user = Fabricate(:user)
-    user.confirm
     login_as user, scope: :user
 
     get new_admin_subscription_path
@@ -13,7 +12,6 @@ describe 'Subscription plan', type: :request do
 
   it 'non admin cannot create subscription plan' do
     user = Fabricate(:user)
-    user.confirm
     login_as user, scope: :user
 
     post admin_subscriptions_path, params: {
@@ -25,7 +23,6 @@ describe 'Subscription plan', type: :request do
 
   it 'non admin cannot add a course to subscription' do
     user = Fabricate(:user)
-    user.confirm
     login_as user, scope: :user
     course = Fabricate(:course)
     subscription = Fabricate(:subscription)

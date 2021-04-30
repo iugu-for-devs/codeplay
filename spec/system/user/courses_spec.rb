@@ -14,7 +14,9 @@ describe 'Course Management' do
   end
 
   it 'visit course lessons' do
+    user = login_user
     course = Fabricate(:course)
+    Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     visit course_path(course)
 
@@ -23,13 +25,13 @@ describe 'Course Management' do
     end
   end
 
-  it 'visit video lesson with login' do
-    user = Fabricate(:user)
-    user.confirm
-    login_as(user, scope: :user)
+  it 'visit lesson with login' do
+    user = login_user
     course = Fabricate(:course)
+    Fabricate(:order, course: course, user: user)
     lessons = Fabricate.times(3, :lesson, course: course)
     visit course_path(course)
+
     click_on lessons.first.name
 
     expect(page).to have_text(lessons.first.name)
@@ -43,28 +45,6 @@ describe 'Course Management' do
 
     visit course_lesson_path(course, lessons.first)
 
-    expect(current_path).to eq(new_user_session_path)
-  end
-
-  it 'visit text lesson with login' do
-    user = Fabricate(:user)
-    user.confirm
-    login_as(user, scope: :user)
-    course = Fabricate(:course)
-    text_lessons = Fabricate.times(2, :text_lesson, course: course)
-    visit course_path(course)
-    click_on text_lessons.first.name
-
-    expect(page).to have_text(text_lessons.first.name)
-    expect(page).to have_text(text_lessons.first.description)
-    expect(page).to have_text('Lorem ipsum dolor sit amet consectetur.')
-  end
-
-  it 'cannot visit text lesson without login' do
-    course = Fabricate(:course)
-    text_lessons = Fabricate.times(2, :text_lesson, course: course)
-
-    visit course_text_lesson_path(course, text_lessons.first)
     expect(current_path).to eq(new_user_session_path)
   end
 end

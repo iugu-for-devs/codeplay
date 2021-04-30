@@ -1,15 +1,16 @@
 Fabricator(:user) do
-  full_name 'John Doe'
-  email { sequence(:email) { |i| "john.doe#{i}@iugu.com.br" } }
+  full_name { sequence(:full_name) { |i| "User #{i}" } }
+  email { sequence(:email) { |i| "user#{i}@gmail.com" } }
   password '12345678'
   birthdate '18/12/2220'
   cpf '00000000353'
+  token { Faker::Alphanumeric.alphanumeric(number: 10) }
   address "{
-            'zipcode': '08040150',
-            'number': '36',
-            'street': 'Av. Marechal Tito',
-            'complement': 'Apto 48',
-            'state': 'SP',
-            'city': 'São Paulo'
-          }"
+    'zipcode': '08040150',
+    'number': '36',
+    'street': 'Av. Marechal Tito',
+    'complement': 'Apto 48',
+    'state': 'SP',
+    'city': 'São Paulo'
+    }"
 end
