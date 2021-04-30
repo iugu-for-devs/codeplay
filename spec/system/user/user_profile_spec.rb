@@ -45,6 +45,7 @@ describe 'User' do
     courses = Fabricate.times(5, :course)
     courses.each do |course|
       Fabricate.times(5, :lesson, course: course)
+      Fabricate.times(5, :text_lesson, course: course)
       Fabricate(:order, user: client, course: course)
     end
 

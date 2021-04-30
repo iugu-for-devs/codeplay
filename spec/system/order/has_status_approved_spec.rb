@@ -23,6 +23,28 @@ describe 'has status approved' do
     end
   end
 
+  it 'user can access course text lessons' do
+    login_user
+    course = Fabricate(:course)
+    course_lessons = Fabricate.times(5, :text_lesson, course: course)
+
+    # Fabricate(:order,
+    #           user: client,
+    #           course: course,
+    #           status: 'approved')
+
+    visit course_path(course)
+    click_on 'Comprar'
+    select 'Boleto', from: 'Forma de Pagamento'
+    click_on 'Efetuar Compra'
+
+    expect(page).to have_no_content('Comprar')
+    expect(course_lessons.count).to eq(5)
+    course_lessons.each do |lesson|
+      expect(page).to have_content(lesson.name)
+    end
+  end
+
   it 'user can see the course in your course list' do
     client = login_user
 

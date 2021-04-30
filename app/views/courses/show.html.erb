@@ -7,7 +7,6 @@
     <li class="breadcrumb-item active text-secondary" aria-current="page"><%=@course.name %></li>
   </ol>
   <%= link_to 'Meu Perfil', user_courses_path, class: 'btn btn-primary' %>
-  
 </h5>
 
 
@@ -29,19 +28,18 @@
   </dd>
   <% if @course.requirements %>
     <dt><%= Course.human_attribute_name(:requirements) %>: </dt>
-  <% @course.requirements.each do |requirement| %>
-    <dd><%= requirement.name %></dd>
-   <% end %>
+    <% @course.requirements.each do |requirement| %>
+      <dd><%= requirement.name %></dd>
+    <% end %>
   <% end %>
 </dl>
 <br>
 
 <% if(current_user&.own_course? @course) %>
+    <% done = @course.lesson_statuses_by_user(current_user).done.count +
+    @course.text_lesson_statuses_by_user(current_user).done.count %>
 
-  
-
-
-    <h4>Progresso: <%= @course.lesson_statuses_by_user(current_user).done.count%>/<%=@course.lessons.count %></h4>
+    <h4>Progresso: <%= done %>/<%=@course.lessons.count+@course.text_lessons.count %></h4>
 
     <table class="table table-bordered">
       <thead class="table-dark">
@@ -50,21 +48,26 @@
           <th scope="col"><%= Lesson.human_attribute_name(:description) %></th>
           <th scope="col">Status</th>
         </tr>
-        </thead>
+      </thead>
       <tbody>
-        <% @course.lessons.each do |lesson| %>
-          <tr class="textrubocop">
-            <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
-            <td><%= lesson.description%></td>
-            <td><%= current_user.lesson_statuses.find_by(lesson_id: lesson.id).status %></td>
-          </tr>
+        <% if @course.lessons.any? %>
+          <% @course.lessons.each do |lesson| %>
+            <tr class="textrubocop">
+              <td><%= link_to lesson.name, course_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+              <td><%= lesson.description%></td>
+              <td><%= current_user.lesson_statuses.find_by(lesson: lesson).status %></td>
+            </tr>
+          <% end %>
         <% end %>
-        <% @course.text_lessons.each do |lesson| %>
-          <tr class="textrubocop">
-            <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
-            <td><%= lesson.description%></td>
-          </tr>
-        <% end %>
+        
+          <% @course.text_lessons.each do |lesson| %>
+            <tr class="textrubocop">
+              <td><%= link_to lesson.name, course_text_lesson_path(@course, lesson), class:"btn btn-light"  %></td>
+              <td><%= lesson.description%></td>
+              <td><%= current_user.text_lesson_statuses.find_by(text_lesson: lesson).status %></td>
+            </tr>
+          <% end %>
+        
       </tbody>
     </table>
   </div>

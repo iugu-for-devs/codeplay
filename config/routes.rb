@@ -39,7 +39,10 @@ Rails.application.routes.draw do
       post 'check_done',  on: :member
       post 'uncheck_done', on: :member
     end
-    resources :text_lessons, only: [:show]
+    resources :text_lessons, only: [:show] do
+      post 'check_done',  on: :member
+      post 'uncheck_done', on: :member
+    end
   end
   resources :orders, only:[:new, :create]
 end

@@ -28,6 +28,21 @@ describe 'Course Management' do
     end
   end
 
+  it 'visit course text lessons' do
+    user = login_user
+    course = Fabricate(:course)
+    Fabricate(:order, course: course, user: user)
+    text_lessons = Fabricate.times(3, :text_lesson, course: course)
+    text_lessons.each do |lesson|
+      Fabricate(:text_lesson_status, user: user, text_lesson: lesson)
+    end
+    visit course_path(course)
+
+    text_lessons.each do |lesson|
+      expect(page).to have_text(lesson.name)
+    end
+  end
+
   it 'visit lesson with login' do
     user = login_user
     course = Fabricate(:course)
@@ -55,10 +70,14 @@ describe 'Course Management' do
   end
 
   it 'visit text lesson with login' do
-    user = Fabricate(:user)
-    login_as(user, scope: :user)
+    user = login_user
     course = Fabricate(:course)
-    text_lessons = Fabricate.times(2, :text_lesson, course: course)
+    Fabricate(:order, course: course, user: user)
+    text_lessons = Fabricate.times(3, :text_lesson, course: course)
+    text_lessons.each do |lesson|
+      Fabricate(:text_lesson_status, user: user, text_lesson: lesson)
+    end
+
     visit course_path(course)
     click_on text_lessons.first.name
 
