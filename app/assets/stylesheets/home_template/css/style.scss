@@ -1,5 +1,7 @@
-/* Base */
 
+$bgcolor-home: #7971ea;
+
+/* Base */
 body {
   line-height: 1.7;
   color: gray;
@@ -14,7 +16,20 @@ body {
   background: #000;
   color: #fff; }
 
+
+/* Navbar home */
+
 .navbar-dark {
+
+  .user {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center ;
+  }
+
   a{
     color: #fff !important;
     font-size: 1.5em;
@@ -25,12 +40,37 @@ body {
 
     &:hover {
      text-decoration: underline;
-     text-decoration-color: #7971ea;
+     text-decoration-color: $bgcolor-home;
     }
   }
 
   background-color: #040F0F;
-  box-shadow: 0px 0px 20px #7971ea;
+  box-shadow: 0px 0px 20px $bgcolor-home;
+
+  .dropdown-toggle::after {
+    content: none !important;
+  }
+
+  .dropdown {
+    .name_user{
+      color: #fff !important;
+      font-size: 1.5em;
+      position: relative;
+      margin-top: 0.3em;
+    }
+
+    .dropdown-menu{
+      background-color: #040F0F;
+      box-shadow: 0px 0px 5px $bgcolor-home;
+      overflow: hidden;
+      .dropdown-item {
+        margin: 0;
+        &:hover {
+          background-color: #040F0F;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 980px) {

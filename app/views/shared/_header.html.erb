@@ -30,22 +30,14 @@
 
         <div class="d-flex mr-5 ml-4">
           <% if user_signed_in? %>
-            <%= button_to t('buttons.profile'), user_profile_path,
-                                                class:'btn active btn-outline-primary me-2',
-                                                method: :get %>
-
-            <%= button_to  t('buttons.log_out'), destroy_user_session_path,
-                class:'btn btn-outline-primary me-2',
-                method: :delete,
-                data: { confirm: 'Deseja sair?' }
-                  %>
+            <%= render 'shared/profile_header' %>
           <% else %>
             <%= button_to t('buttons.log_in'),
                 new_user_session_path,
                 class:'btn btn-outline-primary me-2', method: :get  %>
             <%= button_to t('buttons.sign_up'),
                 new_user_registration_path,
-                class:'btn btn-outline-primary me-2', method: :get %>
+                class:'btn btn-outline-primary me-2 active', method: :get %>
           <% end %>
         </div>
       </div>
