@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :avatar
+
   store_accessor :address, :street, :number, :zipcode, :complement, :state, :city
-  validates :full_name, :address, :birthdate, :cpf, presence: true
+  validates :full_name, :address, :birthdate, :cpf, :avatar, presence: false
 
   after_create_commit :configurate_buyer_profile
 
@@ -20,7 +22,6 @@ class User < ApplicationRecord
 
   def approved_courses
     orders.where(status: 'approved').map(&:course).compact
-    # orders.where(status: 'approved').map(&:subscription)
   end
 
   def own_subscription?(subscription)
@@ -35,6 +36,10 @@ class User < ApplicationRecord
 
   def approved_subscription
     orders.where(status: 'approved').map(&:subscription).compact
+  end
+
+  def reduce_name
+    full_name.split(" ")[0]
   end
 
   private

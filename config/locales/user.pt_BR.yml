@@ -22,6 +22,7 @@ pt-BR:
         state: Estado
         remember_me: Lembrar de mim
         current_password: Senha atual
+        avatar: Foto
   user:
     sidebar:
       links:
