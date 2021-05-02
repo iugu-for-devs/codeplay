@@ -10,10 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render partial: 'shared/header' %>
+  <%= render partial: 'shared/header' %>
 
+  <main>
     <%= render partial: 'shared/flashes' %>
     <%= yield %>
-  </body>
+  </main>
 </html>
+

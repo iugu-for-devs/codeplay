@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Codeplay</title>
+    <title><%= @title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,13 +11,16 @@
 
   </head>
 
+  <header class="fixed-top">
+      <%= render partial: 'shared/header' %>
+  </header>
+
   <div class="site-wrap">
-    <%= render partial: 'shared/header' %>
     <body>
       <%= yield %>
-      <%= render partial: 'shared/footer' %>
     </body>
-
-    <%= javascript_pack_tag 'home_template/main', 'data-turbolinks-track': 'reload' %>
   </div>
+
+  <%= render partial: 'shared/footer' %>
+  <%= javascript_pack_tag 'home_template/main', 'data-turbolinks-track': 'reload' %>
 </html>
