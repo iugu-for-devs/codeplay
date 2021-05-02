@@ -1,5 +1,6 @@
 
 $bgcolor-home: #7971ea;
+$bgcolor-black: #040F0F;
 
 /* Base */
 body {
@@ -20,6 +21,9 @@ body {
 /* Navbar home */
 
 .navbar-dark {
+
+  background-color: $bgcolor-black;
+  box-shadow: 0px 0px 20px $bgcolor-home;
 
   .user {
     width: 50px;
@@ -44,9 +48,6 @@ body {
     }
   }
 
-  background-color: #040F0F;
-  box-shadow: 0px 0px 20px $bgcolor-home;
-
   .dropdown-toggle::after {
     content: none !important;
   }
@@ -61,13 +62,13 @@ body {
     }
 
     .dropdown-menu{
-      background-color: #040F0F;
+      background-color: $bgcolor-black;
       box-shadow: 0px 0px 5px $bgcolor-home;
       overflow: hidden;
       .dropdown-item {
         margin: 0;
         &:hover {
-          background-color: #040F0F;
+          background-color: $bgcolor-black;
         }
       }
     }
@@ -79,6 +80,15 @@ body {
     text-align: left;
   }
 }
+
+/* Footer */
+
+.footer-section {
+  background-color: $bgcolor-black;
+  padding-top: 2em;
+  color: #FFFFFF;
+}
+
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
@@ -161,29 +171,6 @@ h1, h2, h3, h4, h5,
 .border-top {
   border-top: 1px solid #edf0f5 !important; }
 
-.site-footer {
-  padding: 4em 0;
-  background: #333333; }
-  @media (min-width: 768px) {
-    .site-footer {
-      padding: 8em 0; } }
-  .site-footer .border-top {
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important; }
-  .site-footer p {
-    color: #737373; }
-  .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5 {
-    color: #000; }
-  .site-footer a {
-    color: #999999; }
-    .site-footer a:hover {
-      color: black; }
-  .site-footer ul li {
-    margin-bottom: 10px; }
-  .site-footer .footer-heading {
-    font-size: 16px;
-    color: #000;
-    text-transform: uppercase;
-    font-weight: 900; }
 
 .bg-text-line {
   display: inline;
@@ -570,25 +557,6 @@ h1, h2, h3, h4, h5,
       background-color: #e6e6e6; }
     .nonloop-block-14 .owl-dots .owl-dot.active span {
       background-color: #7971ea; }
-
-.footer-section {
-  padding: 7em 0;
-  background-color: #fafafa; }
-  .footer-section p {
-    font-size: 1rem; }
-  .footer-section h3 {
-    font-size: .9rem;
-    letter-spacing: .1rem;
-    text-transform: uppercase;
-    color: #000;
-    margin-bottom: 1.5rem;
-    font-weight: 900; }
-  .footer-section .footer-links li {
-    margin-bottom: 10px; }
-
-.footer-subscribe .btn {
-  height: 43px;
-  line-height: 1; }
 
 .testimony h3 {
   color: #fff;
