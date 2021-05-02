@@ -31,7 +31,7 @@ As aulas podem ser aulas em vídeo ou em texto, podem possuir valor R$ 0,00 (gra
 
 ------
 
-Para executar esse projeto você deve ter um computador, preferencialmente com Linux, com a linguagem de programação Ruby na versão 3.0.1
+Para executar esse projeto você deve ter um computador, preferencialmente com Linux, com a linguagem de programação Ruby na versão 3.0.1.
 
 No terminal de seu computador, clone o projeto:  ```$ git clone https://github.com/iugu-for-devs/codeplay```. Dentro do diretório do projeto(`$ cd  codeplay`), você deve instalar as dependências definidas no arquivo `\Gemfile` com o comando `bundle [install]`.
 
@@ -43,7 +43,8 @@ Com todas dependências instaladas, execute `rails server` e acesse `localhost:3
 
 ------
 
-Com todas dependências instaladas, como descrito na seção anterior, em seu terminal execute `rspec`, a lista de funcionalidades e testes estão na pasta `\spec`.
+Com todas dependências instaladas, como descrito na seção anterior,
+Nossa ferramenta de teste utiliza o Google Chrome, certifique-se de que este navegador está instalado em seu computador e em seu terminal execute `rspec`, a lista de funcionalidades e testes estão na pasta `\spec`.
 
 ## Layout da aplicação
 ------
