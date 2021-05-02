@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  layout 'home'
   before_action :set_course, only: %i[show]
 
   def index

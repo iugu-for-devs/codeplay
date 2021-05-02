@@ -8,6 +8,8 @@
   </ol>
 </h5>
 
+<%= render partial: 'shared/flashes' %>
+
 <dl>
   <h3><%= @subscription.name %></h3>
 
@@ -42,4 +44,4 @@
     new_subscription_order_path(@subscription),
     class: 'btn btn-primary' %>
 <% end %>
-  
+

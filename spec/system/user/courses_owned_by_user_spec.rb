@@ -8,7 +8,13 @@ describe 'Ownership of courses' do
     Fabricate(:order, user: client, course: courses.first)
 
     visit root_path
-    click_on 'Meu Perfil'
+
+    find('#dropdownMenuButton1').click
+
+    within '.dropdown-menu' do
+      click_on 'Painel de Controle'
+    end
+
     click_on 'Meus Cursos'
 
     expect(page).to have_text(courses[0].name)
@@ -65,10 +71,14 @@ describe 'Ownership of courses' do
     Fabricate(:order, user: client, course: courses.first)
 
     visit root_path
-    click_on 'Meu Perfil'
+
+    find('#dropdownMenuButton1').click
+    within '.dropdown-menu' do
+      click_on 'Painel de Controle'
+    end
+
     click_on 'Meus Cursos'
     click_on courses[0].name
-
     expect(current_path).to eq(course_path(courses[0]))
   end
 end

@@ -26,6 +26,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
@@ -39,12 +44,12 @@
     <%= f.label :birthdate %><br />
     <%= f.date_field :birthdate, autofocus: true, autocomplete: "birthdate" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :cpf %><br />
     <%= f.text_field :cpf, autofocus: true, autocomplete: "cpf" %>
   </div>
-  
+
   <h3><%= t('.address') %></h3>
 
   <div class="field">
@@ -56,7 +61,7 @@
     <%= f.label :number %><br />
     <%= f.text_field :number, autofocus: true, autocomplete: "number" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :complement %><br />
     <%= f.text_field :complement, autofocus: true, autocomplete: "complement" %>
