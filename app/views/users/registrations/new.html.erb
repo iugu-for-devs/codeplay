@@ -3,7 +3,7 @@
     <%= render "users/shared/error_messages", resource: resource %>
 
     <div class="col">
-      <h1 class="h3 mb-3 fw-normal"><%= t('.sign_up') %></h1> 
+      <h1 class="h3 mb-3 fw-normal"><%= t('.sign_up') %></h1>
 
       <div class="field mb-3">
         <%= f.label :full_name %><br />
@@ -22,57 +22,13 @@
         <% end %><br />
         <%= f.password_field :password, class: 'form-control' %>
       </div>
-      
+
       <div class="field mb-3">
         <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
-
-      <div class="field mb-3">
-        <%= f.label :birthdate %><br />
-        <%= f.date_field :birthdate, autofocus: true, class: 'form-control' %>
-      </div>
-      
-      <div class="field mb-3">
-        <%= f.label :cpf %><br />
-        <%= f.text_field :cpf, autofocus: true, class: 'form-control' %>
-      </div>
     </div>
-    
-    <div class="col">
-      <h3><%= t('.address') %></h3>
 
-      <div class="field mb-3">
-        <%= f.label :street %><br />
-        <%= f.text_field :street, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="field mb-3">
-        <%= f.label :number %><br />
-        <%= f.text_field :number, autofocus: true, class: 'form-control' %>
-      </div>
-      
-      <div class="field mb-3">
-        <%= f.label :complement %><br />
-        <%= f.text_field :complement, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="field mb-3">
-        <%= f.label :zipcode %><br />
-        <%= f.text_field :zipcode, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="field mb-3">
-        <%= f.label :city %><br />
-        <%= f.text_field :city, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="field mb-3">
-        <%= f.label :state %><br />
-        <%= f.text_field :state, autofocus: true, class: 'form-control' %>
-      </div>
-    </div>
-    
     <div class="actions mb-3">
       <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
     </div>

@@ -89,16 +89,15 @@ describe 'Unauthenticated user' do
 
     visit subscription_path(subscription)
     click_on 'Comprar'
-    within 'form' do
+
+    within '#new_user' do
       fill_in 'E-mail', with: client.email
       fill_in 'Senha', with: client.password
       click_on 'Login'
     end
 
-    within 'form' do
-      select 'PIX', from: 'Forma de Pagamento'
-      click_on 'Efetuar Compra'
-    end
+    select 'PIX', from: 'Forma de Pagamento'
+    click_on 'Efetuar Compra'
 
     expect(page).to have_content('Compra realizada com sucesso!')
     expect(current_path).to eq(subscription_path(subscription))
@@ -113,26 +112,16 @@ describe 'Unauthenticated user' do
     visit subscription_path(subscription)
     click_on 'Comprar'
     click_on 'Cadastrar'
-    within 'form' do
+    within '#new_user' do
       fill_in 'Nome completo', with: 'John Doe'
       fill_in 'E-mail', with: 'john.doe@codeplay.com.br'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirmar Senha', with: '12345678'
-      fill_in 'Data de nascimento', with: '08/08/1990'
-      fill_in 'CPF', with: '000.000.003-53'
-      fill_in 'Rua', with: 'Av. Marechal Tito'
-      fill_in 'Número', with: '36'
-      fill_in 'Complemento', with: 'Apto 48'
-      fill_in 'CEP', with: '08040-150'
-      fill_in 'Cidade', with: 'São Paulo'
-      fill_in 'Estado', with: 'SP'
       click_on 'Cadastrar'
     end
 
-    within 'form' do
-      select 'PIX', from: 'Forma de Pagamento'
-      click_on 'Efetuar Compra'
-    end
+    select 'PIX', from: 'Forma de Pagamento'
+    click_on 'Efetuar Compra'
 
     expect(page).to have_content('Compra realizada com sucesso!')
     expect(current_path).to eq(subscription_path(subscription))

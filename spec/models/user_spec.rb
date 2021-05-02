@@ -29,12 +29,8 @@ describe User do
     it 'ensures full_name, email, password, address, cpf and birthdate presence' do
       user = User.create
 
-      expect(user.errors[:full_name]).to include('não pode ficar em branco')
       expect(user.errors[:email]).to include('não pode ficar em branco')
       expect(user.errors[:password]).to include('não pode ficar em branco')
-      expect(user.errors[:address]).to include('não pode ficar em branco')
-      expect(user.errors[:cpf]).to include('não pode ficar em branco')
-      expect(user.errors[:birthdate]).to include('não pode ficar em branco')
       expect(user).not_to be_valid
     end
 

@@ -13,15 +13,6 @@ describe 'user registration' do
       expect(page).to have_text('E-mail')
       expect(page).to have_text('Senha')
       expect(page).to have_text('Confirmar Senha')
-      expect(page).to have_text('Data de nascimento')
-      expect(page).to have_text('CPF')
-      expect(page).to have_text('Endereço')
-      expect(page).to have_text('Rua')
-      expect(page).to have_text('Número')
-      expect(page).to have_text('Complemento')
-      expect(page).to have_text('CEP')
-      expect(page).to have_text('Cidade')
-      expect(page).to have_text('Estado')
       expect(page).to have_button('Cadastrar')
     end
   end
@@ -35,17 +26,8 @@ describe 'user registration' do
     fill_in 'E-mail', with: 'john.doe@codesaga.com.br'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar Senha', with: '12345678'
-    fill_in 'Data de nascimento', with: '08/08/1990'
-    fill_in 'CPF', with: '000.000.003-53'
-    fill_in 'Rua', with: 'Av. Marechal Tito'
-    fill_in 'Número', with: '36'
-    fill_in 'Complemento', with: 'Apto 48'
-    fill_in 'CEP', with: '08040-150'
-    fill_in 'Cidade', with: 'São Paulo'
-    fill_in 'Estado', with: 'SP'
-    within 'form' do
-      click_on 'Cadastrar'
-    end
+    click_on 'Cadastrar'
+
     expect(current_path).to eq(root_path)
   end
 
@@ -58,19 +40,7 @@ describe 'user registration' do
       fill_in 'Nome completo', with: 'John Doe'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirmar Senha', with: '12345678'
-      fill_in 'Data de nascimento', with: '08/08/1990'
-      fill_in 'CPF', with: '000.000.003-53'
-      fill_in 'Rua', with: 'Av. Marechal Tito'
-      fill_in 'Número', with: '36'
-      fill_in 'Complemento', with: 'Apto 48'
-      fill_in 'CEP', with: '08040-150'
-      fill_in 'Cidade', with: 'São Paulo'
-      fill_in 'Estado', with: 'SP'
-      fill_in 'Senha', with: '12345678'
-      fill_in 'Confirmar Senha', with: '12345678'
-      within 'form' do
-        click_on 'Cadastrar'
-      end
+      click_on 'Cadastrar'
 
       expect(current_path).to eq(user_registration_path)
       expect(page).to have_text('Não foi possível salvar aluno')
@@ -81,17 +51,8 @@ describe 'user registration' do
 
       fill_in 'Nome completo', with: 'John Doe'
       fill_in 'E-mail', with: 'john.doe@codesaga.com.br'
-      fill_in 'Data de nascimento', with: '08/08/1990'
-      fill_in 'CPF', with: '000.000.003-53'
-      fill_in 'Rua', with: 'Av. Marechal Tito'
-      fill_in 'Número', with: '36'
-      fill_in 'Complemento', with: 'Apto 48'
-      fill_in 'CEP', with: '08040-150'
-      fill_in 'Cidade', with: 'São Paulo'
-      fill_in 'Estado', with: 'SP'
-      within 'form' do
-        click_on 'Cadastrar'
-      end
+      click_on 'Cadastrar'
+
       expect(current_path).to eq(user_registration_path)
       expect(page).to have_text('Não foi possível salvar aluno')
     end
@@ -108,9 +69,8 @@ describe 'user registration' do
       fill_in 'E-mail', with: user.email
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirmar Senha', with: '12345678'
-      within 'form' do
-        click_on 'Cadastrar'
-      end
+      click_on 'Cadastrar'
+
       expect(current_path).to eq(user_registration_path)
       expect(page).to have_text('Não foi possível salvar aluno')
     end
@@ -123,10 +83,9 @@ describe 'user registration' do
 
       fill_in 'E-mail', with: 'john.doe@codesaga.com'
       fill_in 'Senha', with: '123456'
-      fill_in 'Confirmar Senha', with: '123456'
-      within 'form' do
-        click_on 'Cadastrar'
-      end
+      fill_in 'Confirmar Senha', with: ''
+      click_on 'Cadastrar'
+
       expect(current_path).to eq(user_registration_path)
       expect(page).to have_text('Não foi possível salvar aluno')
     end
@@ -200,8 +159,8 @@ describe 'user login' do
 
   context 'when user signout' do
     it 'user logout' do
-      user = Fabricate(:user)
-      login_as user, scope: :user
+      login_user
+
       visit user_session_path
 
       expect(current_path).to eq(root_path)
@@ -209,8 +168,12 @@ describe 'user login' do
       expect(page).not_to have_text('Entrar')
       expect(page).not_to have_text('Cadastrar')
 
-      accept_confirm do
-        click_on 'Sair'
+      find('#dropdownMenuButton1').click
+
+      within '.dropdown-menu' do
+        accept_confirm do
+          click_on 'Sair'
+        end
       end
 
       expect(current_path).to eq(root_path)
