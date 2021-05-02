@@ -26,7 +26,7 @@ describe User do
   end
 
   context 'registration validation test' do
-    it 'ensures full_name, email, password, address, cpf and birthdate presence' do
+    it 'ensures email and password presence' do
       user = User.create
 
       expect(user.errors[:email]).to include('não pode ficar em branco')
