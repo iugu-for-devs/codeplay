@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def reduce_name
-    full_name.split(" ")[0]
+    full_name.split.first
   end
 
   private
