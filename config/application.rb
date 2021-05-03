@@ -36,6 +36,6 @@ module Codeplay
     config.generators.system_tests = nil
     config.external_apis = config_for(:external_apis).symbolize_keys
     # Use credentials on future
-    config.iugu_lite_token = '46a9c9e65f59c14c046b665ef8aa16e03b1fb64b'
+    config.iugu_lite_token = 'fdadce5e06bcc00abc9103ebdc5cdb6f9853400c'
   end
 end

@@ -18,13 +18,14 @@
             <thead class="table-dark">
               <tr>
                 <th scope="col"><%= Order.human_attribute_name(:pay_type) %></th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
             <% @orders.each do |order| %>
               <tr>
-                <td><%= order.pay_type %></td>
-                <td><%= order.status %></td>
+                <td><%= order.pay_type_obj.name %></td>
+                <td><%= Order.human_attribute_name "status.#{order.status}" %></td>
               </tr>
             <% end %>
             </tbody>

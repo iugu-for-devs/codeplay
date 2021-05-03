@@ -1,13 +1,14 @@
 class PayType
-  attr_reader :name, :token
+  attr_reader :name, :token, :icon
 
-  def initialize(name:, token:)
+  def initialize(name:, token:, icon:)
     @name = name
     @token = token
+    @icon = icon
   end
 
   def self.all
-    endpoint = 'paytypes'
+    endpoint = 'company_payment_methods'
     pay_types = get_request(endpoint)
 
     pay_types.map { |pay_type| create_paytype(pay_type) }
@@ -15,15 +16,12 @@ class PayType
 
   class << self
     def conn_faraday
-      Faraday.new(
-        url: 'https://my-json-server.typicode.com/JorgeLAB/codeplay/',
-        headers: { 'Content-Type' => 'application/json' }
-      )
+      IuguLite.client
     end
 
     def get_request(endpoint, data = {})
-      response = conn_faraday.get(endpoint) { |req| req.params = data }
-      load_json(response: response)
+      response = conn_faraday.get(endpoint)
+      response.body
     end
 
     def load_json(response:)

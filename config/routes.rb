@@ -33,6 +33,14 @@ Rails.application.routes.draw do
     resources :members
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :orders, param: :token, only: [] do
+        post 'approve', on: :member
+      end
+    end
+  end
+
   resources :subscriptions, only: %i[index show] do
     resources :orders, only:[:new, :create]
   end

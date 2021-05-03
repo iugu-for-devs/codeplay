@@ -8,6 +8,9 @@ pt-BR:
     attributes:
       order:
         pay_type: Forma de Pagamento
+      order/status:
+        approved: 'Aprovado'
+        pending: 'Aguardando pagamento'
 
   orders:
     new:

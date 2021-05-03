@@ -8,8 +8,6 @@
   </ol>
 </h5>
 
-<%= render partial: 'shared/flashes' %>
-
 <h3><%= @course.name %></h3>
 <dl>
   <dt><%= Course.human_attribute_name(:description)%></dt>
@@ -26,19 +24,19 @@
         <%= image_tag 'covers/Logo_verde.jpg', size:'360x360' %>
       <% end %>
   </dd>
-  <% if @course.requirements %>
+  <% if @course.requirements.present? %>
     <dt><%= Course.human_attribute_name(:requirements) %>: </dt>
-  <% @course.requirements.each do |requirement| %>
-    <dd><%= requirement.name %></dd>
-   <% end %>
+    <% @course.requirements.each do |requirement| %>
+      <dd><%= requirement.name %></dd>
+    <% end %>
   <% end %>
 </dl>
 
 <hr>
 
-<p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Lesson.model_name.human(count: :other)) %></p>
 <div>
   <% if((current_user&.own_course? @course) || (current_user&.own_course_subscription? @course) )  %>
+    <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Lesson.model_name.human(count: :other)) %></p>
     <table class="table table-bordered">
       <thead class="table-dark">
         <tr>

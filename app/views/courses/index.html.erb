@@ -3,7 +3,7 @@
 <h5 aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<%= root_path %>"
-                                class="link-dark">Home</a></li>
+                                   class="link-dark">Home</a></li>
     <li class="breadcrumb-item active text-secondary" aria-current="page"><%= Course.model_name.human count: 2 %></li>
   </ol>
 </h5>
@@ -11,20 +11,19 @@
 <hr>
 <p class="h5 mb-3 fw-normal text-center"><%= t('label.list', model: Course.model_name.human(count: :other)) %></p>
 
-<div>
-  <table class="table table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col"><%= Course.human_attribute_name(:name) %></th>
-        <th scope="col"><%= Course.human_attribute_name(:description) %></th>
-      </tr>
-      </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr class="text">
-        <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
-        <td><%= course.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <% @courses.each do |course| %>
+    <div class="card mb-3 mx-3 col-3">
+      <% if course.cover.attached? %>
+        <%= image_tag course.cover, class: 'card-img-top' %>
+      <% else %>
+        <%= image_tag 'covers/Logo_verde.jpg', class: 'card-img-top' %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to course.name, course %></h5>
+        <p class="card-text"><%= course.description %></p>
+        <p class="card-text"><%= number_to_currency course.price %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

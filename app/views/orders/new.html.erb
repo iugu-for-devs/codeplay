@@ -1,5 +1,11 @@
-<%= form_with model: [ @product, @order ] do |f| %>
-  <%= f.label :pay_type, t('.pay_type') %>
-  <%= f.collection_select :pay_type, PayType.all, :token, :name %>
-  <%= f.submit t(".submit") %>
-<% end %>
+<div class="container mt-5">
+  <h2>Como você quer pagar?</h2>
+  <%= form_with model: [ @product, @order ] do |f| %>
+    <%= f.collection_radio_buttons :pay_type, PayType.all, :token, :icon do |b| %>
+      <%= b.label(class: 'form-check-label mr-5') { b.radio_button(class: 'form-check-input') + image_tag(b.object.icon, size: '100x100') } %>
+    <% end %>
+    <div class="form-group">
+      <%= f.submit t(".submit"), class: 'btn-primary mt-3' %>
+    </div>
+  <% end %>
+</div>

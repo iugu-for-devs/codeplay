@@ -22,6 +22,11 @@ class Order < ApplicationRecord
     status.eql? 'approved'
   end
 
+  def pay_type_obj
+    response = IuguLite.client.get("company_payment_methods/#{pay_type}")
+    PayType.new(**response.body)
+  end
+
   private
 
   def generate_subscription_invoice
@@ -31,8 +36,12 @@ class Order < ApplicationRecord
   end
 
   def generate_course_invoice
-    Invoice.generate(token_user: user.token,
-                     token_course: course.token,
-                     token_pay_type: pay_type)
+    Invoice.generate(
+      amount: course.price,
+      due_date: 1.day.from_now,
+      purchaser: user.payment_token,
+      product: course.token,
+      company_payment_method: pay_type
+    )
   end
 end

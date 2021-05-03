@@ -18,6 +18,6 @@ class UserConfigurator
     return if user.payment_token.present?
 
     response = platform.create(email: user.email)
-    user.update(payment_token: response[:payment_token])
+    user.update(payment_token: response.token)
   end
 end

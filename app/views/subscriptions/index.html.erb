@@ -27,7 +27,7 @@
           <div id="<%= subscription.id %>">
             <th><%= link_to subscription.name, subscription , class: 'btn btn-light'%></th>
             <th><%= subscription.description %></th>
-            <th><%= subscription.price %></th>
+            <th><%= number_to_currency subscription.price %></th>
           </div>
         </tr>
       <% end %>
