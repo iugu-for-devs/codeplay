@@ -2,6 +2,7 @@
 <p align="center">
   <img src="https://i.imgur.com/xMFPLQ4.png" alt="CodePlay logo" width="420" height="150"/>
 </p>
+
 ------
 
  [Descrição do projeto](#descrição-do-projeto)
@@ -10,13 +11,11 @@
 
  [Como iniciar o projeto](#como-iniciar-o-projeto)
 
- [Requisições API](#requisições-api)
-
  [Equipe](#equipe)
 
 
 ## Descrição do Projeto
-------
+
 
 CodePlay é uma plataforma de aulas de programação. Nesta plataforma temos dois tipo de acesso, de um lado funcionários da própria CodePlay que cadastram aulas, administram preços e pacotes de assinatura de cursos e do outro lado os clientes, alunos que poderão ver suas aulas adquiridas por compras avulsas ou assinaturas que liberarão uma série de cursos e aulas. 
 As aulas podem ser aulas em vídeo ou em texto, podem possuir valor R$ 0,00 (gratuíto), porém o visitante terá de se cadastrar em nossa plataforma e executar a compra para poder assistir a aula.
@@ -31,7 +30,6 @@ As aulas podem ser aulas em vídeo ou em texto, podem possuir valor R$ 0,00 (gra
 
 ## Como iniciar o projeto
 
-------
 
 Para executar esse projeto você deve ter um computador, preferencialmente com Linux, com a linguagem de programação Ruby na versão 3.0.1.
 
@@ -43,18 +41,18 @@ Com todas dependências instaladas, execute `rails server` e acesse `localhost:3
 
 ## Executando os testes
 
-------
+
 
 Com todas dependências instaladas, como descrito na seção anterior,
 Nossa ferramenta de teste utiliza o ***Google Chrome***, certifique-se de que este navegador está instalado em seu computador e em seu terminal execute `rspec`, a lista de funcionalidades e testes estão na pasta `\spec`.
 
 ## Layout da aplicação
-------
+
 
 _gifzinho de scroll_
 
 
-------
+## Equipe
 
 A equipe foi composta (em ordem alfabética) entre os dois projetos por: 
 
