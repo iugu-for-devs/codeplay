@@ -52,7 +52,6 @@ describe 'Course Management' do
     visit courses_path
 
     within '.footer-section' do
-      expect(page).to have_content('SOBRE A CODEPLAY')
       expect(page).to have_content('Nossa missão é propiciar educação online de qualidade!')
       find("img[alt='home']").click
       expect(current_path).to eq(root_path)
