@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       end
     end
     resources :members
+    resources :company_tokens, only:[:index, :new, :create, :edit, :update]
   end
 
   resources :subscriptions, only: %i[index show] do

@@ -1,0 +1,11 @@
+<div>
+  <%= form_with model: [:admin, @company_token] do |f| %>
+    <div class="mx-auto mb-3">
+      <%= f.label :token %><span style="color:red">*</span>
+      <%= f.text_field :token, class: 'form-control' %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= f.submit 'Salvar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

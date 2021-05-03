@@ -1,0 +1,15 @@
+<h5 aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= admin_root_path %>"class="link-dark"><%=t('headers.dashboard')%></a></li>
+    <li class="breadcrumb-item"><a href="<%= admin_company_tokens_path %>"><%=t('headers.token')%></a></li>
+    <li class="breadcrumb-item active text-secondary" aria-current="page"><%=t('headers.token')%></li>
+  </ol>
+</h5>
+
+<p class="h5 mb-3 fw-normal text-center">Cadastrar</p>
+
+<% @company_token.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+<%= render 'form' %>
