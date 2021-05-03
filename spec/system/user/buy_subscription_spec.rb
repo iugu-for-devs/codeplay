@@ -14,7 +14,7 @@ describe 'Authenticated user buy subscription' do
   context 'when status is approved' do
     it 'returns successfully with credit card' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Invoice).to receive(:get_request).and_return([{ status: 'approved', token: returned_token }])
+      allow(Invoice).to receive(:generate).and_return({ status: 'approved', token: returned_token })
 
       login_user
       subscription = Fabricate(:subscription)
@@ -34,7 +34,7 @@ describe 'Authenticated user buy subscription' do
 
     it 'returns successfully with pix' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Invoice).to receive(:get_request).and_return([{ status: 'approved', token: returned_token }])
+      allow(Invoice).to receive(:generate).and_return({ status: 'approved', token: returned_token })
       login_user
       subscription = Fabricate(:subscription)
 
@@ -52,7 +52,7 @@ describe 'Authenticated user buy subscription' do
 
     it 'returns successfully with boleto' do
       returned_token = Faker::Alphanumeric.alphanumeric(number: 10)
-      allow(Invoice).to receive(:get_request).and_return([{ status: 'approved', token: returned_token }])
+      allow(Invoice).to receive(:generate).and_return({ status: 'approved', token: returned_token })
       login_user
       subscription = Fabricate(:subscription)
 
