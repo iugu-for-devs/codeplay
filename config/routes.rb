@@ -33,10 +33,12 @@ Rails.application.routes.draw do
     resources :members
   end
 
-  resources :subscriptions, only: %i[index show]
+  resources :subscriptions, only: %i[index show] do
+    resources :orders, only:[:new, :create]
+  end
   resources :courses, only:[:index, :show] do
     resources :lessons, only: [:show]
+    resources :orders, only:[:new, :create]
     resources :text_lessons, only: [:show]
   end
-  resources :orders, only:[:new, :create]
 end

@@ -1,5 +1,5 @@
-<%= form_with url: orders_path(course: @course) do |f| %>
+<%= form_with model: [ @product, @order ] do |f| %>
   <%= f.label :pay_type, t('.pay_type') %>
-  <%= f.collection_select :pay_type, PayType.all, :name, :name, { include_blank: true } %>
+  <%= f.collection_select :pay_type, PayType.all, :token, :name %>
   <%= f.submit t(".submit") %>
 <% end %>

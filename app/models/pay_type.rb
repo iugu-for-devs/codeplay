@@ -1,17 +1,39 @@
 class PayType
-  attr_reader :name
+  attr_reader :name, :token
 
-  def initialize(name:)
+  def initialize(name:, token:)
     @name = name
+    @token = token
   end
 
   def self.all
-    [
-      new(name: 'Boleto'),
-      new(name: 'Cartão de Crédito'),
-      new(name: 'PIX')
-    ]
+    endpoint = 'paytypes'
+    pay_types = get_request(endpoint)
+
+    pay_types.map { |pay_type| create_paytype(pay_type) }
+  end
+
+  class << self
+    def conn_faraday
+      Faraday.new(
+        url: 'https://my-json-server.typicode.com/JorgeLAB/codeplay/',
+        headers: { 'Content-Type' => 'application/json' }
+      )
+    end
+
+    def get_request(endpoint, data = {})
+      response = conn_faraday.get(endpoint) { |req| req.params = data }
+      load_json(response: response)
+    end
+
+    def load_json(response:)
+      JSON.parse(response.body, symbolize_names: true)
+    end
+
+    def create_paytype(attributes = {})
+      new(**attributes)
+    end
   end
 end
 
-# TODO: Plataforma de pagamento deve retornar os tipos de pagamento
+# TODO: Podemos abstrair a chamada do faraday

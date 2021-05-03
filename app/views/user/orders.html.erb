@@ -24,6 +24,7 @@
             <% @orders.each do |order| %>
               <tr>
                 <td><%= order.pay_type %></td>
+                <td><%= order.status %></td>
               </tr>
             <% end %>
             </tbody>

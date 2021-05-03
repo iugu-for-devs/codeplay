@@ -1,0 +1,31 @@
+<div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <div style="display: flex;">
+        <div
+            style="background-image: url('<%=  ( current_user.avatar.attached? )?url_for(current_user.avatar):image_url('user-avatar.svg') %>')"
+            class="user"
+            >
+        </div>
+
+      <span class="name_user ml-3">
+       <%= current_user.reduce_name %>
+      </span>
+    </div>
+  </button>
+
+  <ul class="dropdown-menu mt-3" aria-labelledby="dropdownMenuButton1">
+    <li>
+      <%= link_to "Painel de Controle",
+          user_profile_path,
+          class:"dropdown-item" %>
+    </li>
+    <li><%= link_to 'Meus Dados', edit_user_registration_path, class:"dropdown-item" %></li>
+    <li><%= link_to t('buttons.log_out'),
+            destroy_user_session_path,
+            class:"dropdown-item",
+            method: :delete,
+            data: { confirm: 'Deseja sair?' } %>
+    </li>
+  </ul>
+</div>
+

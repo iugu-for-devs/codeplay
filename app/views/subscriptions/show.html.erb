@@ -8,6 +8,8 @@
   </ol>
 </h5>
 
+<%= render partial: 'shared/flashes' %>
+
 <dl>
   <h3><%= @subscription.name %></h3>
 
@@ -19,22 +21,27 @@
 </dl>
 <hr>
 
-<p class="h5 mb-3 fw-normal text-center"><%= t('.subscription_courses') %></p>
-
-
-<table class="table table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col"><%= Course.human_attribute_name(:name) %></th>
-      <th scope="col"><%= Course.human_attribute_name(:description) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subscription.courses.each do |course| %>
+<% if(current_user&.own_subscription? @subscription) %>
+  <h4><%= t('.subscription_courses') %></h4>
+  <table class="table table-bordered">
+    <thead class="table-dark">
       <tr>
+        <th scope="col"><%= Course.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Course.human_attribute_name(:description) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subscription.courses.each do |course| %>
+        <tr>
         <td><%= link_to course.name, course , class: 'btn btn-light' %></td>
         <td><%= course.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= link_to t('buttons.buy'),
+    new_subscription_order_path(@subscription),
+    class: 'btn btn-primary' %>
+<% end %>
+

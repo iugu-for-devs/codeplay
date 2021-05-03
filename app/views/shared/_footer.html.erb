@@ -1,45 +1,28 @@
-<footer class="footer-section bg-white">
+<footer class="footer-section">
   <div class="container" id="footer-section">
     <div class="row">
       <div class="col-md-4">
-        <h3>Sobre à CodePlay</h3>
-        <p>Nossa missão é propiciar educação online de qualidade</p>
+        <h3>Sobre a CodePlay</h3>
+        <p>Nossa missão é propiciar educação online de qualidade!</p>
       </div>
 
       <div class="col-md-3 ml-auto">
-        <h3>Links</h3>
-        <ul class="list-unstyled footer-links">
-          <li>
-            <%= link_to t('buttons.home'), root_path %>
-          </li>
-          <li>
-            <%= link_to t('buttons.courses'), courses_path %>
-          </li>
-          <li>
-            <%= link_to t('buttons.subscriptions'), subscriptions_path %>
-          </li>
-        </ul>
+        <%= link_to root_path do%>
+          <%= image_tag 'logo-codeplay-branco.png', alt:'home', class: 'img-fluid' %>
+        <% end %>
       </div>
 
       <div class="col-md-4">
-        <h3>Deixe seu email</h3>
-        <p>Para receber avisos e notícias por email</p>
-        <form action="#" class="footer-subscribe">
-          <div class="d-flex mb-5">
-            <input type="text" class="form-control rounded-0" placeholder="Email">
-            <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
-          </div>
-        </form>
       </div>
 
     </div>
 
-    <div class="row pt-5 mt-5 text-center">
+    <div class="row pt-5 text-center">
       <div class="col-md-12">
         <div class="border-top pt-5">
         <p>
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy;CodePlay <%= Time.now.year %> 
+          Copyright &copy;CodePlay <%= Time.now.year %>
           <!--<i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>-->
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </p>
@@ -47,4 +30,4 @@
       </div>
     </div>
   </div>
-</footer>      
+</footer>

@@ -1,5 +1,7 @@
 <div class="col-12 intro-content">
-
+  <div style="z-index:100;">
+    <%= render partial: 'shared/flashes' %>
+  </div>
   <div class="row align-items-center">
     <div class="col-lg-6 mb-4">
       <h1 data-aos="fade-up" data-aos-delay="100" > Junte-se à Milhares, Aprenda a Codar com a CodePlay. </h1>
@@ -8,9 +10,8 @@
       <p data-aos="fade-up" data-aos-delay="300">
         <%= link_to "Veja alguns cursos", courses_path, class:"btn btn-primary py-3 px-5 btn-pill" %>
       </p>
-    </div>
 
-    
+    </div>
     </div>
   </div>
 </div>

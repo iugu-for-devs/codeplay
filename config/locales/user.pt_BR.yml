@@ -22,6 +22,7 @@ pt-BR:
         state: Estado
         remember_me: Lembrar de mim
         current_password: Senha atual
+        avatar: Foto
   user:
     sidebar:
       links:
@@ -33,9 +34,10 @@ pt-BR:
     registration:
       email: E-mail
       password: Senha
+      remember_me: Lembre-se de mim
       password_confirmation: Confirmar Senha
       sign_up: Cadastrar
-
+    purchaser_error: Não foi possível criar perfil de pagamento
   users:
     confirmations:
       new:

@@ -1,0 +1,11 @@
+test:
+  iugu_lite:
+    url: 'https://test.iugu-lite.com.br'
+
+development:
+  iugu_lite:
+    url: 'http://localhost:4000'
+
+production:
+  iugu_lite:
+    url: 'https://iugu-lite.com.br'

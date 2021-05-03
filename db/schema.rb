@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_183745) do
+ActiveRecord::Schema.define(version: 2021_04_29_155645) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "company_tokens", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -71,9 +77,9 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.string "instructor"
     t.string "cover"
     t.integer "admin_id", null: false
+    t.string "token"
     t.decimal "price", precision: 10, scale: 2
     t.integer "requirement_id"
-    t.string "token"
     t.index ["admin_id"], name: "index_courses_on_admin_id"
     t.index ["requirement_id"], name: "index_courses_on_requirement_id"
   end
@@ -93,6 +99,14 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "pay_type"
+    t.string "status", default: "pending"
+    t.string "token"
+    t.integer "user_id", null: false
+    t.integer "course_id"
+    t.integer "subscription_id"
+    t.index ["course_id"], name: "index_orders_on_course_id"
+    t.index ["subscription_id"], name: "index_orders_on_subscription_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "subscription_courses", force: :cascade do |t|
@@ -141,9 +155,12 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
     t.date "birthdate"
     t.string "cpf"
     t.json "address", default: {}, null: false
+    t.string "token"
+    t.string "payment_token"
     t.index ["address"], name: "index_users_on_address"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["payment_token"], name: "index_users_on_payment_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -152,6 +169,9 @@ ActiveRecord::Schema.define(version: 2021_04_28_183745) do
   add_foreign_key "courses", "admins"
   add_foreign_key "courses", "courses", column: "requirement_id"
   add_foreign_key "lessons", "courses"
+  add_foreign_key "orders", "courses"
+  add_foreign_key "orders", "subscriptions"
+  add_foreign_key "orders", "users"
   add_foreign_key "subscription_courses", "courses"
   add_foreign_key "subscription_courses", "subscriptions"
   add_foreign_key "text_lessons", "courses"
