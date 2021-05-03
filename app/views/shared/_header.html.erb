@@ -1,7 +1,9 @@
 <nav class="navbar navbar-dark navbar-expand-lg">
   <div class="container-fluid">
     <div class="site-logo mr-auto">
-      <%= image_tag 'logo-codeplay-branco.png', alt:'Logo da code play', class: 'img-fluid' %>
+      <%= link_to root_path do %>
+        <%= image_tag 'logo-codeplay-branco.png', alt:'Logo da code play', class: 'img-fluid' %>
+      <% end %>
     </div>
 
     <button class="navbar-toggler" type="button"

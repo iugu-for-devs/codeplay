@@ -17,4 +17,15 @@ describe 'View Subscriptions' do
     expect(page).to have_text(other_subscription.name)
     expect(page).to have_text(other_subscription.description)
   end
+
+  it 'can see footer in subscriptions page' do
+    visit subscriptions_path
+
+    within '.footer-section' do
+      expect(page).to have_content('SOBRE A CODEPLAY')
+      expect(page).to have_content('Nossa missão é propiciar educação online de qualidade!')
+      find("img[alt='home']").click
+      expect(current_path).to eq(root_path)
+    end
+  end
 end

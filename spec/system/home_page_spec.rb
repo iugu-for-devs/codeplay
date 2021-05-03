@@ -24,6 +24,13 @@ describe 'Home page' do
         click_on 'Nova Conta'
         expect(current_path).to eq(new_user_registration_path)
       end
+
+      it 'can click on logo' do
+        visit courses_path
+
+        find("img[alt='Logo da code play']").click
+        expect(current_path).to eq(root_path)
+      end
     end
 
     context 'intro content' do
@@ -227,13 +234,10 @@ describe 'Home page' do
         sleep 0.5
 
         within '.footer-section' do
-          expect(page).to have_content('SOBRE À CODEPLAY')
-          expect(page).to have_content('Nossa missão é propiciar educação online de qualidade')
-          expect(page).to have_content('DEIXE SEU EMAIL')
-          expect(page).to have_content('Para receber avisos e notícias por email')
-          expect(page).to have_link('Home', href: root_path)
-          expect(page).to have_link('Cursos', href: courses_path)
-          expect(page).to have_link('Assinaturas', href: subscriptions_path)
+          expect(page).to have_content('SOBRE A CODEPLAY')
+          expect(page).to have_content('Nossa missão é propiciar educação online de qualidade!')
+          find("img[alt='home']").click
+          expect(current_path).to eq(root_path)
         end
       end
     end

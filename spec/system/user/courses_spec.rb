@@ -47,4 +47,15 @@ describe 'Course Management' do
 
     expect(current_path).to eq(new_user_session_path)
   end
+
+  it 'can see footer in courses page' do
+    visit courses_path
+
+    within '.footer-section' do
+      expect(page).to have_content('SOBRE A CODEPLAY')
+      expect(page).to have_content('Nossa missão é propiciar educação online de qualidade!')
+      find("img[alt='home']").click
+      expect(current_path).to eq(root_path)
+    end
+  end
 end
